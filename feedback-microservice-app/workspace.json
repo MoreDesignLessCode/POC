@@ -1,0 +1,12 @@
+{
+    "version": 2,
+    "projects": {
+        "sdk": "packages/sdk",
+        "types": "packages/types",
+        "attachments":"packages/attachment",
+        "messages":"packages/message",
+        "ratings":"packages/rating",
+        "tickets":"packages/ticket"
+
+    }
+}

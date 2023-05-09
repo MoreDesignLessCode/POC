@@ -1,0 +1,2 @@
+ALTER TABLE feedbackmktpl.participants ADD CONSTRAINT participants_fk FOREIGN KEY (artifact_id) REFERENCES feedbackmktpl.artifacts(id);
+ALTER TABLE feedbackmktpl.participants ADD CONSTRAINT participants_fk_1 FOREIGN KEY (status) REFERENCES feedbackmktpl.status_types(id);

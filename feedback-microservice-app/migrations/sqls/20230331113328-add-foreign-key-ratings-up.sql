@@ -1,0 +1,1 @@
+ALTER TABLE feedbackmktpl.ratings ADD CONSTRAINT ratings_fk FOREIGN KEY (artifact_id) REFERENCES feedbackmktpl.artifacts(id);

@@ -1,0 +1,39 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@procter-gamble/apip-mktpl-das-attachment": [
+                "packages/attachment/src/index.ts"
+            ],
+            "@procter-gamble/apip-mktpl-das-message": [
+                "packages/message/src/index.ts"
+            ],
+            "@procter-gamble/apip-mktpl-das-ticket": [
+                "packages/ticket/src/index.ts"
+            ],
+            "@procter-gamble/apip-mktpl-das-feedback-sdk": [
+                "packages/sdk/src/index.ts"
+            ],
+            "@procter-gamble/apip-mktpl-das-feedback-types": [
+                "packages/types/src/index.ts"
+            ]
+        }
+    },
+    "exclude": ["node_modules", "tmp"],
+    "excludeFiles": ["*.md"],
+    "files": [],
+    "include": []
+}
