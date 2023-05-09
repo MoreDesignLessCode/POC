@@ -1,0 +1,44 @@
+{
+    "name": "qr",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/qr/src",
+    "projectType": "library",
+    "targets": {
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/qr/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "packages/qr/jest.config.ts",
+                "passWithNoTests": true,
+                "codeCoverage": true
+            }
+        },
+        "build": {
+            "dependsOn": ["^build"],
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "dependsOn": ["^build"],
+            "options": {
+                "outputPath": "dist/packages/qr",
+                "tsConfig": "packages/qr/tsconfig.lib.json",
+                "packageJson": "packages/qr/package.json",
+                "main": "packages/qr/src/index.ts",
+                "assets": ["packages/qr/*.md"]
+            }
+        },
+        "nodemon": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "nodemon"
+            }
+        }
+    },
+    "tags": []
+}

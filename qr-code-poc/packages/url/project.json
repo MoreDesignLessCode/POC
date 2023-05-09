@@ -1,0 +1,44 @@
+{
+    "name": "url",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/url/src",
+    "projectType": "library",
+    "targets": {
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/url/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "packages/url/jest.config.ts",
+                "passWithNoTests": true,
+                "codeCoverage": true
+            }
+        },
+        "build": {
+            "dependsOn": ["^build"],
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "dependsOn": ["^build"],
+            "options": {
+                "outputPath": "dist/packages/url",
+                "tsConfig": "packages/url/tsconfig.lib.json",
+                "packageJson": "packages/url/package.json",
+                "main": "packages/url/src/index.ts",
+                "assets": ["packages/url/*.md"]
+            }
+        },
+        "nodemon": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "nodemon"
+            }
+        }
+    },
+    "tags": []
+}

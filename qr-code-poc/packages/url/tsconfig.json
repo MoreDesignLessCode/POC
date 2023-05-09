@@ -1,0 +1,16 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "include": ["**/*.ts", "src/lib/utils/GS1DigitalLinkToolkit.js"],
+    "compilerOptions": {
+        "module": "CommonJS",
+        "allowJs": true
+    },
+    "references": [
+        {
+            "path": "./tsconfig.lib.json"
+        },
+        {
+            "path": "./tsconfig.spec.json"
+        }
+    ]
+}
