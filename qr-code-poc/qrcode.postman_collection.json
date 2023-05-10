@@ -1,0 +1,393 @@
+{
+	"info": {
+		"_postman_id": "f78d4a17-0877-4a12-98b3-ec9c03922c18",
+		"name": "qrcode",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13765758",
+		"_collection_link": "https://interstellar-firefly-932889.postman.co/workspace/API_Marketplace~78989e51-badf-4ef4-b060-d240009d9f41/collection/13765758-f78d4a17-0877-4a12-98b3-ec9c03922c18?action=share&creator=13765758&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "url",
+			"item": [
+				{
+					"name": "get url by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlNGJiODk1Ni1hM2M4LTQ2NzUtYjk5OS0yNDZlZjM0ZWM4MmEiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjc4ODc3Njg0LCJleHAiOjE2Nzg4ODEyODR9.mHwHzQ868q15t1Bb9YByU-J3PusPX8M2uIBIl8B4ThI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/urls/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"urls",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete url",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/urls/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"urls",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "url",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\":\"https://github.com/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/url",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all urls",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/urls",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"urls"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "\"NEW\"",
+									"disabled": true
+								},
+								{
+									"key": "createdBy",
+									"value": "uuid",
+									"disabled": true
+								},
+								{
+									"key": "urn",
+									"value": "urn",
+									"disabled": true
+								},
+								{
+									"key": "raci",
+									"value": "raci",
+									"disabled": true
+								},
+								{
+									"key": "includes",
+									"value": "attachments,participants,messages",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "url",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" :\"https://club.litmus7.com/home\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/urls/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"urls",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compress url",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\":\"https://dlnkd.tn.gg/01/9780345418913\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/urls/compress",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"urls",
+								"compress"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "qr",
+			"item": [
+				{
+					"name": "get qr from id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/qr/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"qr",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete qrcode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/qr/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"qr",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a qrcode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"location\":\"https://club.litmus7.com/home\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/qr",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"qr"
+							],
+							"query": [
+								{
+									"key": "errorCorrectionLevel",
+									"value": "L",
+									"disabled": true
+								},
+								{
+									"key": "version",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all qrcodes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/qr",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"qr"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit qrcode",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/qr/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"qr",
+								"{id}"
+							],
+							"query": [
+								{
+									"key": "quiteZone",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
