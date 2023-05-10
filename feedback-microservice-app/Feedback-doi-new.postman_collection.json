@@ -1,0 +1,725 @@
+{
+	"info": {
+		"_postman_id": "1c59ad3c-eddd-4d42-b1be-1dadc079e99a",
+		"name": "Feedback-doi-new",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25939009"
+	},
+	"item": [
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "create a message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    \r\n   [\r\n       {\r\n    \"summary\": \"Thanks for the feedback\",\r\n    \"description\": \"thanks for the feedback\",\r\n    \"reference\":\"urn:com:pg:api:developer:feedback:v1:rating:6766c147-daa4-4632-9c78-e41723d7c854\",\r\n    \"status\": \"NEW\"\r\n},\r\n{\r\n    \"summary\": \"ticket2.1\",\r\n    \"description\": \"ticketmsg1.1\",\r\n    \"reference\":\"urn:com:pg:api:developer:feedback:v1:ticket:98da2609-eb50-4e8d-bcbd-560a56742de9\",\r\n    \"status\": \"NEW\"\r\n}\r\n]\r\n     \r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/messages",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/messages/8440fadd-a5e1-4676-94c1-850023549492",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"messages",
+								"8440fadd-a5e1-4676-94c1-850023549492"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a message",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"summary\": \"finaltest1.1\",\r\n  \"description\": \"finaltestdesc1.1\",\r\n  \"status\": \"ASSIGNED\",\r\n  \"attachments\": [\"6149d1de-f5e6-4da3-bf4e-91a6d153ec92\",\"594b56e7-3e60-4cb4-9e9c-14380c5df3b1\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/messages/8440fadd-a5e1-4676-94c1-850023549492",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"messages",
+								"8440fadd-a5e1-4676-94c1-850023549492"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Message By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/messages/779d996d-b785-428e-99fc-bd21a4b9f8f8",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"messages",
+								"779d996d-b785-428e-99fc-bd21a4b9f8f8"
+							],
+							"query": [
+								{
+									"key": "artifactType",
+									"value": "TICKET",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "a8d3c677-e241-4bfb-bdd0-25fd3f98ab77,3254af66-6e81-4ef6-ae23-bd9aa92f7dc5",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Attachments",
+			"item": [
+				{
+					"name": "create an attachment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"type": "file",
+									"src": "/C:/Users/Indhu.pj/Pictures/Screenshots/Screenshot (1306).png"
+								},
+								{
+									"key": "test",
+									"value": "hello",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4000/attachments",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"attachments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GEt/download attachment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/attachments/d9178f82-9d4b-4b35-b8e9-4f868ee52e7d",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"attachments",
+								"d9178f82-9d4b-4b35-b8e9-4f868ee52e7d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ratings",
+			"item": [
+				{
+					"name": "create a new Rating",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\":\"3\",\r\n     \"reference\" :\"urn:com:pg:api:developer:feedback:v1:rating:388fa1cb-773e-472d-8916-efa5f792ecbb\",\r\n    \"participants\": [\r\n        {    \r\n            \"profileId\":\"6083789e-c965-11ed-afa1-0242ac120002\",\r\n            \"addedBy\": \"6573fca6-a913-11ed-afa1-0242ac120007\",\r\n            \"status\": \"RESPONSIBLE\"\r\n        }\r\n    ],\r\n    \"messages\":\r\n        {\r\n            \"summary\": \"The Product is doesnt meet Expectaions\",\r\n            \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. \",\r\n            \"status\": \"NEW\",\r\n            \"createdBy\": \"6573fca6-a913-11ed-afa1-0242ac120007\",\r\n            \"attachments\":[\"3a87f3fc-c1a6-11ed-afa1-0242ac120002\",\"f93f0070-c1a5-11ed-afa1-0242ac120002\"]\r\n        },\r\n    \"tags\":[{\r\n        \"name\":\"URN:TICKET:CATEGORY:REGISTRATION\"\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/ratings",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"ratings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all ratings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/ratings",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"ratings"
+							],
+							"query": [
+								{
+									"key": "includes",
+									"value": "attachments,participants,messages",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit a rating",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"rating\":\"10\",\r\n  \"participants\": [\r\n    {\r\n      \"profile_id\": \"e7db0fd1-525d-497a-80df-197fc1b9be92\",\r\n      \"status\": \"RESPONSIBLE\"\r\n    },\r\n    {\r\n      \"profile_id\": \"a5db0fd1-525d-497a-80df-197fc1b9be13\",\r\n      \"status\": \"INFORMED\"\r\n    }\r\n  ]\r\n\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/ratings/73db2ea9-3be6-4c0d-b50a-19cdb3951b7a",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ratings",
+								"73db2ea9-3be6-4c0d-b50a-19cdb3951b7a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RatingById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/ratings/6766c147-daa4-4632-9c78-e41723d7c854?includes=attachments,participants,messages",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"ratings",
+								"6766c147-daa4-4632-9c78-e41723d7c854"
+							],
+							"query": [
+								{
+									"key": "includes",
+									"value": "attachments,participants,messages"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a rating",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/ratings/6766c147-daa4-4632-9c78-e41723d7c854",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"ratings",
+								"6766c147-daa4-4632-9c78-e41723d7c854"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tag",
+			"item": [
+				{
+					"name": "tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNGM1OTQwNS0xNzIxLTRkZGItYmFiYy1jMzViNzRmYjNhZTgiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjgwMjU3MjIyLCJleHAiOjE2ODAyNjA4MjJ9.6tpw5FNGjTPzPvnGBkNQJrizS8FU3aKRFcaWvxhM550",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " [\r\n {\r\n    \"name\": \"FeedbackTag\",\r\n    \"description\": \"Tag related to rating\",\r\n    \"type\": \"feedback\"\r\n  },\r\n  {\r\n    \"name\": \"feedbacbbbbbb\",\r\n    \"description\": \"Tag related to rating\",\r\n    \"type\": \"feedback\"\r\n  }\r\n\r\n\r\n  ]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tags",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tagById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNGM1OTQwNS0xNzIxLTRkZGItYmFiYy1jMzViNzRmYjNhZTgiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjgwMjU3MjIyLCJleHAiOjE2ODAyNjA4MjJ9.6tpw5FNGjTPzPvnGBkNQJrizS8FU3aKRFcaWvxhM550",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/tags/9ebd136b-7097-4f30-9cbe-299d682947f3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tags",
+								"9ebd136b-7097-4f30-9cbe-299d682947f3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tags",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZmMxYTczNS01NDY4LTQwMDQtOWM3Ni03ZTIwMDkwN2JjMTIiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjgwMjY2MTU5LCJleHAiOjE2ODAyNjk3NTl9.9LTkeCfPSLfUJozj0TpEqszjycC0pUz3nUFUCUJ_ywA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/tags",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tags"
+							],
+							"query": [
+								{
+									"key": "filter.name",
+									"value": "DomainTag,FeedbackTag",
+									"description": "FeedbackTag",
+									"disabled": true
+								},
+								{
+									"key": "filter.description",
+									"value": "Tag generated on creating a domain,Namespace integreated tag",
+									"disabled": true
+								},
+								{
+									"key": "filter.reference",
+									"value": "urn:com:pg:api:developer:tags:v1:06c8743e-a401-4d7c-9385-cd9edafda863",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tagById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNGM1OTQwNS0xNzIxLTRkZGItYmFiYy1jMzViNzRmYjNhZTgiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjgwMjU3MjIyLCJleHAiOjE2ODAyNjA4MjJ9.6tpw5FNGjTPzPvnGBkNQJrizS8FU3aKRFcaWvxhM550",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"RateDomain ediiiiited\",\r\n  \"description\": \"Rating given to domain\",\r\n  \"reference\": \"urn:com:pg:api:developer:tags:c9d887b6-148f-40ba-96a7-0135ad40ac38\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tags/28f84934-4906-4540-96b6-4b80abc46ac4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tags",
+								"28f84934-4906-4540-96b6-4b80abc46ac4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Tags",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/tags/49746e30-b744-4e36-8f1d-b3b42b782311",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tags",
+								"49746e30-b744-4e36-8f1d-b3b42b782311"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tickets",
+			"item": [
+				{
+					"name": "get Ticket By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlNGJiODk1Ni1hM2M4LTQ2NzUtYjk5OS0yNDZlZjM0ZWM4MmEiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjc4ODc3Njg0LCJleHAiOjE2Nzg4ODEyODR9.mHwHzQ868q15t1Bb9YByU-J3PusPX8M2uIBIl8B4ThI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/tickets/98da2609-eb50-4e8d-bcbd-560a56742de9",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"tickets",
+								"98da2609-eb50-4e8d-bcbd-560a56742de9"
+							],
+							"query": [
+								{
+									"key": "includes",
+									"value": "messages,participants",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Ticket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/tickets/1c445059-ccda-4ac5-90fc-582f9d3d6db4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tickets",
+								"1c445059-ccda-4ac5-90fc-582f9d3d6db4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a Ticket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"participants\": [\r\n        {    \r\n            \"profileId\":\"6973fca6-a913-11ed-afa1-0242ac120007\",\r\n            \"addedBy\": \"6573fca6-a913-11ed-afa1-0242ac120007\",\r\n            \"status\": \"RESPONSIBLE\"\r\n        },\r\n         {    \r\n            \"profileId\":\"2373fca6-a913-11ed-afa1-0242ac120005\",\r\n            \"addedBy\": \"6573fca6-a913-11ed-afa1-0242ac120007\",\r\n            \"status\": \"RESPONSIBLE\"\r\n        }\r\n    ],\r\n    \"messages\": \r\n        {\r\n            \"summary\": \"Litmus7message\",\r\n            \"description\": \"Litmus7description\",\r\n            \"status\": \"NEW\",\r\n            \"createdBy\": \"6573fca6-a913-11ed-afa1-0242ac120007\"\r\n        },\r\n    \"tags\":[{\r\n        \"name\":\"URN:TICKET:CATEGORY:REGISTRATION\"\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/tickets",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Ticket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"participants\": [\r\n    {\r\n      \"profileId\": \"44e0dc5b-7c83-4314-8314-b9b5979ea3b8\",\r\n      \"status\": \"NEW\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/tickets/a3e29a2a-1510-426d-8e42-05c00f6bfdbc",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"tickets",
+								"a3e29a2a-1510-426d-8e42-05c00f6bfdbc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all Tickets",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5Nzg4YWRjZi1iYTBlLTQ2ZjYtYTEyZS0wOTQxNjEwMzdhZjAiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjc4ODgyODg1LCJleHAiOjE2Nzg4ODY0ODV9.3XYtFZugTBkhkwQ_YnZwoEYbClnBZjSi7CY5_oRiJZ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/tickets?includes=messages",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"tickets"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "\"NEW\"",
+									"disabled": true
+								},
+								{
+									"key": "createdBy",
+									"value": "uuid",
+									"disabled": true
+								},
+								{
+									"key": "urn",
+									"value": "urn",
+									"disabled": true
+								},
+								{
+									"key": "raci",
+									"value": "raci",
+									"disabled": true
+								},
+								{
+									"key": "includes",
+									"value": "messages"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
