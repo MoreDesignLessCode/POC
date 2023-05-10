@@ -4,7 +4,7 @@
     "license": "SEE LICENSE IN LICENSE",
     "repository": {
         "type": "git",
-        "url": "https://github.com/procter-gamble/apip-mktpl-das-person-types"
+        "url": "https://github.com/procter-gamble/apip-mktpl-das-qrcode-types"
     },
     "publishConfig": {
         "registry": "https://npm.pkg.github.com"

@@ -20,7 +20,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const port = process.env.PERSON_DAS_PORT || 3000;
+const port = process.env.QRCODE_DAS_PORT || 3000;
 const Runtime = new FastifyHttpProvider({ logger: true });
 
 Runtime.instance.register(fastifyRequestContextMiddleware);

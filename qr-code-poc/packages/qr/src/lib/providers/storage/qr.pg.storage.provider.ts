@@ -23,7 +23,7 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
         'id, location,created_at, modified_at, deleted_at, created_by, modified_by, deleted_by';
 
     constructor() {
-        const connString = `postgresql://${process.env.PERSON_DAS_DB_USER}:${process.env.PERSON_DAS_DB_PASSWORD}@${process.env.PERSON_DAS_DB_HOST}:${process.env.PERSON_DAS_DB_PORT}/${process.env.PERSON_DAS_DB_NAME}`;
+        const connString = `postgresql://${process.env.QRCODE_DAS_DB_USER}:${process.env.QRCODE_DAS_DB_PASSWORD}@${process.env.QRCODE_DAS_DB_HOST}:${process.env.QRCODE_DAS_DB_PORT}/${process.env.QRCODE_DAS_DB_NAME}`;
 
         this.client = new Pg.Client({
             connectionString: connString,
@@ -323,51 +323,7 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
         }
     };
 
-    // create = async (
-    //     object: Qr,
-    //     context: IContext
-    // ): Promise<Result<Qr>> => {
-    //     try {
-    //         const now = new Date().toISOString();
-    //         let newPersonId = object.id;
-    //         if (!newPersonId || !validate(newPersonId)) {
-    //             newPersonId = Uuid();
-    //             object.id = newPersonId;
-    //         }
-
-    //         await this.client.query(
-    //             'INSERT INTO mktpl.qr (id,given_name,middle_name,family_name,created_at,modified_at,deleted_at,created_by,modified_by,deleted_by) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10);',
-    //             [
-    //                 newPersonId,
-    //                 object.name.given,
-    //                 object.name.middle,
-    //                 object.name.family,
-    //                 now,
-    //                 null,
-    //                 null,
-    //                 context.get('auth:claims')['sub'],
-    //                 null,
-    //                 null,
-    //             ]
-    //         );
-
-    //         return {
-    //             type: 'ok',
-    //             data: { type: 'resource', value: object },
-    //         };
-    //     } catch (err) {
-    //         const error = new GeneralAPIError(
-    //             Constants.errors.repo.qr.create.CODE,
-    //             err
-    //         )
-    //             .withTitle(Constants.errors.repo.qr.create.TITLE)
-    //             .withReason(Constants.errors.repo.qr.create.MESSAGE);
-    //         return {
-    //             type: 'error',
-    //             data: error,
-    //         };
-    //     }
-    // };
+   
 
     handleResourceNotFound = (id: Uuid): Result<Qr> => {
         const error = new ResourceNotFoundError(
@@ -385,7 +341,7 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
     };
 
     // // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    buildPerson = (element: any): Qr => {
+    buildQr = (element: any): Qr => {
         const qr: Qr = new Qr(
             element.id,
             element.location
@@ -396,7 +352,7 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
     handleResult = (res: Pg.QueryResult, type: string): Result<Qr> => {
         const val: Qr[] = [];
         res.rows.forEach((element) => {
-            const qr: Qr = this.buildPerson(element);
+            const qr: Qr = this.buildQr(element);
             val.push(qr);
         });
 

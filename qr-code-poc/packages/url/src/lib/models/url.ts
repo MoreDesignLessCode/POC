@@ -1,4 +1,4 @@
-import { IUrl, Nullable } from '@procter-gamble/apip-mktpl-das-person-types';
+import { IUrl, Nullable } from '@procter-gamble/apip-mktpl-das-qrcode-types';
 import { IResource, Uuid } from '@procter-gamble/apip-api-types';
 import * as Joi from 'joi';
 

@@ -21,7 +21,7 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
         'id, given_name, middle_name, family_name, created_at, modified_at, deleted_at, created_by, modified_by, deleted_by';
 
     constructor() {
-        const connString = `postgresql://${process.env.PERSON_DAS_DB_USER}:${process.env.PERSON_DAS_DB_PASSWORD}@${process.env.PERSON_DAS_DB_HOST}:${process.env.PERSON_DAS_DB_PORT}/${process.env.PERSON_DAS_DB_NAME}`;
+        const connString = `postgresql://${process.env.QRCODE_DAS_DB_USER}:${process.env.QRCODE_DAS_DB_PASSWORD}@${process.env.QRCODE_DAS_DB_HOST}:${process.env.QRCODE_DAS_DB_PORT}/${process.env.QRCODE_DAS_DB_NAME}`;
 
         this.client = new Pg.Client({
             connectionString: connString,
@@ -57,11 +57,11 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
             }
         } catch (err) {
             const error = new GeneralAPIError(
-                Constants.errors.repo.contact.all.CODE,
+                Constants.errors.repo.url.all.CODE,
                 err
             )
-                .withTitle(Constants.errors.repo.contact.all.TITLE)
-                .withReason(Constants.errors.repo.contact.all.MESSAGE);
+                .withTitle(Constants.errors.repo.url.all.TITLE)
+                .withReason(Constants.errors.repo.url.all.MESSAGE);
             return {
                 type: 'error',
                 data: error,

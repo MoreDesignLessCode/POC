@@ -1,4 +1,4 @@
-# API Marketplace Person DOI Types
+# API Marketplace Qrcode DOI Types
 
 ## Running unit tests
 

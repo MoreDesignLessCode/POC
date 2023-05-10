@@ -1,4 +1,4 @@
 {
   "sql-file": true,
-  "table": "person_migrations"
+  "table": "qrcode_migrations"
 }

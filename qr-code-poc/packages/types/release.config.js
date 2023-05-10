@@ -32,7 +32,7 @@ module.exports = {
             {
                 assets: [`${srcRoot}/package.json`, `${srcRoot}/CHANGELOG.md`],
                 message:
-                    `release(${name}): release apip-mktpl-das-person-${name} ` +
+                    `release(${name}): release apip-mktpl-das-qrcode-${name} ` +
                     '${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
             },
         ],

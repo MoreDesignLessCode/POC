@@ -1,7 +1,8 @@
 {
     "version": 2,
     "projects": {
-        "person": "packages/person",
+        "qr" : "packages/qr",
+        "url" : "packages/url",
         "sdk": "packages/sdk",
         "types": "packages/types"
     }

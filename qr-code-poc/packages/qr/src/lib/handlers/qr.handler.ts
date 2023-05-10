@@ -108,7 +108,6 @@ export class QrHandler implements IHandler {
         req.apip.ctx.set<QueryParameters>('quiteZone', quiteZone)
         req.apip.ctx.set<QueryParameters>('size', size)
         req.apip.ctx.set<QueryParameters>('encodingMode', encodingMode)
-        //const { value: validPerson, error } = QrSchema.validate(qr);
          let error=false
         if (error) {
             this.handleValidationError(
@@ -121,7 +120,6 @@ export class QrHandler implements IHandler {
         } else {
             const result = await this.qrService.create(
                 qr,
-                // validPerson,
                 req.apip.ctx
             );
             this.matchOkOrError(201, result, reply);
@@ -149,7 +147,7 @@ export class QrHandler implements IHandler {
                 );
             }
 
-            //const { value: validPerson, error } = QrSchema.validate(qr);
+            //const { value: validQr, error } = QrSchema.validate(qr);
             let error=false
             if (error) {
                 this.handleValidationError(
@@ -162,7 +160,7 @@ export class QrHandler implements IHandler {
             } else {
                 const result = await this.qrService.update(
                     params.id,
-                    //validPerson,
+                    //validQr,
                     qr,
                     req.apip.ctx
                 );

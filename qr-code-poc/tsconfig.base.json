@@ -15,13 +15,16 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@procter-gamble/apip-mktpl-das-person": [
-                "packages/person/src/index.ts"
+            "@procter-gamble/apip-mktpl-das-qr": [
+                "packages/qr/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-das-person-sdk": [
+            "@procter-gamble/apip-mktpl-das-url": [
+                "packages/url/src/index.ts"
+            ],
+            "@procter-gamble/apip-mktpl-das-qrcode-sdk": [
                 "packages/sdk/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-das-person-types": [
+            "@procter-gamble/apip-mktpl-das-qrcode-types": [
                 "packages/types/src/index.ts"
             ]
         }

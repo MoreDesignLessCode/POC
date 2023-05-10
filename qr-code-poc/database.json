@@ -1,11 +1,11 @@
 {
     "dev": {
         "driver": "pg",
-        "user": {"ENV": "PERSON_DAS_MIGRATION_USER"},
-        "password": {"ENV": "PERSON_DAS_DDL_PASSWORD"},
-        "host": {"ENV": "PERSON_DAS_DB_HOST"},
-        "database": {"ENV": "PERSON_DAS_DB_NAME"},
-        "port": {"ENV": "PERSON_DAS_DB_PORT"},
-        "schema": {"ENV": "PERSON_DAS_DATABASE_SCHEMA"}
+        "user": {"ENV": "QRCODE_DAS_MIGRATION_USER"},
+        "password": {"ENV": "QRCODE_DAS_DDL_PASSWORD"},
+        "host": {"ENV": "QRCODE_DAS_DB_HOST"},
+        "database": {"ENV": "QRCODE_DAS_DB_NAME"},
+        "port": {"ENV": "QRCODE_DAS_DB_PORT"},
+        "schema": {"ENV": "QRCODE_DAS_DATABASE_SCHEMA"}
       }
   }

@@ -11,16 +11,5 @@ export const validation = {
             TITLE: 'Error Validating',
         },
     },
-    contact: {
-        create: {
-            CODE: 'CONTACT-DAS-4401',
-            MESSAGE: 'Error validating contact object',
-            TITLE: 'Error Validating',
-        },
-        update: {
-            CODE: 'CONTACT-DAS-4402',
-            MESSAGE: 'Error validating contact object',
-            TITLE: 'Error Validating',
-        },
-    },
+    
 };

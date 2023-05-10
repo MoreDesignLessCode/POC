@@ -113,7 +113,7 @@ export class UrlHandler implements IHandler {
         const responseBuilder = new ResponseBuilder();
         const { body: url } = req;
 
-        const { value: validPerson, error } = UrlSchema.validate(url);
+        const { value: validUrl, error } = UrlSchema.validate(url);
 
         if (error) {
             const validationError = new ValidationAPIError(
@@ -129,7 +129,7 @@ export class UrlHandler implements IHandler {
                 .send(responseBuilder.build());
         } else {
             const result = await this.urlService.create(
-                validPerson,
+                validUrl,
                 req.apip.ctx
             );
             this.matchOkOrError(201, result, reply);
@@ -148,7 +148,7 @@ export class UrlHandler implements IHandler {
             //     );
             // }
 
-            const { value: validPerson, error } = UrlSchema.validate(url);
+            const { value: validUrl, error } = UrlSchema.validate(url);
 
             if (error) {
                 const validationError = new ValidationAPIError(
@@ -167,7 +167,7 @@ export class UrlHandler implements IHandler {
             } else {
                 const result = await this.urlService.update(
                     params.id,
-                    validPerson,
+                    validUrl,
                     req.apip.ctx
                 );
                 this.matchOkOrError(200, result, reply);

@@ -1,33 +1,33 @@
-# person
+# url
 
-This is the main package for the person domain interface. This will be a
+This is the main package for the url domain interface. This will be a
 publishable library where the index will export the following:
 
 | Export                  | Signature                                                  |
 | :---------------------- | :--------------------------------------------------------- |
-| `PersonRouter`          | `PersonRouter(handler: PersonHandler)`                     |
-| `PersonHandler`         | `PersonHandler(service: PersonService)`                    |
-| `PersonService`         | `PersonService(repository: PersonRepository)`              |
-| `PersonRepository`      | `PersonRepository(storageProvider: PersonStorageProvider)` |
-| `PersonStorageProvider` | `new PersonStorageProvider()`                              |
+| `UrlRouter`          | `UrlRouter(handler: UrlHandler)`                     |
+| `UrlHandler`         | `UrlHandler(service: UrlService)`                    |
+| `UrlService`         | `UrlService(repository: UrlRepository)`              |
+| `UrlRepository`      | `UrlRepository(storageProvider: UrlStorageProvider)` |
+| `UrlStorageProvider` | `new UrlStorageProvider()`                              |
 
 This is being built in a hexagonal architecture ("adapters & ports") fashion
 to enable a maintainable and evolvable capability.
 
 ## Running unit tests
 
-Run `yarn nx test person` to execute the unit tests via [Jest](https://jestjs.io).
+Run `yarn nx test url` to execute the unit tests via [Jest](https://jestjs.io).
 
 ## Running lint
 
-Run `yarn nx lint person` to execute the lint via [ESLint](https://eslint.org/).
+Run `yarn nx lint url` to execute the lint via [ESLint](https://eslint.org/).
 
 # Environment Variables
 
 copy .env.local from etc to root
 
 ```
-cp packages/person/etc/configs/.env.local ./.env
+cp packages/url/etc/configs/.env.local ./.env
 ```
 
 # Layers
@@ -58,7 +58,7 @@ This layer facilitates the communication with the storage system. This allows fo
 
 # JWT Validation
 
-At this point we are just validating the JWT is a valid "shape". We will need to update the [registration](https://github.com/procter-gamble/apip-mktpl-das-person/blob/main/src/providers/jwt/jwtProvider.ts#L9) of FastifyJwt to use jwks once that is in place, then we will need to pass additional options to the [verify](https://github.com/procter-gamble/apip-mktpl-das-person/blob/main/src/providers/jwt/jwtProvider.ts#L15) code to validate items such as complete, allowedAud, allowedIss, maxAge
+At this point we are just validating the JWT is a valid "shape". We will need to update the [registration](https://github.com/procter-gamble/apip-mktpl-das-qrcode/blob/main/src/providers/jwt/jwtProvider.ts#L9) of FastifyJwt to use jwks once that is in place, then we will need to pass additional options to the [verify](https://github.com/procter-gamble/apip-mktpl-das-qrcode/blob/main/src/providers/jwt/jwtProvider.ts#L15) code to validate items such as complete, allowedAud, allowedIss, maxAge
 
 When we make these updates here is documentation that will assist:
 
