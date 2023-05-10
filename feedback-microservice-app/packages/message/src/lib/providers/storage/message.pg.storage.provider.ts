@@ -50,9 +50,17 @@ export class MessagePgStorageProvider implements IStorageProvider<Messages> {
             messageIds.push(messageId)
             let attachmentIds=message.attachments
             const status = await this.findStatusValue(message?.status)
-            const artifactId= await this.client.query(
+            let artifactId:any
+            if(artifactType==='RATING'){
+                artifactId= await this.client.query(
+                    'SELECT artifact_id as id FROM feedbackmktpl.ratings WHERE id=$1',[artifactidvlaue]
+                   )
+            }
+            else{
+            artifactId= await this.client.query(
              'SELECT id FROM feedbackmktpl.artifacts WHERE ref_value=$1 and ref_type=$2',[artifactidvlaue,artifactType]
             )
+            }
             console.log("artifact",artifactId)
              const insertMessages = await this.client.query(
                  'INSERT INTO feedbackmktpl.messages (id,artifact_id,summary,description,status,created_at,modified_at,deleted_at,created_by,modified_by,deleted_by) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11);',

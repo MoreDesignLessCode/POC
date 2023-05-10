@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable prefer-const */
 import {
     IHandler,
     IService,
@@ -36,12 +38,16 @@ export class RatingHandler implements IHandler {
     }
 
     get = async (req: IRequest<Ratings>, reply: FastifyReply) => {
-
+        const responseBuilder = new ResponseBuilder();
         try {
             const params = req.apip.ctx.get<PathParams>('request:pathparams');
             const queryParams: any = req.query
             const includesParams = queryParams?.includes?.split(',') || []
+            const requestTicketIds = queryParams['filter.id']?.split(',') || []
+            req.apip.ctx.set<QueryParameters>('ids', requestTicketIds)
             req.apip.ctx.set<QueryParameters>('includes', includesParams)
+
+
             if (params.id === undefined) {
                 return this.getCollection(req, reply);
             }
@@ -52,23 +58,42 @@ export class RatingHandler implements IHandler {
                 );
             }
 
+            let ticketdata = []
+            let messagesArr = [];
+            let attachmentsArr = [];
             const result = await this.ratingService.getById(params.id, req.apip.ctx);
             match(result)
-                .with({ type: 'ok' }, (res) => {
-                    const result: IResource[] = [];
-                    result.push(res.data.value);
-                    reply.type('application/json').code(200).send(result);
+                .with({ type: 'ok' }, (result) => {
+                    const response: any = result.data.value
+                    const{ messages, attachments,...rest }= response
+                    ticketdata.push(rest);
+                    if(messages){
+                    messagesArr.push(...messages)}
+                    if (attachments) {
+                                attachmentsArr.push(...attachments)
+                            }
+                    responseBuilder.setData(ticketdata);
+                    messagesArr.length > 0 ? responseBuilder.addIncludes('messages', messagesArr) : null
+                    attachmentsArr.length > 0 ? responseBuilder.addIncludes('attachments', attachmentsArr) : null
+                    reply
+                        .type('application/json')
+                        .code(200)
+                        .send(responseBuilder.build());
                 })
                 .with({ type: 'error' }, (res) => {
                     const error = res.data;
                     if (error instanceof ResourceNotFoundError) {
-                        const result: IResource[] = [];
-                        reply.type('application/json').code(200).send(result);
+                        responseBuilder.setData([]);
+                        reply
+                            .type('application/json')
+                            .code(200)
+                            .send(responseBuilder.build());
                     } else {
+                        responseBuilder.setErrors(error);
                         reply
                             .type('application/json')
                             .code(400)
-                            .send(error.toJson());
+                            .send(responseBuilder.build());
                     }
                 })
                 .exhaustive();
@@ -88,13 +113,9 @@ export class RatingHandler implements IHandler {
         }
     };
 
+
     getCollection = async (req: IRequest<Ratings>, reply: FastifyReply) => {
         const result = await this.ratingService.getCollection(req.apip.ctx);
-        const queryParams: any = req.query
-        const messages = [];
-        const participants = [];
-        const attachmentsArry = [];
-        const includesParams = queryParams?.includes?.split(',') || []
         let ticketdata = []
         let messagesArr = [];
         let participantsArr = [];
