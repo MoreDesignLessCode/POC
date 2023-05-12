@@ -35,7 +35,12 @@ export class UrlHandler implements IHandler {
             const params = req.apip.ctx.get<PathParams>('request:pathparams');
             const queryParams: any = req.query
             const requestTicketIds = queryParams['filter.id']?.split(',') || []
+            if (req.url.includes('getOrginal')) {
+                const urlNames = queryParams['urls']?.split(',') || []
+                req.apip.ctx.set<QueryParameters>('urls', urlNames)
+            }
             req.apip.ctx.set<QueryParameters>('ids', requestTicketIds)
+
             if (params.id === undefined) {
                 return this.getCollection(req, reply);
             }
@@ -106,7 +111,7 @@ export class UrlHandler implements IHandler {
     };
 
     post = async (req: IRequest<Url>, reply: FastifyReply) => {
-        const requestUrl :any =req.url
+        const requestUrl: any = req.url
         const parts = requestUrl.split("/");
         const method = parts.pop()
         req.apip.ctx.set<QueryParameters>('method', method)
@@ -135,7 +140,7 @@ export class UrlHandler implements IHandler {
             this.matchOkOrError(201, result, reply);
         }
     };
-  
+
 
     put = async (req: IRequest<Url>, reply: FastifyReply) => {
         const responseBuilder = new ResponseBuilder();
@@ -159,7 +164,7 @@ export class UrlHandler implements IHandler {
                         Constants.errors.validation.url.update.MESSAGE
                     )
                     .withTitle(Constants.errors.validation.url.update.TITLE);
-                    responseBuilder.setErrors(validationError);
+                responseBuilder.setErrors(validationError);
                 reply
                     .type('application/json')
                     .code(400)

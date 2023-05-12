@@ -17,5 +17,7 @@ export class UrlRouter {
         runtime.instance.patch('/urls/:id', urlHandler.put);
 
         runtime.instance.delete('/urls/:id', urlHandler.delete);
+
+        runtime.instance.get('/urls/getOrginal',urlHandler.get)
     }
 }

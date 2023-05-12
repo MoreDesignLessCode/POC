@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prefer-template */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import {
     Uuid,
@@ -32,8 +34,23 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
 
     all = async (_context: IContext): Promise<Result<Url>> => {
         const id: [unknown] = _context.get('ids')
-        const temp = [];
-        let query =
+        const urls: [unknown]=_context.get('urls')
+        let temp = [];
+        let query='';
+        if(urls!==undefined && urls.length>0){
+             query =
+            `SELECT u1.urlname AS "fullUrl",u1.id,u1.created_by
+            FROM qrmktpl.url AS u1
+         LEFT JOIN qrmktpl.url u2 ON u1.id = u2.refid AND u2.type = 'SHORT'
+LEFT JOIN qrmktpl.url u3 ON u1.id = u3.refid AND u3.type = 'COMPRESSED'
+WHERE  u1.type = 'FULL'and u2.urlname =$1  or u3.urlname=$1 and u1.deleted_at is NULL
+`
+        if (urls?.length > 0) {
+            temp=urls
+        }
+        }
+       else{
+         query =
             ` SELECT u1.urlname AS "fullUrl", u2.urlname AS "compactUrl", u3.urlname as "compressedUrl",u1.id,u1.created_by
                         FROM qrmktpl.url AS u1
                      LEFT JOIN qrmktpl.url u2 ON u1.id = u2.refid AND u2.type = 'SHORT'
@@ -43,6 +60,8 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
             temp.push(id)
             query += ` and u2.id::uuid = ANY($1::uuid[]) `
         }
+       }
+        
         try {
             const res = await this.client.query(query, temp
             );
@@ -106,18 +125,22 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
         else {
             urlId = result.rows[0].id;
         }
+        const test = entity?.name
+        const domainWithoutCustomPath = test
+        .split('/')
+        .slice(0, 3)
+        .join('/');
 
+      const uriWithoutDomain = test.substring(domainWithoutCustomPath.length);
+    
         const method = context.get('method')
         if (method == 'compress') {
             const res = await this.client.query(`SELECT * from qrmktpl.url u where  u.refid=$1 and u.type='COMPRESSED'`, [urlId]);
             if (res.rows.length == 0) {
                 const gs1dlt = new GS1DigitalLinkToolkit();
-                const gs1Check = gs1dlt.analyseURI(entity?.name, true)
-                if (gs1Check?.detected !== '') {
-                    const test = entity?.name
-                    const [protocol, , domain, ...path] = test.split('/');
-                    const urlDomain = protocol + "//" + domain
-                    const compressed = gs1dlt.compressGS1DigitalLink(entity?.name, true, urlDomain, null, true)
+                const gs1Check = gs1dlt.analyseURI(entity?.name, false)
+                if (gs1Check?.detected !== '' && gs1Check?.compressedPath==='') {
+                    const compressed = gs1dlt.compressGS1DigitalLink(entity?.name, true, domainWithoutCustomPath, null, true)
                     const now = new Date().toISOString();
                     const newUrlId = Uuid();
                     await this.client.query(
@@ -147,12 +170,13 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
                 } 
                 else{
                     const newUrlId = Uuid();
-                    const deflated = zlib.deflateSync(entity?.name).toString('base64');
+                    // const deflated = zlib.deflateSync(entity?.name,{ windowBits: 14 }).toString('base64');
+                    const deflated = LZString.compressToBase64(uriWithoutDomain)
                     await this.client.query(
                         'INSERT INTO qrmktpl.url(id,urlname,type,refid,created_at,created_by) VALUES ($1,$2,$3,$4,$5,$6);',
                         [
                             newUrlId,
-                            deflated,
+                           domainWithoutCustomPath+"/"+deflated,
                             "COMPRESSED",
                             urlId,
                             now,
@@ -209,7 +233,7 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
         else {
             const res = await this.client.query(`SELECT * from qrmktpl.url u where  u.refid=$1 and u.type='SHORT'`, [urlId]);
             if (res.rows.length == 0) {
-                await this.createShortUrl(urlId)
+                await this.createShortUrl(urlId,domainWithoutCustomPath)
                 const response= await this.client.query(
                     `SELECT u1.urlname AS "fullUrl", u2.urlname AS "compactUrl",
                      u3.urlname as "compressedUrl",u1.id,u1.created_by 
@@ -247,7 +271,7 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
     }
 
 
-    async createShortUrl(refId: any) {
+    async createShortUrl(refId: any,urlDomain:any) {
         try {
             const now = new Date().toISOString();
             const urlId = Uuid();
@@ -255,7 +279,7 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
                 'INSERT INTO qrmktpl.url(id,urlname,type,refid,created_at,created_by) VALUES ($1,$2,$3,$4,$5,$6);',
                 [
                     urlId,
-                    nanoid(10),
+                   urlDomain+"/"+nanoid(10),
                     "SHORT",
                     refId,
                     now,
