@@ -16,7 +16,7 @@ const FeedbackDetailsContent: React.FC = () => {
               <FeedbackStaticStarRating rating={review.rating} />
               <h3 className="font-bold">{review.summary}</h3>
             </div>
-            <p className="text-sm font-medium mt-2.5">
+            <p className="text-sm font-medium mt-2.5 ">
               Posted by Test User on {review?.createdAt?.slice(0,10)}
             </p>
             <p className="mt-5 text-xs">{review.description}</p>

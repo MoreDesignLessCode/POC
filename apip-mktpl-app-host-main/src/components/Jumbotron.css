@@ -1,0 +1,12 @@
+.jumbotron {
+  display: grid;
+  grid-template: "jumbotron" 25rem;
+}
+
+.jumbotron__img {
+  grid-area: jumbotron;
+}
+
+.jumbotron__content {
+  grid-area: jumbotron;
+}

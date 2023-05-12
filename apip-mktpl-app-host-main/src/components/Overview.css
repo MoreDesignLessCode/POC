@@ -1,0 +1,38 @@
+.overview {
+  display: grid;
+  grid-template:
+    "title"
+    "p1"
+    "p2"
+    "p3"
+    "img";
+}
+@media screen and (min-width: 64rem) {
+  .overview {
+    grid-template:
+      "title img"
+      "p1    img"
+      "p2    img"
+      "p3    img";
+  }
+}
+
+.overview__title {
+  grid-area: title;
+}
+
+.overview__p1 {
+  grid-area: p1;
+}
+
+.overview__p2 {
+  grid-area: p2;
+}
+
+.overview__p3 {
+  grid-area: p3;
+}
+
+.overview__img {
+  grid-area: img;
+}

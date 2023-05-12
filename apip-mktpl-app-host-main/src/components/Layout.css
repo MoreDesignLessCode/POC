@@ -1,0 +1,50 @@
+.layout {
+  min-height: 100vh;
+  transition: all 0.25s;
+  display: grid;
+  grid-template:
+    "header"
+    "main" 1fr
+    "footer";
+}
+
+.uxdl-header__root {
+  grid-area: header;
+}
+
+.main-content {
+  grid-area: main;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.uxdl-footer__root {
+  /* grid-area: footer; */
+}
+
+/* with sidebar */
+.layout:has(.uxdl-sidebar__root) {
+  grid-template:
+    "header  header"
+    "sidebar main" 1fr
+    "sidebar footer"
+    / 15rem 1fr;
+}
+
+.layout:has(.uxdl-sidebar__root).sidebar-closed {
+  grid-template-columns: 2rem 1fr;
+}
+
+.uxdl-sidebar__root {
+  grid-area: sidebar;
+}
+
+.uxdl-fab__root {
+  right: -13.65rem;
+  transition: all 0.25s;
+}
+
+.layout:has(.uxdl-sidebar__root).sidebar-closed .uxdl-fab__root {
+  right: -0.65rem;
+}

@@ -51,7 +51,7 @@ Runtime.instance.register(fastifyRequestContextMiddleware);
 // } as JwtOptions);
 Runtime.instance.register(require('@fastify/multipart'))
 Runtime.instance.register(require('@fastify/formbody'))
-Runtime.instance.register(cors, { origin: 'http://localhost:3008' })
+Runtime.instance.register(cors, { origin: ['http://localhost:3008','http://localhost:3000','http://localhost:3006' ]})
 
 new TicketRouter(
     Runtime,
