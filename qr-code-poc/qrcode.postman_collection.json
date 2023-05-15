@@ -204,28 +204,8 @@
 							],
 							"query": [
 								{
-									"key": "offset",
-									"value": "0",
-									"disabled": true
-								},
-								{
-									"key": "type",
-									"value": "\"NEW\"",
-									"disabled": true
-								},
-								{
 									"key": "filter.createdBy",
 									"value": "a4371fe3-a19f-45e5-a20c-60e6076e558f",
-									"disabled": true
-								},
-								{
-									"key": "urn",
-									"value": "urn",
-									"disabled": true
-								},
-								{
-									"key": "raci",
-									"value": "raci",
 									"disabled": true
 								},
 								{
