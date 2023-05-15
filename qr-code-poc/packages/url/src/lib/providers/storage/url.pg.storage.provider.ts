@@ -32,9 +32,20 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
 
     }
 
+    convertDate =(date:any)=>{
+        const [day, month, year] = date.split('-');
+        const formattedDate = new Date(`${month}-${day}-${year}`);
+        return formattedDate.toISOString()
+    }
+
     all = async (_context: IContext): Promise<Result<Url>> => {
         const id: [unknown] = _context.get('ids')
         const urls: [unknown]=_context.get('urls')
+        const createdBy: [unknown]=_context.get('createdBy')
+        const startDate = _context.get('startDate')? this.convertDate(_context.get('startDate')):null;
+        const endDate = _context.get('endDate')?this.convertDate(_context.get('endDate')):null;
+        console.log(startDate,endDate)
+        let tempIndex=1;
         let temp = [];
         let query='';
         if(urls!==undefined && urls.length>0){
@@ -58,11 +69,26 @@ WHERE  u1.type = 'FULL'and u2.urlname =$1  or u3.urlname=$1 and u1.deleted_at is
             WHERE  u1.type = 'FULL'  and u1.deleted_at is NULL`
         if (id?.length > 0) {
             temp.push(id)
-            query += ` and u2.id::uuid = ANY($1::uuid[]) `
+            query += ` and u1.id::uuid = ANY($${tempIndex}::uuid[]) `
+            tempIndex++
         }
+        if (createdBy?.length > 0) {
+            temp.push(createdBy)
+            query += ` and u1.created_by::uuid = ANY($${tempIndex}::uuid[]) `
+            tempIndex++
+        }
+        if(startDate!=null && endDate !=null){
+            temp.push(startDate)
+            temp.push(endDate)
+            const newTempIndex=tempIndex+1
+            query += ` and u1.created_at BETWEEN to_timestamp($${tempIndex}, 'YYYY-MM-DD') 
+                      AND to_timestamp($${newTempIndex}, 'YYYY-MM-DD')`
+        }
+
        }
         
         try {
+            console.log(query,temp)
             const res = await this.client.query(query, temp
             );
 

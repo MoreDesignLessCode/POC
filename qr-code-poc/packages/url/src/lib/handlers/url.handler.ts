@@ -35,12 +35,21 @@ export class UrlHandler implements IHandler {
             const params = req.apip.ctx.get<PathParams>('request:pathparams');
             const queryParams: any = req.query
             const requestTicketIds = queryParams['filter.id']?.split(',') || []
+            const createdByFilter = queryParams['filter.createdBy']?.split(',') || []
+            const dateRange=queryParams['filter.dateRange']?.split('~')||[];
+            if(dateRange.length>0){
+                const startDate = dateRange[0];
+                const endDate = dateRange[1];
+                req.apip.ctx.set<QueryParameters>('startDate', startDate)
+                req.apip.ctx.set<QueryParameters>('endDate', endDate)
+            }
             if (req.url.includes('getOrginal')) {
                 const urlNames = queryParams['urls']?.split(',') || []
                 req.apip.ctx.set<QueryParameters>('urls', urlNames)
             }
             req.apip.ctx.set<QueryParameters>('ids', requestTicketIds)
-
+            req.apip.ctx.set<QueryParameters>('createdBy', createdByFilter)
+           
             if (params.id === undefined) {
                 return this.getCollection(req, reply);
             }
