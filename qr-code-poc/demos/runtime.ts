@@ -12,11 +12,13 @@ import {
     QrService,
     QrPgStorageProvider,
 } from '../dist/packages/qr';
+import cors from '@fastify/cors'
 
 import { FastifyHttpProvider } from '@procter-gamble/apip-api-types';
 import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware';
 import { JwtMiddleware, JwtOptions } from '@procter-gamble/apip-jwt-middleware';
 import * as dotenv from 'dotenv';
+
 
 dotenv.config();
 
@@ -32,7 +34,7 @@ Runtime.instance.register(fastifyRequestContextMiddleware);
 //         reply.status(401).send({ unauthorized: 'you' });
 //     },
 // } as JwtOptions);
-
+Runtime.instance.register(cors, { origin: ['http://localhost:3008','http://localhost:3000','http://localhost:3006' ]})
 new QrRouter(
     Runtime,
     new QrHandler(
