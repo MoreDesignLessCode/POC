@@ -13,16 +13,16 @@ type Props = {
 const Feedback: React.FC<Props> = ({ productId }) => {
   const { setReviews } = useFeedbackStore();
 
-  // useEffect(() => {
-  //    fetchData()
-  //   // setReviews(reviewsData); // will need to be set up to be a dynamic value drawing from product data retrieved with productId
-  // }, []);
+  useEffect(() => {
+     fetchData()
+    // setReviews(reviewsData); // will need to be set up to be a dynamic value drawing from product data retrieved with productId
+  }, []);
 
-  // const fetchData=async()=>{
-  //  const res=await  axios.get(' http://localhost:4000/ratings?includes=messages')
-  //  console.log(res.data.data)
-  //  setReviews(res.data.data)
-  // }
+  const fetchData=async()=>{
+   const res=await  axios.get(' http://localhost:4000/urls')
+   console.log(res.data.data)
+   setReviews(res.data.data)
+  }
   return (
     <>
       {/* <FeedbackToolbar /> */}

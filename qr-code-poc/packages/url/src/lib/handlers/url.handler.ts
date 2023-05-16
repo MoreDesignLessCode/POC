@@ -36,8 +36,8 @@ export class UrlHandler implements IHandler {
             const queryParams: any = req.query
             const requestTicketIds = queryParams['filter.id']?.split(',') || []
             const createdByFilter = queryParams['filter.createdBy']?.split(',') || []
-            const dateRange=queryParams['filter.dateRange']?.split('~')||[];
-            if(dateRange.length>0){
+            const dateRange = queryParams['filter.dateRange']?.split('~') || [];
+            if (dateRange.length > 0) {
                 const startDate = dateRange[0];
                 const endDate = dateRange[1];
                 req.apip.ctx.set<QueryParameters>('startDate', startDate)
@@ -49,7 +49,7 @@ export class UrlHandler implements IHandler {
             }
             req.apip.ctx.set<QueryParameters>('ids', requestTicketIds)
             req.apip.ctx.set<QueryParameters>('createdBy', createdByFilter)
-           
+
             if (params.id === undefined) {
                 return this.getCollection(req, reply);
             }
@@ -102,8 +102,9 @@ export class UrlHandler implements IHandler {
         const result = await this.urlService.getCollection(req.apip.ctx);
         match(result)
             .with({ type: 'ok' }, (res) => {
-                const result: IResource[] = [];
-                result.push(res.data.value);
+                let result: any = [];
+                result= res.data.value
+                // result.push(res.data.value);
                 responseBuilder.setData(result);
                 reply
                     .type('application/json')
@@ -121,9 +122,13 @@ export class UrlHandler implements IHandler {
 
     post = async (req: IRequest<Url>, reply: FastifyReply) => {
         const requestUrl: any = req.url
+        const queryParams: any = req.query
         const parts = requestUrl.split("/");
         const method = parts.pop()
+        const compressDomain = queryParams['compressDomain'] || false;
+
         req.apip.ctx.set<QueryParameters>('method', method)
+        req.apip.ctx.set<QueryParameters>('compressDomain', compressDomain)
         const responseBuilder = new ResponseBuilder();
         const { body: url } = req;
 

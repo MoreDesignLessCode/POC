@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
 interface FeedbackState {
-  reviews: {}[];
+  reviews: any;
   setReviews: (reviews: {}[]) => void;
 }
 
 export const useFeedbackStore = create<FeedbackState>()((set) => ({
   reviews: [],
-  setReviews: (reviews: {}[]) => {
+  setReviews: (reviews: any) => {
     set(() => ({ reviews: [...reviews] }));
   },
 }));
