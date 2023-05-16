@@ -269,7 +269,10 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
     all = async (_context: IContext): Promise<Result<Qr>> => {
         try {
             const res = await this.client.query(
-                `SELECT ${this.columns} FROM qrmktpl.qrcodes WHERE deleted_at IS NULL;`
+                //`SELECT ${this.columns} FROM qrmktpl.qrcodes WHERE deleted_at IS NULL;`
+                `SELECT q.id , q.location,q.created_by , u.urlName as Url
+                FROM qrmktpl.qrcodes q
+                JOIN qrmktpl.url u ON q.id = u.qrcodeId;`
             );
 
             if (res.rowCount >= 1) {
@@ -342,9 +345,12 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
 
     // // eslint-disable-next-line @typescript-eslint/no-explicit-any
     buildQr = (element: any): Qr => {
+        console.log(element);
         const qr: Qr = new Qr(
             element.id,
-            element.location
+            element.location,
+            element.created_by,
+            element.url
         );
         return qr;
     };

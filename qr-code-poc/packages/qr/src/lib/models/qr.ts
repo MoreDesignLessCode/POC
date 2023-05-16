@@ -11,10 +11,14 @@ export class Qr implements IQr {
     id?: Nullable<Uuid>;
     location!: string;
     type?:string
+    createdBy?:Uuid;
+    url?:string;
 
-    constructor(id: Uuid, loacation: string) {
+    constructor(id: Uuid, loacation: string, createdBy:Uuid,url:string) {
         this.id = id;
         this.location = loacation;
+        this.createdBy = createdBy;
+        this.url = url;
     }
 }
 

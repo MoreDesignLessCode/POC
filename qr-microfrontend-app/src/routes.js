@@ -1,6 +1,7 @@
 import React from "react";
 
 import Feedback from "./pages/Feedback";
+import Qrcode from "./pages/Qrcode";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 const routes = [
@@ -12,6 +13,16 @@ const routes = [
       </ErrorBoundary>
     ),
   },
+  {
+    
+    path: "/qrcode",
+    element: (
+      <ErrorBoundary>
+        <Qrcode />
+      </ErrorBoundary>
+    ),
+
+  }
 ];
 
 export default routes;
