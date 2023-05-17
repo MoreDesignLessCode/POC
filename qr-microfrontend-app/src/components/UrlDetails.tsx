@@ -51,12 +51,13 @@ const UrlDetails: React.FC = () => {
     return (
 
         <div>
-            <form ref={formRef}>
+            <form className= {'ml-52 mt-4' }  ref={formRef}>
                 <input
                     type="url"
                     name="Url"
+                    placeholder="Enter the url"
                     className={
-                        "rounded-lg h-[2.25rem] w-3/6 py-2.5 px-4 bg-gray-200  text-xs text-black font-semibold focus:bg-white border border-gray-200 mt-[.4375rem]"
+                        "rounded-lg h-[2.25rem] w-3/6  py-2.5 px-4 bg-gray-200  text-xs text-black font-semibold focus:bg-white border border-gray-200 mt-[.4375rem]"
                     }
                     ref={urlRef}
                 />
@@ -67,39 +68,39 @@ const UrlDetails: React.FC = () => {
                     type="submit"
                 >
                     Compact
-          </button>
+                </button>
 
                 <button
                     className="text-xs py-2 px-9 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold"
                     onClick={handleSubmit}
                 >
                     Compress
-          </button>
+                </button>
             </form>
 
             <div>
                 {state}
             </div>
 
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
-                <table className="w-full text-sm text-left text-gray-500 ">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <div className="relative  overflow-x-auto shadow-md sm:rounded-lg mt-10">
+                <table className="w-2/3 mx-auto border-solid border-2 border-#003da5  text-sm text-left text-gray-500 ">
+                    <thead className="text-xs text-white font-semibold uppercase bg-blue-900 ">
                         <tr>
                             <th scope="col" className="px-6 py-3">
                                 Id
-                </th>
+                            </th>
                             <th scope="col" className="px-6 py-3">
                                 Created By
-                </th>
+                            </th>
                             <th scope="col" className="px-6 py-3">
                                 Original Url
-                </th>
+                            </th>
                             <th scope="col" className="px-6 py-3">
                                 Compressed Url
-                </th>
+                            </th>
                             <th scope="col" className="px-6 py-3">
                                 Compact Url
-                </th>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,9 +115,10 @@ const UrlDetails: React.FC = () => {
                                 <td className="px-6 py-4 break-all">
                                     {review.originalUrl}
                                 </td>
-                                <td className="px-6 py-4 break-all ">
+                                <td className="px-6 py-4 break-all 	">
+                                  <p className="">
                                     {review.compressedUrl == null ? "NOT GENERATED" : review.compressedUrl}
-
+                                  </p>
                                 </td>
                                 <td className="px-6 py-4">
                                     {review.compactUrl == null ? "NOT GENERATED" : review.compactUrl}
