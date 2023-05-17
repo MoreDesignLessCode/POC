@@ -1,13 +1,10 @@
 import React, { useRef, useState } from "react";
-import { useFeedbackStore } from "../store";
-import FeedbackDetailsContent from "./FeedbackDetailsContent";
-import FeedbackDetailsSidebar from "./FeedbackDetailsSidebar";
-import NoReviews from "./FeedbackNoReviews";
-import { Alert } from "@procter-gamble/uxdl-react";
+import { useUrlStore } from "../store";
+
 import axios from "axios";
 
 const QrcodeDetails: React.FC = () => {
-    const { reviews } = useFeedbackStore();
+    const { urlData } = useUrlStore();
     const [state, setState] = useState('')
     const urlRef = useRef(null);
 
@@ -72,7 +69,7 @@ const QrcodeDetails: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {reviews.map((review: { id: any, createdBy: any, url: any, location: any }) =>
+                        {urlData.map((review: { id: any, createdBy: any, url: any, location: any }) =>
                             <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {review.id}

@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
-interface FeedbackState {
-  reviews: any;
-  setReviews: (reviews: {}[]) => void;
+interface UrlState {
+  urlData: any;
+  setUrlData: (urlData: {}[]) => void;
 }
 
-export const useFeedbackStore = create<FeedbackState>()((set) => ({
-  reviews: [],
-  setReviews: (reviews: any) => {
-    set(() => ({ reviews: [...reviews] }));
+export const useUrlStore = create<UrlState>()((set) => ({
+  urlData: [],
+  setUrlData: (urlData: any) => {
+    set(() => ({ urlData: [...urlData] }));
   },
 }));

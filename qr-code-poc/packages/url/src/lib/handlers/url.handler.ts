@@ -126,14 +126,13 @@ export class UrlHandler implements IHandler {
         const parts = requestUrl.split("/");
         const method = parts.pop()
         const compressDomain = queryParams['compressDomain'] || false;
-
         req.apip.ctx.set<QueryParameters>('method', method)
         req.apip.ctx.set<QueryParameters>('compressDomain', compressDomain)
         const responseBuilder = new ResponseBuilder();
         const { body: url } = req;
 
         const { value: validUrl, error } = UrlSchema.validate(url);
-
+        
         if (error) {
             const validationError = new ValidationAPIError(
                 Constants.errors.validation.url.create.CODE,

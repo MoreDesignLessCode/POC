@@ -124,6 +124,7 @@ WHERE  u1.type = 'FULL'and u2.urlname =$1  or u3.urlname=$1 and u1.deleted_at is
         const result = await this.client.query(`SELECT * from qrmktpl.url u where  u.urlname=$1`, [entity.name]);
         if (!(result.rows.length > 0)) {
             urlId = Uuid();
+            console.log(urlId)
             try {
 
                 await this.client.query(
@@ -163,15 +164,14 @@ WHERE  u1.type = 'FULL'and u2.urlname =$1  or u3.urlname=$1 and u1.deleted_at is
 
         const method = context.get('method')
         if (method == 'compress') {
-            if (compressDomain) {
-                //check look up table
-                const lookUpResponse = await this.client.query(`SELECT * from qrmktpl.lookup u where  u.main_domain=$1`, [domainWithoutCustomPath]);
-                if (lookUpResponse.rows.length > 0) {
-                    domainWithoutCustomPath = lookUpResponse.rows[0]
-                }
-            }
 
-            const res = await this.client.query(`SELECT * from qrmktpl.url u where  u.refid=$1 and u.type='COMPRESSED'`, [domainWithoutCustomPath]);
+            // const lookUpResponse = await this.client.query(`SELECT * from qrmktpl.lookup u where  u.main_domain=$1`, [domainWithoutCustomPath]);
+            // if (lookUpResponse.rows.length > 0) {
+            //     domainWithoutCustomPath = lookUpResponse.rows[0]
+            // }
+
+
+            const res = await this.client.query(`SELECT * from qrmktpl.url u where  u.refid=$1 and u.type='COMPRESSED'`, [urlId]);
             if (res.rows.length == 0) {
                 const gs1dlt = new GS1DigitalLinkToolkit();
                 const gs1Check = gs1dlt.analyseURI(entity?.name, false)

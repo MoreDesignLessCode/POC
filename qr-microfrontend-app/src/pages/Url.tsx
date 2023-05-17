@@ -1,17 +1,15 @@
 import React, { useEffect } from "react";
-import FeedbackDetails from "../components/FeedbackDetails";
-import FeedbackToolbar from "../components/FeedbackToolbar";
+import UrlDetails from "../components/UrlDetails";
 import "tailwindcss/tailwind.css";
-import reviewsData from "../data";
-import { useFeedbackStore } from "../store";
+import { useUrlStore } from "../store";
 import axios from "axios";
 
 type Props = {
   productId: string | number;
 };
 
-const Feedback: React.FC<Props> = ({ productId }) => {
-  const { setReviews } = useFeedbackStore();
+const Url: React.FC<Props> = ({ productId }) => {
+  const { setUrlData } = useUrlStore();
 
   useEffect(() => {
      fetchData()
@@ -21,14 +19,13 @@ const Feedback: React.FC<Props> = ({ productId }) => {
   const fetchData=async()=>{
    const res=await  axios.get(' http://localhost:4000/urls')
    console.log(res.data.data)
-   setReviews(res.data.data)
+   setUrlData(res.data.data)
   }
   return (
     <>
-      {/* <FeedbackToolbar /> */}
-      <FeedbackDetails />
+      <UrlDetails />
     </>
   );
 };
 
-export default Feedback;
+export default Url;

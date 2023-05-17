@@ -4,7 +4,7 @@ import {
     UrlRepository,
     UrlService,
     UrlPgStorageProvider,
- } from '../dist/packages/url';
+} from '../dist/packages/url';
 import {
     QrHandler,
     QrRouter,
@@ -23,9 +23,11 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const port = process.env.QRCODE_DAS_PORT || 3000;
+
 const Runtime = new FastifyHttpProvider({ logger: true });
 
 Runtime.instance.register(fastifyRequestContextMiddleware);
+
 // Runtime.instance.register(JwtMiddleware, {
 //     key: 'e98256815795d097dc84594fe5bcf6c55d90d11f04b25e814c7a4bff90667bfb',
 //     complete: true,
@@ -34,7 +36,7 @@ Runtime.instance.register(fastifyRequestContextMiddleware);
 //         reply.status(401).send({ unauthorized: 'you' });
 //     },
 // } as JwtOptions);
-Runtime.instance.register(cors, { origin: ['http://localhost:3008','http://localhost:3000','http://localhost:3006' ]})
+Runtime.instance.register(cors, { origin: ['http://localhost:3008', 'http://localhost:3000', 'http://localhost:3001'] })
 new QrRouter(
     Runtime,
     new QrHandler(
