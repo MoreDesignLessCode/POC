@@ -21,7 +21,7 @@ const QrcodeDetails: React.FC = () => {
     }
     return (
         <div>
-            <form>
+            <form className= {'ml-56 mt-4 mb-4' } >
                 <input
                     type="text"
                     name="Url"
@@ -35,7 +35,7 @@ const QrcodeDetails: React.FC = () => {
                 <button
                     // variant="primary"
                     // rounded="small"
-                    className="text-xs py-2 px-9 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold"
+                    className="text-xs py-2 mx-9 px-9 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold"
                     onClick={handleSubmit}
                 >
                     Generate
@@ -50,8 +50,8 @@ const QrcodeDetails: React.FC = () => {
             </div>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table className="w-2/3 mx-auto border-solid border-2 border-#003da5 text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-white font-semibold uppercase bg-blue-900 ">
                         <tr>
                             <th scope="col" className="px-6 py-3">
                                 Id

@@ -116,9 +116,7 @@ const UrlDetails: React.FC = () => {
                                     {review.originalUrl}
                                 </td>
                                 <td className="px-6 py-4 break-all 	">
-                                  <p className="">
                                     {review.compressedUrl == null ? "NOT GENERATED" : review.compressedUrl}
-                                  </p>
                                 </td>
                                 <td className="px-6 py-4">
                                     {review.compactUrl == null ? "NOT GENERATED" : review.compactUrl}
