@@ -82,7 +82,10 @@ export default function header() {
           <Link to="/feedback">Ratings</Link>
         </Navbar.Item>
         <Navbar.Item>
-          <Link to="/discover">QRcode</Link>
+          <Link to="/qrcode">QRcode</Link>
+        </Navbar.Item>
+        <Navbar.Item>
+          <Link to="/url">Url</Link>
         </Navbar.Item>
         {/* <Navbar.Item className="ml-auto">
           <Link to="/register" className="flex items-center gap-x-1">

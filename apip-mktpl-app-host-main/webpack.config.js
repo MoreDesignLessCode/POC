@@ -301,7 +301,78 @@ module.exports = {
           document.head.appendChild(script);
         })
         `,
-        feedback: "feedback@http://localhost:3008/remoteEntry.js"
+        feedback: `promise new Promise(resolve => {
+          const remoteUrl = 'http://localhost:3008/remoteEntry.js'
+          const script = document.createElement('script')
+          script.src = remoteUrl
+          script.onload = () => {
+            // the injected script has loaded and is available on window
+            // we can now resolve this Promise
+            const proxy = {
+              get: (request) => window.feedback.get(request),
+              init: (arg) => {
+                try {
+                  return window.feedback.init(arg)
+                } catch(e) {
+                  console.log('remote container already initialized')
+                }
+              }
+            }
+            resolve(proxy)
+          }
+          script.onerror = (error) => {
+            console.error('error loading remote container (feedback)')
+            const proxy = {
+              get: (request) => {
+                // If the service is down it will render this content
+                return Promise.resolve(() => () => "feedback Module is not running.");
+              },
+              init: (arg) => {
+                return;
+              }
+            }
+            resolve(proxy)
+          }
+          // inject this script with the src set to the remoteEntry.js
+          document.head.appendChild(script);
+        })
+        `,
+        qrcode: `promise new Promise(resolve => {
+          const remoteUrl = 'http://localhost:3001/remoteEntry.js'
+          const script = document.createElement('script')
+          script.src = remoteUrl
+          script.onload = () => {
+            // the injected script has loaded and is available on window
+            // we can now resolve this Promise
+            const proxy = {
+              get: (request) => window.qrcode.get(request),
+              init: (arg) => {
+                try {
+                  return window.qrcode.init(arg)
+                } catch(e) {
+                  console.log('remote container already initialized')
+                }
+              }
+            }
+            resolve(proxy)
+          }
+          script.onerror = (error) => {
+            console.error('error loading remote container (qrcode)')
+            const proxy = {
+              get: (request) => {
+                // If the service is down it will render this content
+                return Promise.resolve(() => () => "qrcode Module is not running.");
+              },
+              init: (arg) => {
+                return;
+              }
+            }
+            resolve(proxy)
+          }
+          // inject this script with the src set to the remoteEntry.js
+          document.head.appendChild(script);
+        })
+        `
         
       },
       exposes: {

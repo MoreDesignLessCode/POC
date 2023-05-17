@@ -17,7 +17,7 @@ const Qrcode: React.FC<Props> = ({ productId }) => {
   }, []);
 
   const fetchData=async()=>{
-   const res=await  axios.get(' http://localhost:4000/qr')
+   const res=await  axios.get(' http://localhost:5000/qr')
    setUrlData(res.data)
   }
   return(

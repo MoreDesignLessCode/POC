@@ -6,7 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 
 const routes = [
   {
-    path: "/",
+    path: "/url",
     element: (
       <ErrorBoundary>
         <Url />
@@ -15,7 +15,7 @@ const routes = [
   },
   {
     
-    path: "/qrcode",
+    path: "/",
     element: (
       <ErrorBoundary>
         <Qrcode />
