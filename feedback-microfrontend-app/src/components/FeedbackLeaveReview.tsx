@@ -103,13 +103,13 @@ const FeedbackLeaveReview: React.FC<Props> = ({ id }) => {
             <button
               // variant="primary"
               // rounded="small"
-              className="text-xs py-2 px-9 focus:outline-black"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               onClick={handleSubmit}
             >
               Submit
             </button>
           </Alert.Action>
-          <Alert.Cancel className="mt-5">
+          {/* <Alert.Cancel className="mt-5">
             <Button
               variant="primary"
               outline
@@ -117,8 +117,8 @@ const FeedbackLeaveReview: React.FC<Props> = ({ id }) => {
               className="text-xs py-2 px-9 focus:outline-black bg-white"
             >
               Cancel
-            </Button>
-          </Alert.Cancel>
+            </Button> 
+          </Alert.Cancel>*/}
         </form>
       </Alert.Content>
       <Alert.Overlay />

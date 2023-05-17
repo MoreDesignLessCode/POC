@@ -13,12 +13,12 @@ const UrlDetails: React.FC = () => {
         event.preventDefault();
         const form = formRef.current;
         if (form.checkValidity() && urlRef.current.value != '') {
-            const createRating = await axios.post('http://localhost:4000/urls/compress',
+            const createRating = await axios.post('http://localhost:5000/urls/compress',
                 {
                     name: urlRef ?.current ?.value
       }
             )
-            result = createRating ?.data.data[0].compactUrl
+            result = createRating ?.data.data[0].compressedUrl
     setState(result)
         }
         else {
@@ -33,7 +33,7 @@ const UrlDetails: React.FC = () => {
         const form = formRef.current;
         console.log(urlRef.current.value)
         if (form.checkValidity() && urlRef.current.value != '') {
-            const createRating = await axios.post('http://localhost:4000/urls/compact',
+            const createRating = await axios.post('http://localhost:5000/urls/compact',
                 {
                     name: urlRef ?.current ?.value
       }
@@ -65,7 +65,6 @@ const UrlDetails: React.FC = () => {
                 <button
                     className="text-xs mx-9 py-2 px-9 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold"
                     onClick={compactHandler}
-                    type="submit"
                 >
                     Compact
                 </button>
@@ -118,7 +117,7 @@ const UrlDetails: React.FC = () => {
                                 <td className="px-6 py-4 break-all 	">
                                     {review.compressedUrl == null ? "NOT GENERATED" : review.compressedUrl}
                                 </td>
-                                <td className="px-6 py-4">
+                                <td className="px-6 py-4 break-all">
                                     {review.compactUrl == null ? "NOT GENERATED" : review.compactUrl}
                                 </td>
                             </tr>

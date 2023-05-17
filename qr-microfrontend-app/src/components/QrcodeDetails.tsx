@@ -10,18 +10,18 @@ const QrcodeDetails: React.FC = () => {
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
-        const createRating = await axios.post('http://localhost:4000/qr',
+        const createRating = await axios.post('http://localhost:5000/qr',
             {
-                location: urlRef?.current?.value
+                location: urlRef ?.current ?.value
             }
         )
-        setState(createRating?.data?.location)
+        setState(createRating ?.data ?.location)
 
 
     }
     return (
         <div>
-            <form className= {'ml-56 mt-4 mb-4' } >
+            <form className={'ml-56 mt-4 mb-4'} >
                 <input
                     type="text"
                     name="Url"
@@ -45,12 +45,16 @@ const QrcodeDetails: React.FC = () => {
                 {/* </Alert.Action> */}
             </form>
 
-            <div>
-                <img src={state} />
+            <div className="ml-[38rem]">
+                {state != '' && <>
+                <p className="ml-7 font-semibold">Generated</p>
+                    <img src={state} />
+                </>
+                }
             </div>
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-2/3 mx-auto border-solid border-2 border-#003da5 text-sm text-left text-gray-500 dark:text-gray-400">
+                <table className="w-2/3 mx-auto border-solid border-2 border-#003da5 text-sm text-left text-gray-500 ">
                     <thead className="text-xs text-white font-semibold uppercase bg-blue-900 ">
                         <tr>
                             <th scope="col" className="px-6 py-3">
@@ -70,8 +74,8 @@ const QrcodeDetails: React.FC = () => {
                     </thead>
                     <tbody>
                         {urlData.map((review: { id: any, createdBy: any, url: any, location: any }) =>
-                            <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <tr className="bg-white border-b  ">
+                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     {review.id}
                                 </th>
                                 <td className="px-6 py-4">
