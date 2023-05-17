@@ -19,7 +19,7 @@ const UrlDetails: React.FC = () => {
       }
             )
             result = createRating ?.data.data[0].compressedUrl
-    setState(result)
+    setState(`Compressed Url: ${result}`)
         }
         else {
             // Form is invalid, handle the validation error
@@ -39,7 +39,7 @@ const UrlDetails: React.FC = () => {
       }
             )
             result = createRating ?.data.data[0].compactUrl
-    setState(result)
+            setState(`Compact Url: ${result}`)
         } else {
             // Form is invalid, handle the validation error
             console.log('Form is invalid');
@@ -77,7 +77,7 @@ const UrlDetails: React.FC = () => {
                 </button>
             </form>
 
-            <div>
+            <div className="ml-[28rem] font-semibold mt-10">
                 {state}
             </div>
 
