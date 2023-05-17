@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import FeedbackLeaveReviewStars from "./FeedbackLeaveReviewStars";
 import { useNavigate } from 'react-router'
 import axios from "axios";
+import "./FeedbackLeaveReview.css";
 
 type Props = {
   id: string;
@@ -10,12 +11,12 @@ type Props = {
 
 const FeedbackLeaveReview: React.FC<Props> = ({ id }) => {
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const titleRef= useRef(null);
   const descRef= useRef(null);
   const ratingRef= useRef(null)
   const handleSubmit=async(event:any)=>{
-    alert(ratingRef.current.value)
+
     event.preventDefault();
 
     const createRating= await axios.post('http://localhost:4000/ratings',
@@ -38,7 +39,8 @@ const FeedbackLeaveReview: React.FC<Props> = ({ id }) => {
               attachments:["3a87f3fc-c1a6-11ed-afa1-0242ac120002","f93f0070-c1a5-11ed-afa1-0242ac120002"]
           }
   })
-    navigate(0)
+  window.location.reload()
+    // navigate(0)
 
   }
 

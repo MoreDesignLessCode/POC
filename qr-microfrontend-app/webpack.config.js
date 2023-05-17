@@ -45,13 +45,14 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "Url",
+      name: "qrcode",
       filename: "remoteEntry.js",
       remotes: {
-        url: "url@http://localhost:3001/remoteEntry.js", // referencing self
+        qrcode: "qrcode@http://localhost:3001/remoteEntry.js", // referencing self
+        product: "product@http://localhost:3006/remoteEntry.js",
       },
       exposes: {
-        "./Url": "./src/pages/Url.tsx",
+        "./Qrcode": "./src/pages/Qrcode.tsx",
         "./routes": "./src/routes.js",
       },
       shared: {

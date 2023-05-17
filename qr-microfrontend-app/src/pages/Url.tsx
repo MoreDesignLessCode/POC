@@ -17,7 +17,7 @@ const Url: React.FC<Props> = ({ productId }) => {
   }, []);
 
   const fetchData=async()=>{
-   const res=await  axios.get(' http://localhost:4000/urls')
+   const res=await  axios.get(' http://localhost:5000/urls')
    console.log(res.data.data)
    setUrlData(res.data.data)
   }

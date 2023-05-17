@@ -14,6 +14,8 @@ declare module "learn/Learn";
 declare module "learn/routes";
 declare module "register/Register";
 declare module "register/routes";
+declare module "qrcode/Qrcode";
+declare module "qrcode/routes";
 declare module "*.svg";
 declare module "*.png";
 declare module "*.webp";
