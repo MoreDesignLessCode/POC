@@ -267,12 +267,15 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
     };
 
     all = async (_context: IContext): Promise<Result<Qr>> => {
+        const limit= _context.get('limit');
+        const offset=_context.get('offset');
         try {
             const res = await this.client.query(
                 //`SELECT ${this.columns} FROM qrmktpl.qrcodes WHERE deleted_at IS NULL;`
                 `SELECT q.id , q.location,q.created_by , u.urlName as Url
                 FROM qrmktpl.qrcodes q
-                JOIN qrmktpl.url u ON q.id = u.qrcodeId;`
+                JOIN qrmktpl.url u ON q.id = u.qrcodeId WHERE q.deleted_at IS NULL
+                ORDER BY q.created_at LIMIT $1 OFFSET $2;`,[limit,offset]
             );
 
             if (res.rowCount >= 1) {

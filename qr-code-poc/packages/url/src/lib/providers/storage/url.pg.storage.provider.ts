@@ -43,9 +43,10 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
         const id: [unknown] = _context.get('ids')
         const urls: [unknown] = _context.get('urls')
         const createdBy: [unknown] = _context.get('createdBy')
+        const limit= _context.get('limit');
+        const offset=_context.get('offset');
         const startDate = _context.get('startDate') ? this.convertDate(_context.get('startDate')) : null;
         const endDate = _context.get('endDate') ? this.convertDate(_context.get('endDate')) : null;
-        console.log(startDate, endDate)
         let tempIndex = 1;
         let temp = [];
         let query = '';
@@ -81,11 +82,15 @@ WHERE  u1.type = 'FULL'and u2.urlname =$1  or u3.urlname=$1 and u1.deleted_at is
             if (startDate != null && endDate != null) {
                 temp.push(startDate)
                 temp.push(endDate)
-                const newTempIndex = tempIndex + 1
-                query += ` and u1.created_at BETWEEN to_timestamp($${tempIndex}, 'YYYY-MM-DD') 
-                      AND to_timestamp($${newTempIndex}, 'YYYY-MM-DD')`
+                tempIndex = tempIndex + 1
+                query += ` and u1.created_at BETWEEN to_timestamp($${tempIndex-1}, 'YYYY-MM-DD') 
+                      AND to_timestamp($${tempIndex}, 'YYYY-MM-DD')`
+                tempIndex++      
             }
-
+            temp.push(limit)
+            temp.push(offset)
+            query+=` ORDER BY u1.created_at DESC LIMIT $${tempIndex} OFFSET $${tempIndex+1}`
+           
         }
 
         try {

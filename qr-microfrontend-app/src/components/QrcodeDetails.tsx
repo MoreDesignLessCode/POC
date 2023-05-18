@@ -1,12 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useUrlStore } from "../store";
 
 import axios from "axios";
 
 const QrcodeDetails: React.FC = () => {
-    const { urlData } = useUrlStore();
+    const { urlData, setUrlData } = useUrlStore();
     const [state, setState] = useState('')
     const urlRef = useRef(null);
+    const [pageNumber, setPageNumber] = useState<number>(0)
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
@@ -18,6 +19,26 @@ const QrcodeDetails: React.FC = () => {
         setState(createRating ?.data ?.location)
 
 
+    }
+
+    useEffect(() => {
+        fetchData(pageNumber)
+    }, [pageNumber, state])
+
+    const fetchData = async (pageNumber: number) => {
+        let limit = 10;
+        let offset = pageNumber * limit
+        const res = await axios.get(`http://localhost:5000/qr?limit=${limit}&offset=${offset}`)
+        setUrlData(res.data)
+    }
+
+    const pagenationHandler = (type: string) => {
+        if (type == "increment") {
+            setPageNumber(pageNumber => pageNumber + 1)
+        }
+        if (type == "decrement") {
+            setPageNumber(pageNumber => pageNumber - 1)
+        }
     }
     return (
         <div>
@@ -47,14 +68,14 @@ const QrcodeDetails: React.FC = () => {
 
             <div className="ml-[38rem]">
                 {state != '' && <>
-                <p className="ml-7 font-semibold">Generated</p>
+                    <p className="ml-7 font-semibold">Generated</p>
                     <img src={state} />
                 </>
                 }
             </div>
-
+            {urlData.length==0 &&<div className="font-semibold uppercase ml-[36rem]"> No available Qr codes </div>}
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-2/3 mx-auto border-solid border-2 border-#003da5 text-sm text-left text-gray-500 ">
+                {urlData.length>0&& <table className="w-2/3 mx-auto border-solid border-2 border-#003da5 text-sm text-left text-gray-500 ">
                     <thead className="text-xs text-white font-semibold uppercase bg-blue-900 ">
                         <tr>
                             <th scope="col" className="px-6 py-3">
@@ -92,7 +113,23 @@ const QrcodeDetails: React.FC = () => {
                             </tr>
                         )}
                     </tbody>
-                </table>
+                </table>}
+            </div>
+            <div className="flex justify-center p-4">
+                <button
+                    disabled={pageNumber ? false : true}
+                    onClick={() => pagenationHandler("decrement")}
+                    className="inline-flex items-center text-xs py-2 px-9 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold disabled:opacity-25 ">
+                    {`< Previous`}
+                </button>
+
+
+                <button
+                    disabled={urlData.length == 0 ? true : false}
+                    onClick={() => pagenationHandler("increment")}
+                    className="inline-flex items-center text-xs py-2 px-9 ml-3 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold disabled:opacity-25">
+                    {`Next >`}
+                </button>
             </div>
         </div>
     )

@@ -33,10 +33,15 @@ export class UrlHandler implements IHandler {
         const responseBuilder = new ResponseBuilder();
         try {
             const params = req.apip.ctx.get<PathParams>('request:pathparams');
+            console.log(params)
             const queryParams: any = req.query
             const requestTicketIds = queryParams['filter.id']?.split(',') || []
             const createdByFilter = queryParams['filter.createdBy']?.split(',') || []
             const dateRange = queryParams['filter.dateRange']?.split('~') || [];
+            const limit = queryParams['limit'] || 10;
+            const offset = queryParams['offset'] || 0;
+            req.apip.ctx.set<QueryParameters>('limit', limit)
+            req.apip.ctx.set<QueryParameters>('offset', offset)
             if (dateRange.length > 0) {
                 const startDate = dateRange[0];
                 const endDate = dateRange[1];
@@ -103,7 +108,7 @@ export class UrlHandler implements IHandler {
         match(result)
             .with({ type: 'ok' }, (res) => {
                 let result: any = [];
-                result= res.data.value
+                result = res.data.value
                 // result.push(res.data.value);
                 responseBuilder.setData(result);
                 reply
@@ -132,7 +137,7 @@ export class UrlHandler implements IHandler {
         const { body: url } = req;
 
         const { value: validUrl, error } = UrlSchema.validate(url);
-        
+
         if (error) {
             const validationError = new ValidationAPIError(
                 Constants.errors.validation.url.create.CODE,
