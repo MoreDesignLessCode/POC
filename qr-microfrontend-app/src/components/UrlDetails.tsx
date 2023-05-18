@@ -96,7 +96,7 @@ const UrlDetails: React.FC = () => {
                 </button>
             </form>
 
-            <div className="ml-[28rem] font-semibold mt-10">
+            <div className="ml-[26rem] font-semibold mt-10 w-[40rem] break-all">
                 {state}
             </div>
 

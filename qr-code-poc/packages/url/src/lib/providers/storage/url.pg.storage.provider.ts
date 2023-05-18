@@ -273,6 +273,7 @@ WHERE  u1.type = 'FULL'and u2.urlname =$1  or u3.urlname=$1 and u1.deleted_at is
         }
         else {
             const res = await this.client.query(`SELECT * from qrmktpl.url u where  u.refid=$1 and u.type='SHORT'`, [urlId]);
+            console.log("inside here")
             if (res.rows.length == 0) {
                 await this.createShortUrl(urlId, domainWithoutCustomPath)
                 const response = await this.client.query(
