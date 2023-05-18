@@ -1,11 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useUrlStore } from "../store";
 import axios from "axios";
 
 const UrlDetails: React.FC = () => {
-    const { urlData } = useUrlStore();
+    const { urlData,setUrlData } = useUrlStore();
     const urlRef = useRef(null);
-    const [state, setState] = useState('')
+    const [state, setState] = useState<string>('')
+    const [pageNumber, setPageNumber] = useState<number>(0)
     const formRef = useRef(null);
     let result;
     const handleSubmit = async (event: any) => {
@@ -47,11 +48,29 @@ const UrlDetails: React.FC = () => {
         }
     }
 
+    const pagenationHandler = (type: string) => {
+        if (type == "increment") {
+            setPageNumber(pageNumber => pageNumber + 1)
+        }
+        if (type == "decrement") {
+            setPageNumber(pageNumber => pageNumber - 1)
+        }
+    }
 
+    useEffect(()=>{
+        fetchData(pageNumber)
+    },[pageNumber,state])
+
+    const fetchData=async(pageNumber:number)=>{
+        let limit=10;
+        let offset=pageNumber*limit
+        const res=await  axios.get(`http://localhost:5000/urls?limit=${limit}&offset=${offset}`)
+        console.log(res.data.data)
+        setUrlData(res.data.data)
+       }
     return (
-
         <div>
-            <form className= {'ml-52 mt-4' }  ref={formRef}>
+            <form className={'ml-52 mt-4'} ref={formRef}>
                 <input
                     type="url"
                     name="Url"
@@ -81,7 +100,7 @@ const UrlDetails: React.FC = () => {
                 {state}
             </div>
 
-            <div className="relative  overflow-x-auto shadow-md sm:rounded-lg mt-10">
+            <div className="relative  overflow-x-auto  sm:rounded-lg mt-10">
                 <table className="w-2/3 mx-auto border-solid border-2 border-#003da5  text-sm text-left text-gray-500 ">
                     <thead className="text-xs text-white font-semibold uppercase bg-blue-900 ">
                         <tr>
@@ -103,7 +122,7 @@ const UrlDetails: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {urlData?.map((review: { id: any, createdBy: any, originalUrl: any, compressedUrl: any, compactUrl: any }) =>
+                        {urlData ?.map((review: { id: any, createdBy: any, originalUrl: any, compressedUrl: any, compactUrl: any }) =>
                             <tr className="bg-white border-b">
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 ">
                                     {review.id}
@@ -124,6 +143,21 @@ const UrlDetails: React.FC = () => {
                         )}
                     </tbody>
                 </table>
+            </div>
+            <div className="flex justify-center p-4">
+                <button
+                    disabled={pageNumber ? false : true}
+                    onClick={() => pagenationHandler("decrement")}
+                    className="inline-flex items-center text-xs py-2 px-9 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold disabled:opacity-25 ">
+                    {`< Previous`}
+                </button>
+
+
+                <button
+                    onClick={() => pagenationHandler("increment")}
+                    className="inline-flex items-center text-xs py-2 px-9 ml-3 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold">
+                    {`Next >`}
+                </button>
             </div>
         </div>
     );

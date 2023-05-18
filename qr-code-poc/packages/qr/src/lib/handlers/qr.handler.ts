@@ -30,7 +30,11 @@ export class QrHandler implements IHandler {
     get = async (req: IRequest<Qr>, reply: FastifyReply) => {
         try {
             const params = req.apip.ctx.get<PathParams>('request:pathparams');
-
+            const queryParams: any = req.query
+            const limit = queryParams['limit'] || 10;
+            const offset = queryParams['offset'] || 0;
+            req.apip.ctx.set<QueryParameters>('limit', limit)
+            req.apip.ctx.set<QueryParameters>('offset', offset)
             if (params.id === undefined) {
                 return this.getCollection(req, reply);
             }
