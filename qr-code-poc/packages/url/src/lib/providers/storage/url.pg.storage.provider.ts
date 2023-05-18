@@ -161,7 +161,6 @@ WHERE  u1.type = 'FULL'and u2.urlname =$1  or u3.urlname=$1 and u1.deleted_at is
             .join('/');
 
         const uriWithoutDomain = test.substring(domainWithoutCustomPath.length);
-        console.log("compressed domain path",domainWithoutCustomPath)
 
         const method = context.get('method')
         if (method == 'compress') {
