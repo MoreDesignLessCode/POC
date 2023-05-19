@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useUrlStore } from "../store";
 import axios from "axios";
+import FilterIcon from "../../public/images/filter.svg";
+import Modal from "./modal";
 
 const UrlDetails: React.FC = () => {
-    const { urlData,setUrlData } = useUrlStore();
+    const { urlData, setUrlData } = useUrlStore();
     const urlRef = useRef(null);
     const [state, setState] = useState<string>('')
     const [pageNumber, setPageNumber] = useState<number>(0)
@@ -57,17 +59,19 @@ const UrlDetails: React.FC = () => {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchData(pageNumber)
-    },[pageNumber,state])
+    }, [pageNumber, state])
 
-    const fetchData=async(pageNumber:number)=>{
-        let limit=10;
-        let offset=pageNumber*limit
-        const res=await  axios.get(`http://localhost:5000/urls?limit=${limit}&offset=${offset}`)
+    const fetchData = async (pageNumber: number) => {
+        let limit = 10;
+        let offset = pageNumber * limit
+        const res = await axios.get(`http://localhost:5000/urls?limit=${limit}&offset=${offset}`)
         console.log(res.data.data)
         setUrlData(res.data.data)
-       }
+    }
+
+    const [showModal,setShowModal]=useState(false)
     return (
         <div>
             <form className={'ml-52 mt-4'} ref={formRef}>
@@ -99,6 +103,7 @@ const UrlDetails: React.FC = () => {
             <div className="ml-[26rem] font-semibold mt-10 w-[40rem] break-all">
                 {state}
             </div>
+            <Modal showModal={showModal} setShowModal={setShowModal}/>
 
             <div className="relative  overflow-x-auto  sm:rounded-lg mt-10">
                 <table className="w-2/3 mx-auto border-solid border-2 border-#003da5  text-sm text-left text-gray-500 ">
@@ -119,6 +124,13 @@ const UrlDetails: React.FC = () => {
                             <th scope="col" className="px-6 py-3">
                                 Compact Url
                             </th>
+                            <th><button className="w-16" onClick={()=>{setShowModal(true)}}><img
+                                src={FilterIcon}
+                                alt="filter"
+                                // height={100}
+                                // width={100}
+                                className="h-[40px] w-[80px]"
+                            ></img></button> </th>
                         </tr>
                     </thead>
                     <tbody>
