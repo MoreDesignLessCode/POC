@@ -33,7 +33,7 @@ export class UrlPgStorageProvider implements IStorageProvider<Url> {
     }
 
     convertDate = (date: any) => {
-        const [day, month, year] = date.split('-');
+        const [year, month, day] = date.split('-');
         const formattedDate = new Date(`${month}-${day}-${year}`);
         formattedDate.setDate(formattedDate.getDate() + 1)
         return formattedDate.toISOString()
