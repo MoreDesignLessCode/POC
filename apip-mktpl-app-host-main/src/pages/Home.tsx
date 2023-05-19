@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="main-content home">
       <Jumbotron />
-      <Cards />
+      {/* <Cards /> */}
       <Overview />
       <GetStarted />
     </div>

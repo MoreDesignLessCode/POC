@@ -8,7 +8,7 @@ export default function footer() {
       <Footer.Start>
         <Link to="/" className="uxdl-header__start">
           <span className="uxdl-header__start--title text-sm font-normal">
-            © 2022 Procter & Gamble. All rights reserved
+            © 2023 Demo
           </span>
         </Link>
       </Footer.Start>
@@ -16,7 +16,7 @@ export default function footer() {
         <ul className="uxdl-footer__end--links">
           <li>
             <a
-              href="https://termsandconditions.pg.com/en-in"
+              href=""
               className="text-sm font-normal"
             >
               Terms &amp; Conditions
@@ -25,7 +25,7 @@ export default function footer() {
           <li className="hidden lg:block">|</li>
           <li>
             <a
-              href="https://termsandconditions.pg.com/en-in"
+              href=""
               className="text-sm font-normal"
             >
               Privacy

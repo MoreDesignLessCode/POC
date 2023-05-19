@@ -7,7 +7,8 @@ import NoReviews from "./FeedbackNoReviews";
 const FeedbackDetails: React.FC = () => {
   const { reviews } = useFeedbackStore();
   return (
-    <div className="mt-10 mb-10 flex flex-col-reverse lg:flex-row gap-10">
+    // <div className="mt-10 mb-10  flex flex-col-reverse lg:flex-row gap-10">
+    <div className=" w-5/6 mt-10 mb-10 ml-20  flex  gap-10">
       {reviews.length > 0 ? (
         <>
           <FeedbackDetailsContent />

@@ -50,13 +50,13 @@ const FeedbackLeaveReview: React.FC<Props> = ({ id }) => {
       <Alert.Trigger>
         <div
           tabIndex={0}
-          className="text-xs py-2 px-9 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold"
+          className="text-xs  py-2 px-9 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold"
           role="button"
         >
           Leave a Review
         </div>
       </Alert.Trigger>
-      <Alert.Content>
+      <Alert.Content className="mt-20">
         <form>
           <Alert.Title className="font-bold">Leave a Review</Alert.Title>
           <Alert.Description>

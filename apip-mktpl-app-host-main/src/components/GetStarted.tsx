@@ -9,7 +9,7 @@ export default function GetStarted() {
         Resources and guides to help you through every step of the development
         journey.
       </p>
-      <div className="flex flex-col lg:flex-row justify-center mt-10 gap-2.5">
+      {/* <div className="flex flex-col lg:flex-row justify-center mt-10 gap-2.5">
         <Card.Root rounded="small" className="bg-white mx-auto lg:m-0">
           <Card.Media>
             <img
@@ -58,7 +58,7 @@ export default function GetStarted() {
             Let us create modern scalable applications using the APIs !
           </Card.Description>
         </Card.Root>
-      </div>
+      </div> */}
     </section>
   );
 }

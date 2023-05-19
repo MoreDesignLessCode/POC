@@ -27,7 +27,7 @@ export default function header() {
   return (
     <Header.Root>
       <Header.Start className="mr-auto mx-4 lg:mr-0 lg:mx-0">
-        <Link to="/">
+        {/* <Link to="/">
           <img
             src={PgLogoIcon}
             alt="Procter and Gamble logo"
@@ -35,9 +35,9 @@ export default function header() {
             width={45}
             height={45}
           />
-        </Link>
+        </Link> */}
       </Header.Start>
-      <Header.Middle className="flex gap-6">
+      {/* <Header.Middle className="flex gap-6"> */}
         {/* <form onSubmit={handleSubmit}>
           <input
             id="search"
@@ -46,7 +46,7 @@ export default function header() {
             className="hidden lg:block rounded-lg h-[2.25rem] lg:w-[33.5rem] py-2.5 px-4 bg-gray-200 text-xs text-black font-semibold focus:bg-white border border-gray-200"
           />
         </form> */}
-        <div className="flex flex-end gap-[1.25rem] font-semibold items-center justify-center">
+        {/* <div className="flex flex-end gap-[1.25rem] font-semibold items-center justify-center">
           <Link
             // to="/support"
             to="/feedback"
@@ -61,10 +61,10 @@ export default function header() {
             />
             <span className="text-xs">Support</span>
           </Link>
-          {/* <span className="hidden lg:inline-flex text-gray-400">|</span> */}
-          {/* <UserDropdown /> */}
-        </div>
-      </Header.Middle>
+          <span className="hidden lg:inline-flex text-gray-400">|</span> 
+          <UserDropdown /> 
+        </div> */}
+      {/* </Header.Middle> */}
       <Navbar.Root variant="primary">
         <Navbar.Item className="lg:hidden">
           <form onSubmit={handleSubmit}>

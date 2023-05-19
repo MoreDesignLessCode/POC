@@ -74,7 +74,7 @@ const QrcodeDetails: React.FC = () => {
                 }
             </div>
             {urlData.length==0 &&<div className="font-semibold uppercase ml-[36rem]"> No available Qr codes </div>}
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div className="relative overflow-x-auto  sm:rounded-lg mt-10">
                 {urlData.length>0&& <table className="w-2/3 mx-auto border-solid border-2 border-#003da5 text-sm text-left text-gray-500 ">
                     <thead className="text-xs text-white font-semibold uppercase bg-blue-900 ">
                         <tr>

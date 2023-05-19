@@ -8,13 +8,12 @@ export default function Jumbotron() {
     <section className="jumbotron text-center">
       <div className="jumbotron__img bg-[url('../public/images/jumbotron.webp')] bg-[length:110%_110%] bg-[50%]" />
       <div className="jumbotron__content m-auto">
-        <h1 className="text-4xl font-bold">Welcome to the API Marketplace</h1>
+        <h1 className="text-4xl font-bold">Welcome to the Demo App</h1>
         <p className="mt-5 font-bold max-w-[490px] mx-auto">
-          The central API hub for Developers, Consumers, Application Managers,
-          and Architects !
+          The Demo App  for QrCodes and Ratings!
         </p>
         <div className="mt-5 flex justify-center gap-x-2.5">
-          <Link to="/discover" tabIndex={-1}>
+          {/* <Link to="/discover" tabIndex={-1}>
             <Button
               variant="primary"
               rounded="small"
@@ -22,9 +21,9 @@ export default function Jumbotron() {
             >
               Discover Now
             </Button>
-          </Link>
+          </Link> */}
           <Alert.Root>
-            <Alert.Trigger>
+            {/* <Alert.Trigger>
               <Button
                 variant="primary"
                 rounded="small"
@@ -33,7 +32,7 @@ export default function Jumbotron() {
               >
                 Watch Video
               </Button>
-            </Alert.Trigger>
+            </Alert.Trigger> */}
             <Alert.Content rounded="large" className="w-[100%] max-w-[37.5rem]">
               <Alert.Title>What are APIs?</Alert.Title>
               <Alert.Description>
