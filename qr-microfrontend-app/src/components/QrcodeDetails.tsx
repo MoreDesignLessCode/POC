@@ -8,6 +8,7 @@ const QrcodeDetails: React.FC = () => {
     const errorRef: any = useRef(null);
     const maskRef :any = useRef(null);
     const marginRef :any = useRef(null);
+    const formRef = useRef(null);
     const { urlData, setUrlData } = useUrlStore();
     const [state, setState] = useState('')
     const urlRef = useRef(null);
@@ -15,7 +16,16 @@ const QrcodeDetails: React.FC = () => {
 
     const modalHandler =(event:any)=>{
         event.preventDefault();
+        const form = formRef.current;
+        
+        if (form.checkValidity() && urlRef.current.value != '') {
         setShowModal(true)
+        }
+        else {
+            // Form is invalid, handle the validation error
+            
+            form.reportValidity();
+        }
     }
 
     const handleSubmit = async (event: any) => {
@@ -24,13 +34,14 @@ const QrcodeDetails: React.FC = () => {
         const errorCorrectionLevel=errorRef.current.value
         const mask=maskRef.current.value
         const quiteZone= marginRef.current.value
-       
+        const errorCorrectionTest = errorRef.current;
+      
         const params: any = {
             errorCorrectionLevel: errorCorrectionLevel,
             maskPattern:mask,
             quiteZone:quiteZone
         }
-        if(urlRef.current.value!=''){
+        if(urlRef.current.value!=''&&errorCorrectionTest.checkValidity()){
         const createRating = await axios.post('http://localhost:5000/qr',
             {
                 location: urlRef ?.current ?.value
@@ -39,6 +50,9 @@ const QrcodeDetails: React.FC = () => {
         )
         setState(createRating ?.data ?.location)
         setShowModal(false)
+        }
+        else{
+            errorCorrectionTest.reportValidity()
         }
 
   }
@@ -65,9 +79,9 @@ const QrcodeDetails: React.FC = () => {
     const [showModal, setShowModal] = useState(false)
     return (
         <div>
-            <form className={'ml-56 mt-4 mb-4'} >
+            <form className={'ml-56 mt-4 mb-4'} ref={formRef}>
                 <input
-                    type="text"
+                    type="url"
                     name="Url"
                     className={
                         "rounded-lg h-[2.25rem] w-3/6 py-2.5 px-4 bg-gray-200 text-xs text-black font-semibold focus:bg-white border border-gray-200 mt-[.4375rem]"
@@ -117,12 +131,13 @@ const QrcodeDetails: React.FC = () => {
                                             <label>ErrorCorrectionLevel:</label>
                                             <input
                                                 type="text"
-                                                name="UrlIds"
+                                                name="errorcorrection"
                                                 placeholder="L,H,M"
                                                 defaultValue={'M'}
                                                 className={
                                                     "rounded-lg h-[2.25rem] w-3/6  py-2.5 px-4 bg-gray-200  text-xs text-black font-semibold focus:bg-white border border-gray-200 mt-[.4375rem]"
                                                 }
+                                                pattern="[A-Za-z]+"
                                                 ref={errorRef}
 
                                             />
@@ -131,8 +146,8 @@ const QrcodeDetails: React.FC = () => {
                                             <label>Masking:</label>
                                             <input
                                                 ref={maskRef}
-                                                type="text"
-                                                name="Createdby"
+                                                type="number"
+                                                name="masking"
                                                 placeholder="Enter integer 0-7"
                                                 defaultValue={2}
                                                 className={
@@ -144,8 +159,8 @@ const QrcodeDetails: React.FC = () => {
                                             <label>QuiteZone:</label>
                                             <input
                                                 ref={marginRef}
-                                                type="text"
-                                                name="Createdby"
+                                                type="number"
+                                                name="quitezone"
                                                 placeholder="Enter integer"
                                                 defaultValue={4}
                                                 className={
