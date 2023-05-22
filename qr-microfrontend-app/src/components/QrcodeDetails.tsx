@@ -5,8 +5,9 @@ import axios from "axios";
 
 const QrcodeDetails: React.FC = () => {
     const [submit,setSubmit] =useState(false)
-    const errorRef = useRef(null);
-    const versionRef = useRef(null);
+    const errorRef: any = useRef(null);
+    const maskRef :any = useRef(null);
+    const marginRef :any = useRef(null);
     const { urlData, setUrlData } = useUrlStore();
     const [state, setState] = useState('')
     const urlRef = useRef(null);
@@ -21,12 +22,13 @@ const QrcodeDetails: React.FC = () => {
         event.preventDefault();
         //setShowModal(true)
         const errorCorrectionLevel=errorRef.current.value
-        const version=versionRef.current.value
+        const mask=maskRef.current.value
+        const quiteZone= marginRef.current.value
        
-        
         const params: any = {
             errorCorrectionLevel: errorCorrectionLevel,
-            version:version,
+            maskPattern:mask,
+            quiteZone:quiteZone
         }
         if(urlRef.current.value!=''){
         const createRating = await axios.post('http://localhost:5000/qr',
@@ -117,6 +119,7 @@ const QrcodeDetails: React.FC = () => {
                                                 type="text"
                                                 name="UrlIds"
                                                 placeholder="L,H,M"
+                                                defaultValue={'M'}
                                                 className={
                                                     "rounded-lg h-[2.25rem] w-3/6  py-2.5 px-4 bg-gray-200  text-xs text-black font-semibold focus:bg-white border border-gray-200 mt-[.4375rem]"
                                                 }
@@ -125,18 +128,31 @@ const QrcodeDetails: React.FC = () => {
                                             />
                                         </div>
                                         <div className="relative p-6 flex-auto">
-                                            <label>Version:</label>
+                                            <label>Masking:</label>
                                             <input
-                                                ref={versionRef}
+                                                ref={maskRef}
                                                 type="text"
                                                 name="Createdby"
-                                                placeholder="Enter integer"
+                                                placeholder="Enter integer 0-7"
+                                                defaultValue={2}
                                                 className={
                                                     "rounded-lg h-[2.25rem] w-3/6  py-2.5 px-4 bg-gray-200  text-xs text-black font-semibold focus:bg-white border border-gray-200 mt-[.4375rem]"
                                                 }
                                             />
                                         </div>
-                                      
+                                        <div className="relative p-6 flex-auto">
+                                            <label>QuiteZone:</label>
+                                            <input
+                                                ref={marginRef}
+                                                type="text"
+                                                name="Createdby"
+                                                placeholder="Enter integer"
+                                                defaultValue={4}
+                                                className={
+                                                    "rounded-lg h-[2.25rem] w-3/6  py-2.5 px-4 bg-gray-200  text-xs text-black font-semibold focus:bg-white border border-gray-200 mt-[.4375rem]"
+                                                }
+                                            />
+                                        </div>
                                     </div>
                                     {/*footer*/}
                                     <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">

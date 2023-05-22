@@ -39,7 +39,7 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
                 errorCorrectionLevel:obj?.errorCorrectionLevel,
                 margin : obj?.quiteZone,
                 version: obj?.version,
-                //maskPattern: 1,
+                maskPattern: obj?.mask,
             
 
             })
@@ -47,13 +47,13 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
     }
     async create(entity: Qr, context: IContext): Promise<Result<Qr>> {
         const errorCorrectionLevel= context.get('errorCorrectionLevel')
-        const version= context.get('version')
+        const mask= context.get('mask')
         const quiteZone = context.get('quiteZone')
         const size= context.get('size')
         const encodingMode= context.get('encodingMode')
         const obj:any={}
         obj.errorCorrectionLevel=errorCorrectionLevel
-        obj. version= version
+        obj. mask= mask
         obj.size=size
         obj.quiteZone=quiteZone
         obj.encodingMode=encodingMode
@@ -74,7 +74,7 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
                     [
                         urlId,
                         entity?.location,
-                        "url",
+                        "FULL",
                         null,
                         null,
                         //base64Image,
@@ -152,7 +152,7 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
         try {
             const now = new Date().toISOString();
             const errorCorrectionLevel= context.get('errorCorrectionLevel')
-            const version= context.get('versionl')
+            const version= context.get('version')
             const quiteZone = context.get('quiteZone')
             const size= context.get('size')
             const encodingMode= context.get('encodingMode')

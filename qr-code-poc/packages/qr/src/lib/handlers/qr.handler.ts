@@ -136,12 +136,12 @@ export class QrHandler implements IHandler {
             const params = req.apip.ctx.get<PathParams>('request:pathparams');
             const queryParams: any = req.query
         const errorCorrectionLevel = queryParams?.errorCorrectionLevel
-        const version = queryParams?.version
+        const mask = queryParams?.mask
         const quiteZone = queryParams?.quiteZone
         const size = queryParams?.sizeconst 
         const encodingMode = queryParams?.encodingMode
         req.apip.ctx.set<QueryParameters>('errorCorrectionLevel', errorCorrectionLevel)
-        req.apip.ctx.set<QueryParameters>('version', version)
+        req.apip.ctx.set<QueryParameters>('mask', mask)
         req.apip.ctx.set<QueryParameters>('quiteZone', quiteZone)
         req.apip.ctx.set<QueryParameters>('size', size)
         req.apip.ctx.set<QueryParameters>('encodingMode', encodingMode)
