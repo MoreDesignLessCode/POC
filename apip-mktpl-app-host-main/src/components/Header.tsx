@@ -6,6 +6,7 @@ import PgLogoIcon from "../../public/images/pglogo.svg";
 import SupportIcon from "../../public/images/support.svg";
 import CirclePlusIcon from "../../public/images/circle-plus.svg";
 import "@procter-gamble/uxdl-react/default.css";
+import "./Header.css"
 
 export default function header() {
   const navigate = useNavigate();
@@ -25,96 +26,77 @@ export default function header() {
   };
 
   return (
-    <Header.Root>
-      <Header.Start className="mr-auto mx-4 lg:mr-0 lg:mx-0">
-        {/* <Link to="/">
-          <img
-            src={PgLogoIcon}
-            alt="Procter and Gamble logo"
-            className="uxdl-header__start--logo"
-            width={45}
-            height={45}
-          />
-        </Link> */}
-      </Header.Start>
-      {/* <Header.Middle className="flex gap-6"> */}
-        {/* <form onSubmit={handleSubmit}>
-          <input
-            id="search"
-            type="search"
-            placeholder="Search here.."
-            className="hidden lg:block rounded-lg h-[2.25rem] lg:w-[33.5rem] py-2.5 px-4 bg-gray-200 text-xs text-black font-semibold focus:bg-white border border-gray-200"
-          />
-        </form> */}
-        {/* <div className="flex flex-end gap-[1.25rem] font-semibold items-center justify-center">
-          <Link
-            // to="/support"
-            to="/feedback"
-            className="hidden lg:inline-flex uxdl-header__end--link flex items-center gap-x-1"
-          >
-            <img
-              className="uxdl-header__end--icon invert opacity-50"
-              src={SupportIcon}
-              alt="support call headphones"
-              width={28}
-              height={28}
-            />
-            <span className="text-xs">Support</span>
-          </Link>
-          <span className="hidden lg:inline-flex text-gray-400">|</span> 
-          <UserDropdown /> 
-        </div> */}
-      {/* </Header.Middle> */}
-      <Navbar.Root variant="primary">
-        <Navbar.Item className="lg:hidden">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="search"
-              placeholder="Search here.."
-              className="uxdl-navbar__item lg:hidden rounded-lg h-[2.25rem] lg:w-[33.5rem] py-2.5 px-4 bg-gray-200 text-xs text-black font-semibold focus:bg-white border border-gray-200 mx-auto w-full"
-            />
-          </form>
-        </Navbar.Item>
-        <Navbar.Item>
-          <Link to="/">Home</Link>
-        </Navbar.Item>
-        <Navbar.Item>
-          <Link to="/feedback">Ratings</Link>
-        </Navbar.Item>
-        <Navbar.Item>
-          <Link to="/qrcode">QRcode</Link>
-        </Navbar.Item>
-        <Navbar.Item>
-          <Link to="/url">Url</Link>
-        </Navbar.Item>
-        {/* <Navbar.Item className="ml-auto">
-          <Link to="/register" className="flex items-center gap-x-1">
-            <span className="lg:order-2">Register API</span>
-            <img
-              className="lg:order-1"
-              src={CirclePlusIcon}
-              alt="plus sign"
-              width={24}
-              height={24}
-            />
-          </Link>
-        </Navbar.Item> */}
-        <Navbar.Item className="lg:hidden">
-          <hr />
-        </Navbar.Item>
-        <Navbar.Item className="lg:hidden">
-          <Link to="/support" className="flex items-center gap-x-1">
-            <span>Support</span>
-            <img
-              className="uxdl-header__end--icon"
-              src={SupportIcon}
-              alt="support call headphones"
-              width={28}
-              height={28}
-            />
-          </Link>
-        </Navbar.Item>
-      </Navbar.Root>
-    </Header.Root>
+    // <Header.Root>
+    //   <Header.Start className="mr-auto mx-4 lg:mr-0 lg:mx-0">
+  
+    //   </Header.Start>
+     
+    //   <Navbar.Root variant="primary">
+    //     <Navbar.Item className="lg:hidden">
+    //       <form onSubmit={handleSubmit}>
+    //         <input
+    //           type="search"
+    //           placeholder="Search here.."
+    //           className="uxdl-navbar__item lg:hidden rounded-lg h-[2.25rem] lg:w-[33.5rem] py-2.5 px-4 bg-gray-200 text-xs text-black font-semibold focus:bg-white border border-gray-200 mx-auto w-full"
+    //         />
+    //       </form>
+    //     </Navbar.Item>
+    //     <Navbar.Item>
+    //       <Link to="/">Home</Link>
+    //     </Navbar.Item>
+    //     <Navbar.Item>
+    //       <Link to="/feedback">Ratings</Link>
+    //     </Navbar.Item>
+    //     <Navbar.Item>
+    //       <Link to="/qrcode">QRcode</Link>
+    //     </Navbar.Item>
+    //     <Navbar.Item>
+    //       <Link to="/url">Url</Link>
+    //     </Navbar.Item>
+    //     <Navbar.Item className="lg:hidden">
+    //       <hr />
+    //     </Navbar.Item>
+    //     <Navbar.Item className="lg:hidden">
+    //       <Link to="/support" className="flex items-center gap-x-1">
+    //         <span>Support</span>
+    //         <img
+    //           className="uxdl-header__end--icon"
+    //           src={SupportIcon}
+    //           alt="support call headphones"
+    //           width={28}
+    //           height={28}
+    //         />
+    //       </Link>
+    //     </Navbar.Item>
+    //   </Navbar.Root>
+    // </Header.Root>
+
+
+   
+    <div className="domain-navbar">
+    <div  className="navbar-container">
+    <Link to='/' >
+        <div className={`navbar-items`}>
+            <p className="domain-nav-title">Home</p>
+        </div>
+    </Link>
+    <Link to="/feedback" >
+        <div className={`navbar-items`}>
+            <p className="domain-nav-title">Rating</p>
+        </div>
+    </Link>
+    <Link to="/qrcode" >
+        <div className={`navbar-items`}>
+            <p className="domain-nav-title">Qrcode</p>
+        </div>
+    </Link>
+    <Link to="/url" >
+        <div className={`navbar-items`}>
+            <p className="domain-nav-title">Url</p>
+        </div>
+    </Link>
+</div>
+</div>
+ 
   );
 }
