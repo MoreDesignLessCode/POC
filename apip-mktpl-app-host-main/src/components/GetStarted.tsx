@@ -1,7 +1,41 @@
-import React from "react";
-import { Card } from "@procter-gamble/uxdl-react";
+import React,{useEffect} from "react";
+
+declare global {
+  interface Window {
+      AdButler: any;
+      abkw: string;
+      plc609180: number;
+      plc609016: number
+  }
+}
 
 export default function GetStarted() {
+
+  useEffect(() => {
+    var AdButler: any = window.AdButler || {};
+    AdButler.ads = AdButler.ads || [];
+    var abkw = window.abkw || '';
+    var plc609016 = window.plc609016 || 0;
+    AdButler.ads.push({
+        handler: function(opt: any) {
+            AdButler.register(185622, 609016, [300, 250], 'customAd1', opt);
+        },
+        opt: {
+            place: plc609016++,
+            keywords: abkw,
+            domain: 'servedbyadbutler.com',
+            click: 'CLICK_MACRO_PLACEHOLDER'
+        }
+    });
+
+
+    AdButler.ads.push({ 
+      handler: function(opt: any) {
+         AdButler.register(185622, 609180, [728, 90], 'customAd2', opt); },
+     opt: { place: 1, keywords: abkw, domain: 'servedbyadbutler.com', click: 'CLICK_MACRO_PLACEHOLDER' } });
+
+}, [])
+
   return (
     <section className="mt-16 py-14 mx-auto text-center bg-[url('../public/images/get-started.webp')] bg-contain">
       <h2 className="text-3xl font-bold">How to get started</h2>
@@ -9,56 +43,10 @@ export default function GetStarted() {
         Resources and guides to help you through every step of the development
         journey.
       </p>
-      {/* <div className="flex flex-col lg:flex-row justify-center mt-10 gap-2.5">
-        <Card.Root rounded="small" className="bg-white mx-auto lg:m-0">
-          <Card.Media>
-            <img
-              src="./images/discover.png"
-              alt="magnifying glass"
-              className="h-[7.5rem] max-w-[7.5rem] mx-auto"
-              loading="lazy"
-            />
-          </Card.Media>
-          <Card.Title className="text-center text-base font-bold">
-            Discover APIs
-          </Card.Title>
-          <Card.Description className="text-sm">
-            Search or Browse the existing library of APIs
-          </Card.Description>
-        </Card.Root>
-        <Card.Root rounded="small" className="bg-white mx-auto lg:m-0">
-          <Card.Media>
-            <img
-              src="./images/register.png"
-              alt="cog"
-              className="h-[7.5rem] max-w-[7.5rem] mx-auto"
-              loading="lazy"
-            />
-          </Card.Media>
-          <Card.Title className="text-center text-base font-bold">
-            Register
-          </Card.Title>
-          <Card.Description className="text-sm">
-            Register and make it available for yourself and others !
-          </Card.Description>
-        </Card.Root>
-        <Card.Root rounded="small" className="bg-white mx-auto lg:m-0">
-          <Card.Media>
-            <img
-              src="./images/integrate.png"
-              alt="website"
-              className="h-[7.5rem] max-w-[7.5rem] mx-auto"
-              loading="lazy"
-            />
-          </Card.Media>
-          <Card.Title className="text-center text-base font-bold">
-            Integrate
-          </Card.Title>
-          <Card.Description className="text-sm">
-            Let us create modern scalable applications using the APIs !
-          </Card.Description>
-        </Card.Root>
-      </div> */}
+      <div className="flex justify-center">
+      <div id="customAd1"></div>
+      <div id="customAd2"></div>
+      </div>
     </section>
   );
 }
