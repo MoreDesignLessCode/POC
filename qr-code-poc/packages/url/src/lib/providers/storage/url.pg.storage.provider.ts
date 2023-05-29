@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prefer-template */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import {
-    Uuid,
-    Result,
-    IStorageProvider,
-    IContext,
-} from '@procter-gamble/apip-api-types';
+// import {
+//     Uuid,
+//     Result,
+//     IStorageProvider,
+//     IContext,
+// } from '@procter-gamble/apip-api-types';
+import { Uuid } from '../../errors/id';
+import { Result } from './result';
+import { IStorageProvider,IContext } from './storage.interface';
 import { GeneralAPIError, ResourceNotFoundError } from '../../errors';
 import { Url, Constants } from '../../models';
 import { formatString } from '../../utils';

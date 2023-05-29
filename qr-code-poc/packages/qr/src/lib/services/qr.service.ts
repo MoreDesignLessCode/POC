@@ -4,7 +4,7 @@ import {
     Result,
     IService,
     IContext,
-} from '@procter-gamble/apip-api-types';
+} from '../../../../../dist/packages/api';
 import { Qr } from '../models/qr';
 
 export class QrService implements IService<Qr> {

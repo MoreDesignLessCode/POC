@@ -1,5 +1,5 @@
 import { IQr, Nullable } from '@procter-gamble/apip-mktpl-das-qrcode-types';
-import { IResource, Uuid } from '@procter-gamble/apip-api-types';
+import { IResource, Uuid } from '../../../../../dist/packages/api';
 import * as Joi from 'joi';
 
 export const QrSchema = Joi.object({

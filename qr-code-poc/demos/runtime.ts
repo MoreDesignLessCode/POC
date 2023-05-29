@@ -14,9 +14,9 @@ import {
 } from '../dist/packages/qr';
 import cors from '@fastify/cors'
 
-import { FastifyHttpProvider } from '@procter-gamble/apip-api-types';
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware';
-import { JwtMiddleware, JwtOptions } from '@procter-gamble/apip-jwt-middleware';
+import { FastifyHttpProvider } from '../dist/packages/api';
+import { fastifyRequestContextMiddleware } from '../dist/packages/context';
+import { JwtMiddleware, JwtOptions } from '../dist/packages/jwt';
 import * as dotenv from 'dotenv';
 
 

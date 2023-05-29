@@ -7,7 +7,7 @@ import {
     PathParams,
     QueryParameters,
     ResponseBuilder
-} from '@procter-gamble/apip-api-types';
+} from '../../../../../dist/packages/api';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
@@ -18,7 +18,7 @@ import {
     GeneralAPIError,
 } from '../errors';
 import { Constants } from '../models';
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware'
+import { fastifyRequestContextMiddleware } from '../../../../../dist/packages/context'
 
 export class QrHandler implements IHandler {
     qrService: IService<Qr>;

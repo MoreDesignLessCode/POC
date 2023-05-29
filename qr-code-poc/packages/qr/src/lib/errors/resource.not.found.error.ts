@@ -1,4 +1,6 @@
-import { APIError, Uuid } from '@procter-gamble/apip-api-types';
+// import { APIError, Uuid } from '@procter-gamble/apip-api-types';
+import { Uuid } from './id';
+import { APIError } from './api.error';
 import { Constants } from '../models/constants';
 
 export class ResourceNotFoundError extends APIError {

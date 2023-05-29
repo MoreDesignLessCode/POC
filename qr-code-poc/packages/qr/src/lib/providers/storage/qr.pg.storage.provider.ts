@@ -1,21 +1,13 @@
-import {
-    Uuid,
-    Result,
-    IStorageProvider,
-    IContext,
-} from '@procter-gamble/apip-api-types';
 import { GeneralAPIError, ResourceNotFoundError } from '../../errors';
-import { Qr, Constants} from '../../models';
+import { Qr, Constants } from '../../models';
 import { formatString } from '../../utils';
 import * as Pg from 'pg';
 import { validate } from 'uuid';
-// import {QRCode} from 'qrcode'
 import * as QRCode from 'qrcode';
-import { nanoid} from 'nanoid'
-import { customAlphabet } from 'nanoid'
+import { Uuid } from '../../errors/id';
+import { IStorageProvider, IContext} from './storage.interface';
+import { Result } from './result';
 
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware'
-import { object } from 'joi';
 
 export class QrPgStorageProvider implements IStorageProvider<Qr> {
     client: Pg.Client;
@@ -33,42 +25,42 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
     // all(context: IContext): Promise<Result<Qr>> {
     //     throw new Error('Method not implemented.');
     // }
-    async convertUrl(url:string,obj):Promise<string>{
-        const qrcode= await QRCode.toDataURL(url, 
-             {
-                errorCorrectionLevel:obj?.errorCorrectionLevel,
-                margin : obj?.quiteZone,
+    async convertUrl(url: string, obj): Promise<string> {
+        const qrcode = await QRCode.toDataURL(url,
+            {
+                errorCorrectionLevel: obj?.errorCorrectionLevel,
+                margin: obj?.quiteZone,
                 version: obj?.version,
                 maskPattern: obj?.mask,
-            
+
 
             })
         return qrcode
     }
     async create(entity: Qr, context: IContext): Promise<Result<Qr>> {
-        const errorCorrectionLevel= context.get('errorCorrectionLevel')
-        const mask= context.get('mask')
+        const errorCorrectionLevel = context.get('errorCorrectionLevel')
+        const mask = context.get('mask')
         const quiteZone = context.get('quiteZone')
-        const size= context.get('size')
-        const encodingMode= context.get('encodingMode')
-        const obj:any={}
-        obj.errorCorrectionLevel=errorCorrectionLevel
-        obj. mask= mask
-        obj.size=size
-        obj.quiteZone=quiteZone
-        obj.encodingMode=encodingMode
-       const urll=await this.convertUrl(entity?.location,obj)
-        try{
+        const size = context.get('size')
+        const encodingMode = context.get('encodingMode')
+        const obj: any = {}
+        obj.errorCorrectionLevel = errorCorrectionLevel
+        obj.mask = mask
+        obj.size = size
+        obj.quiteZone = quiteZone
+        obj.encodingMode = encodingMode
+        const urll = await this.convertUrl(entity?.location, obj)
+        try {
             const urlresult = await this.client.query(
                 `SELECT id FROM qrmktpl.url WHERE urlname=$1`,
                 [entity?.location]
             );
-          
+
             const now = new Date().toISOString();
-            let qrId= Uuid()
+            let qrId = Uuid()
             let urlId = Uuid()
-            if(urlresult?.rowCount<=0){
-                
+            if (urlresult?.rowCount <= 0) {
+
                 await this.client.query(
                     'INSERT INTO qrmktpl.url(id,urlname,type,qrcodeid,refid,created_at,modified_at,deleted_at,created_by,modified_by,deleted_by) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11);',
                     [
@@ -88,7 +80,7 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
                 );
 
             }
-                 await this.client.query(
+            await this.client.query(
                 'INSERT INTO qrmktpl.qrcodes(id,location,created_at,modified_at,deleted_at,created_by,modified_by,deleted_by) VALUES ($1,$2,$3,$4,$5,$6,$7,$8);',
                 [
                     qrId,
@@ -102,24 +94,24 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
                     null,
                 ]
             );
-            if(urlresult?.rowCount<=0){
-            await this.client.query(
-                'UPDATE qrmktpl.url SET qrcodeid=$1  WHERE id=$2;',
-                [
-                    qrId,
-                    urlId,
-                ])
+            if (urlresult?.rowCount <= 0) {
+                await this.client.query(
+                    'UPDATE qrmktpl.url SET qrcodeid=$1  WHERE id=$2;',
+                    [
+                        qrId,
+                        urlId,
+                    ])
             }
-            else{
+            else {
                 await this.client.query(
                     'UPDATE qrmktpl.url SET qrcodeid=$1 WHERE id=$2;',
                     [
                         qrId,
                         urlresult?.rows[0]?.id,
                     ])
-                
+
             }
-            const response=await this.client.query(
+            const response = await this.client.query(
                 'select id, location from qrmktpl.qrcodes where id=$1',
                 [qrId]
             )
@@ -127,22 +119,22 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
                 type: 'ok',
                 data: { type: 'resource', value: response.rows[0] },
             };
-        
-      
-        }catch (err) {
-                    const error = new GeneralAPIError(
-                        Constants.errors.repo.qr.create.CODE,
-                        err
-                    )
-                        .withTitle(Constants.errors.repo.qr.create.TITLE)
-                        .withReason(Constants.errors.repo.qr.create.MESSAGE);
-                    return {
-                        type: 'error',
-                        data: error,
-                    };
-                }
+
+
+        } catch (err) {
+            const error = new GeneralAPIError(
+                Constants.errors.repo.qr.create.CODE,
+                err
+            )
+                .withTitle(Constants.errors.repo.qr.create.TITLE)
+                .withReason(Constants.errors.repo.qr.create.MESSAGE);
+            return {
+                type: 'error',
+                data: error,
+            };
+        }
     }
-  
+
 
     save = async (
         id: Uuid,
@@ -151,39 +143,39 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
     ): Promise<Result<Qr>> => {
         try {
             const now = new Date().toISOString();
-            const errorCorrectionLevel= context.get('errorCorrectionLevel')
-            const version= context.get('version')
+            const errorCorrectionLevel = context.get('errorCorrectionLevel')
+            const version = context.get('version')
             const quiteZone = context.get('quiteZone')
-            const size= context.get('size')
-            const encodingMode= context.get('encodingMode')
-            const obj:any={}
-            obj.errorCorrectionLevel=errorCorrectionLevel
-            obj. version= version
-            obj.size=size
-            obj.quiteZone=quiteZone
-            obj.encodingMode=encodingMode
-         
+            const size = context.get('size')
+            const encodingMode = context.get('encodingMode')
+            const obj: any = {}
+            obj.errorCorrectionLevel = errorCorrectionLevel
+            obj.version = version
+            obj.size = size
+            obj.quiteZone = quiteZone
+            obj.encodingMode = encodingMode
+
             const result = await this.client.query(
                 `SELECT ${this.columns} FROM qrmktpl.qrcodes WHERE id=$1`,
                 [id]
             );
             if (result.rowCount > 0) {
-                const urll=await this.convertUrl(entity?.location,obj)
-                 const updateResult = await this.client.query(
-                'UPDATE qrmktpl.qrcodes SET location=$1,  modified_at=$2, modified_by=$3 WHERE id=$4;',
-                [
-                    urll,
-                    now,
-                    Uuid(),
-                    id,
-                ])
-                if(updateResult.rowCount>0){
+                const urll = await this.convertUrl(entity?.location, obj)
+                const updateResult = await this.client.query(
+                    'UPDATE qrmktpl.qrcodes SET location=$1,  modified_at=$2, modified_by=$3 WHERE id=$4;',
+                    [
+                        urll,
+                        now,
+                        Uuid(),
+                        id,
+                    ])
+                if (updateResult.rowCount > 0) {
                     return this.handleResult(result, 'resource');
                 }
                 else {
                     return this.handleResourceNotFound(id);
                 }
-            
+
             }
 
             if (result.rowCount === 0) {
@@ -267,15 +259,15 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
     };
 
     all = async (_context: IContext): Promise<Result<Qr>> => {
-        const limit= _context.get('limit');
-        const offset=_context.get('offset');
+        const limit = _context.get('limit');
+        const offset = _context.get('offset');
         try {
             const res = await this.client.query(
                 //`SELECT ${this.columns} FROM qrmktpl.qrcodes WHERE deleted_at IS NULL;`
                 `SELECT q.id , q.location,q.created_by , u.urlName as Url
                 FROM qrmktpl.qrcodes q
                 JOIN qrmktpl.url u ON q.id = u.qrcodeId WHERE q.deleted_at IS NULL
-                ORDER BY q.created_at LIMIT $1 OFFSET $2;`,[limit,offset]
+                ORDER BY q.created_at LIMIT $1 OFFSET $2;`, [limit, offset]
             );
 
             if (res.rowCount >= 1) {
@@ -329,7 +321,7 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
         }
     };
 
-   
+
 
     handleResourceNotFound = (id: Uuid): Result<Qr> => {
         const error = new ResourceNotFoundError(

@@ -15,6 +15,9 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
+            "@procter-gamble/apip-api-qr": [
+                "packages/api/src/index.ts"
+            ],
             "@procter-gamble/apip-mktpl-das-qr": [
                 "packages/qr/src/index.ts"
             ],

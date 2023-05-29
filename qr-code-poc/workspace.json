@@ -4,6 +4,7 @@
         "qr" : "packages/qr",
         "url" : "packages/url",
         "sdk": "packages/sdk",
-        "types": "packages/types"
+        "types": "packages/types",
+        "api":"packages/api"
     }
 }

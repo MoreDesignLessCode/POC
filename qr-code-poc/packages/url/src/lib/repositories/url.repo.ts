@@ -3,8 +3,8 @@ import {
     Result,
     IRepository,
     IStorageProvider,
-    IContext,
-} from '@procter-gamble/apip-api-types';
+    IContext
+} from '../../../../../dist/packages/api';
 import { StorageProviderUndefinedError } from '../errors';
 import { Constants } from '../models';
 import { Url } from '../models/url';

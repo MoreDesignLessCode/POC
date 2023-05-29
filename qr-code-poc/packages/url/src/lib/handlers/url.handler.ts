@@ -7,13 +7,13 @@ import {
     IRequest,
     PathParams,
     QueryParameters,
-    ResponseBuilder
-} from '@procter-gamble/apip-api-types';
+} from '../../../../../dist/packages/api';
+import { ResponseBuilder } from './response.builder';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
 import { Url, UrlSchema } from '../models/url';
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware'
+import { fastifyRequestContextMiddleware } from '../../../../../dist/packages/context'
 //
 import {
     ValidationAPIError,
@@ -145,11 +145,11 @@ export class UrlHandler implements IHandler {
             )
                 .withReason(Constants.errors.validation.url.create.MESSAGE)
                 .withTitle(Constants.errors.validation.url.create.TITLE);
-            responseBuilder.setErrors(validationError);
+            // responseBuilder.setErrors(validationError);
             reply
                 .type('application/json')
                 .code(400)
-                .send(responseBuilder.build());
+                .send(validationError);
         } else {
             const result = await this.urlService.create(
                 validUrl,
@@ -182,11 +182,11 @@ export class UrlHandler implements IHandler {
                         Constants.errors.validation.url.update.MESSAGE
                     )
                     .withTitle(Constants.errors.validation.url.update.TITLE);
-                responseBuilder.setErrors(validationError);
+                // responseBuilder.setErrors(validationError);
                 reply
                     .type('application/json')
                     .code(400)
-                    .send(responseBuilder.build());
+                    .send(validationError);
             } else {
                 const result = await this.urlService.update(
                     params.id,
