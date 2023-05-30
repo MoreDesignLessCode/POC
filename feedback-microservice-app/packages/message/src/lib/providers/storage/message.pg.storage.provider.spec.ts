@@ -5,7 +5,7 @@ import {
     IContext,
     parseUuid,
     Uuid,
-} from '@procter-gamble/apip-api-types';
+} from '../../../../../../dist/packages/api';
 import * as dotenv from 'dotenv';
 import * as Pg from 'pg';
 import { formatString } from '../../utils/format.string';

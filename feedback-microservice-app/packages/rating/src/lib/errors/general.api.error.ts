@@ -1,4 +1,6 @@
-import { Uuid, APIError } from '@procter-gamble/apip-api-types';
+// import { Uuid, APIError } from '@procter-gamble/apip-api-types';
+import { Uuid } from './id';
+import { APIError } from './api.error';
 import { Constants } from '../models/constants';
 
 export class GeneralAPIError extends APIError {

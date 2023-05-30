@@ -7,10 +7,10 @@ import {
     Result,
     IRequest,
     PathParams,
-    ResponseBuilder,
-    QueryParameters,
-    parseUuid
-} from '@procter-gamble/apip-api-types';
+    QueryParameters
+} from '../../../../../dist/packages/api';
+import { ResponseBuilder } from './response.builder';
+import { parseUuid } from '../errors/id';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
@@ -23,7 +23,7 @@ import {
 import { Constants } from '../models';
 // needed to wire apip.ctx to req
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware';
+import { fastifyRequestContextMiddleware } from'../../../../../dist/packages/context';
 
 
 
@@ -159,7 +159,7 @@ export class RatingHandler implements IHandler {
         const splitString =rating?.reference.split(":");
         const values = splitString.slice(splitString.indexOf("v1") + 1);
         const artifactIdValue = values[1];//id of artifact which is being rated
-        rating.artifactIdValue= parseUuid(artifactIdValue)
+        rating.artifactIdValue= artifactIdValue
         delete rating.reference;
         const { value: validRating, error } = RatingSchema.validate(rating, {
             stripUnknown: true,

@@ -4,7 +4,7 @@ import {
     Result,
     IService,
     IContext,
-} from '@procter-gamble/apip-api-types';
+} from '../../../../../dist/packages/api';
 import { Attachments } from '../models/attachment';
 
 export class AttachmentService implements IService<Attachments> {

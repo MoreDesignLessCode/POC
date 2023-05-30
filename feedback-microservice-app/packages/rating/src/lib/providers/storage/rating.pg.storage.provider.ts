@@ -1,19 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prefer-const */
-import {
-    Uuid,
-    Result,
-    IStorageProvider,
-    IContext,
-} from '@procter-gamble/apip-api-types';
+import { Uuid } from '../../errors/id';
+import { Result } from './result';
+import { IContext,IStorageProvider } from './storage.interface';
 import { GeneralAPIError, ResourceNotFoundError } from '../../errors';
 import { Ratings, Constants, Message } from '../../models';
 import { formatString } from '../../utils';
 import * as Pg from 'pg';
-import { validate } from 'uuid';
 import { IAttachment } from '@procter-gamble/apip-mktpl-das-feedback-types';
-import { any } from 'joi';
-import { parseUuid } from '@procter-gamble/apip-api-types/src/lib';
+
 
 export class RatingPgStorageProvider implements IStorageProvider<Ratings> {
     client: Pg.Client;

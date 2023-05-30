@@ -5,10 +5,9 @@ import {
     Result,
     IRequest,
     PathParams,
-    ResponseBuilder,
     QueryParameters,
-    parseUuid
-} from '@procter-gamble/apip-api-types';
+} from '../../../../../dist/packages/api';
+import { ResponseBuilder } from './response.builder';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
@@ -21,7 +20,7 @@ import {
 import { Constants } from '../models';
 // needed to wire apip.ctx to req
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware';
+import { fastifyRequestContextMiddleware } from '../../../../../dist/packages/context';
 
 export class MessageHandler implements IHandler {
     messageService: IService<Messages>;
@@ -118,7 +117,7 @@ export class MessageHandler implements IHandler {
             const artifactType = values[0].toUpperCase();
             const id = values[1];//id of ticket or rating
             message.artifactType = artifactType;
-            message.artifactIdValue = parseUuid(id)
+            message.artifactIdValue = id
             delete message.reference;
         })
       

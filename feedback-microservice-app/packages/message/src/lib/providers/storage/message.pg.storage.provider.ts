@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prefer-const */
-import {
-    Uuid,
-    Result,
-    IStorageProvider,
-    IContext,
-} from '@procter-gamble/apip-api-types';
+import { Uuid } from '../../errors/id';
+import { Result } from './result';
+import { IContext,IStorageProvider } from './storage.interface';
 import { GeneralAPIError, ResourceNotFoundError } from '../../errors';
 import { Messages, Constants } from '../../models';
 import { formatString } from '../../utils';

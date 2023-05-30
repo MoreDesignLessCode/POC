@@ -1,5 +1,5 @@
 import { IRating, Nullable } from '@procter-gamble/apip-mktpl-das-feedback-types';
-import { Uuid } from '@procter-gamble/apip-api-types';
+import { Uuid } from '../../../../../dist/packages/api';
 import * as Joi from 'joi';
 
 export const RatingSchema = Joi.object({   
@@ -45,7 +45,7 @@ export class Ratings implements IRating {
     createdBy?: Uuid;
     summary?:string;
     description?:string;
-    artifactIdValue?:Uuid;
+    artifactIdValue?:any;
     participants?: Participants[];
     messages?: Message|Message[];
     messageIds?:Uuid[];

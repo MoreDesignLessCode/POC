@@ -2,7 +2,7 @@ import {
     parseUuid,
     DefaultRequestContext,
     IContext,
-} from '@procter-gamble/apip-api-types';
+} from '../../../../../dist/packages/api';
 import { GeneralAPIError } from '../errors';
 import { RatingRepository } from './rating.repo';
 import { match } from 'ts-pattern';

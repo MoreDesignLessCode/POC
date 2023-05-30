@@ -28,10 +28,10 @@ import {
     AttachmentService
 } from '../dist/packages/attachment';
 
-import { FastifyHttpProvider } from '@procter-gamble/apip-api-types';
+import { FastifyHttpProvider } from '../dist/packages/api';
 import * as dotenv from 'dotenv';
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware';
-import { JwtMiddleware, JwtOptions } from '@procter-gamble/apip-jwt-middleware';
+import { fastifyRequestContextMiddleware } from '../dist/packages/context';
+import { JwtMiddleware, JwtOptions } from '../dist/packages/jwt';
 import cors from '@fastify/cors'
 
 

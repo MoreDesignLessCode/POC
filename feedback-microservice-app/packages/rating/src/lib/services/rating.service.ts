@@ -4,7 +4,7 @@ import {
     Result,
     IService,
     IContext,
-} from '@procter-gamble/apip-api-types';
+} from '../../../../../dist/packages/api';
 import { Ratings } from '../models/rating';
 
 export class RatingService implements IService<Ratings> {

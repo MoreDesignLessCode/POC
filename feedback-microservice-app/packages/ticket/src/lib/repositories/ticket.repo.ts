@@ -4,7 +4,7 @@ import {
     IRepository,
     IStorageProvider,
     IContext,
-} from '@procter-gamble/apip-api-types';
+} from '../../../../../dist/packages/api';
 import { StorageProviderUndefinedError } from '../errors';
 import { Constants } from '../models';
 import { Tickets } from '../models/ticket';

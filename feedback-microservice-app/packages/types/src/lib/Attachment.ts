@@ -1,4 +1,4 @@
-import { Uuid, IResource } from '@procter-gamble/apip-api-types';
+import { Uuid, IResource } from '../../../../dist/packages/api';
 
 export interface IAttachment extends IResource {
     id?: Uuid;

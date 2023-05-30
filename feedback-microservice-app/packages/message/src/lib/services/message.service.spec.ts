@@ -3,7 +3,7 @@ import {
     IContext,
     DefaultRequestContext,
     Result,
-} from '@procter-gamble/apip-api-types';
+} from '../../../../../dist/packages/api';
 import { match } from 'ts-pattern';
 import { GeneralAPIError } from '../errors/general.api.error';
 import { Constants } from '../models/constants';

@@ -1,5 +1,5 @@
 import { IAttachment } from '@procter-gamble/apip-mktpl-das-feedback-types';
-import { IResource, Uuid } from '@procter-gamble/apip-api-types';
+import { IResource, Uuid } from '../../../../../dist/packages/api';
 import * as Joi from 'joi';
 
 export const AttachmentsSchema =Joi.object({
