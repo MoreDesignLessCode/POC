@@ -378,7 +378,6 @@ module.exports = {
       exposes: {
         "./Layout": "./src/components/Layout.tsx",
         "./Header": "./src/components/Header.tsx",
-        "./Sidebar": "./src/components/Sidebar.tsx",
         "./Footer": "./src/components/Footer.tsx",
         "./store": "./src/store.ts",
       },
