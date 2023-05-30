@@ -1,4 +1,3 @@
-import { Alert, Button } from "@procter-gamble/uxdl-react";
 import React, { useEffect, useRef, useState } from "react";
 import FeedbackLeaveReviewStars from "./FeedbackLeaveReviewStars";
 import { useNavigate } from 'react-router'
@@ -43,24 +42,29 @@ const FeedbackLeaveReview: React.FC<Props> = ({ id }) => {
     // navigate(0)
 
   }
-
-
+const [modal,setModal] =useState(false)
+const modalHandler=()=>{
+  setModal(true)
+} 
   return (
-    <Alert.Root>
-      <Alert.Trigger>
-        <div
-          tabIndex={0}
-          className="text-xs  py-2 px-9 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold"
-          role="button"
-        >
-          Leave a Review
-        </div>
-      </Alert.Trigger>
-      <Alert.Content className="mt-20">
-        <form>
-          <Alert.Title className="font-bold">Leave a Review</Alert.Title>
-          <Alert.Description>
-            {/* Title */}
+    <>
+      <button
+        tabIndex={0}
+        className="text-xs  py-2 px-9 focus:outline-black rounded-lg bg-[#003da5] text-white font-semibold"
+        role="button"
+        onClick={modalHandler}
+      >
+        Leave a Review
+      </button>
+      {modal && (
+        <div className="leave-review-container">
+          <div className="form-header">
+            <div><h4>Leave A Review</h4> </div>
+            <button style={{ marginLeft: "auto" }} onClick={() => { setModal(false) }}> <strong>X</strong></button>
+
+          </div>
+
+          <form>
             <label
               htmlFor={`title__${id}`}
               className="font-semibold text-base mt-2"
@@ -78,7 +82,6 @@ const FeedbackLeaveReview: React.FC<Props> = ({ id }) => {
               }
               ref={titleRef}
             />
-            {/* Description */}
             <label
               htmlFor={`description__${id}`}
               className="block mt-5 font-semibold text-base"
@@ -96,10 +99,7 @@ const FeedbackLeaveReview: React.FC<Props> = ({ id }) => {
               }
               ref={descRef}
             />
-            {/* Rating */}
-            <FeedbackLeaveReviewStars id={id} ratingRef={ratingRef}/>
-          </Alert.Description>
-          <Alert.Action className="mt-5" >
+            <FeedbackLeaveReviewStars id={id} ratingRef={ratingRef} />
             <button
               // variant="primary"
               // rounded="small"
@@ -108,22 +108,23 @@ const FeedbackLeaveReview: React.FC<Props> = ({ id }) => {
             >
               Submit
             </button>
-          </Alert.Action>
-          {/* <Alert.Cancel className="mt-5">
-            <Button
-              variant="primary"
-              outline
-              rounded="small"
+
+            <button
+              // variant="primary"
+              //outline
+              //rounded="small"
               className="text-xs py-2 px-9 focus:outline-black bg-white"
+              onClick={() => { setModal(false) }}
             >
               Cancel
-            </Button> 
-          </Alert.Cancel>*/}
-        </form>
-      </Alert.Content>
-      <Alert.Overlay />
-    </Alert.Root>
-  );
+            </button>
+          </form>
+        </div>
+      )
+      }
+    </>
+  
+  )
 };
 
 export default FeedbackLeaveReview;

@@ -18,29 +18,7 @@ export default function GetStarted() {
     var abkw = window.abkw || '';
     var plc609016 = window.plc609016 || 0;
     var plc609342 = window.plc609016 || 0;
-   // var plc609339 = window.plc609339 || 0;
-    // AdButler.ads.push({
-    //     handler: function(opt: any) {
-    //         AdButler.register(185622, 609016, [300, 250], 'customAd1', opt);
-    //     },
-    //     opt: {
-    //         place: plc609016++,
-    //         keywords: abkw,
-    //         domain: 'servedbyadbutler.com',
-    //         click: 'CLICK_MACRO_PLACEHOLDER'
-    //     }
-    // });
-
-
-//     AdButler.ads.push({ 
-//       handler: function(opt: any) {
-//          AdButler.register(185622, 609180, [728, 90], 'customAd2', opt); },
-//      opt: { place: 1, keywords: abkw, domain: 'servedbyadbutler.com', click: 'CLICK_MACRO_PLACEHOLDER' } });
-
-// }, [])
-
-
-
+  
 AdButler.ads.push({ 
   handler: function(opt: any) {
      AdButler.register(185622, 609342, [728, 500], 'customAd2', opt); },

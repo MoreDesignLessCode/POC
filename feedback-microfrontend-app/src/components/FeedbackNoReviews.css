@@ -1,0 +1,24 @@
+.noreview-wrapper{
+    max-width: 290px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ccc;
+    padding: 1.25rem;
+    border-width: 2px;
+}
+.title{
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    /* margin: 1.5rem 0 0.5rem; */
+}
+.description {
+    text-align: center;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+.review{
+    text-align: center;
+}
