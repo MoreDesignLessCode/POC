@@ -1,11 +1,9 @@
 import React from "react";
 import { Link, useNavigate, createSearchParams } from "react-router-dom";
-import { Header, Navbar } from "@procter-gamble/uxdl-react";
 import UserDropdown from "./UserDropdown";
 import PgLogoIcon from "../../public/images/pglogo.svg";
 import SupportIcon from "../../public/images/support.svg";
 import CirclePlusIcon from "../../public/images/circle-plus.svg";
-import "@procter-gamble/uxdl-react/default.css";
 import "./Header.css"
 
 export default function header() {
