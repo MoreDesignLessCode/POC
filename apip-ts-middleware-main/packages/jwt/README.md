@@ -5,11 +5,11 @@ the API Program Context Middleware plugin (a dependency);
 
 ## Usage
 
-1. Import the plugin `import {JwtMiddleware} from '@procter-gamble/apip-jwt-middleware'`
+1. Import the plugin `import {JwtMiddleware} from '@litmus7/apip-jwt-middleware'`
 1. Register the Plugin
 
 ```
-import { JwtMiddleware } from '@procter-gamble/apip-jwt-middleware'
+import { JwtMiddleware } from '@litmus7/apip-jwt-middleware'
 
 ....
 

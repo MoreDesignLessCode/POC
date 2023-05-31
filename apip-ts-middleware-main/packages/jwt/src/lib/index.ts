@@ -1,4 +1,4 @@
-import { IContext } from '@procter-gamble/apip-api-types';
+import { IContext } from '@litmus7/apip-api-types';
 import {
   FastifyPluginCallback,
   FastifyReply,

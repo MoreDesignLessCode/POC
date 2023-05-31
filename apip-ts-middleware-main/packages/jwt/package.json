@@ -1,13 +1,13 @@
 {
-  "name": "@procter-gamble/apip-jwt-middleware",
+  "name": "@litmus7/apip-jwt-middleware",
   "version": "0.0.1-semantic-version",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
-    "url": "https://github.com/procter-gamble/apip-ts-middleware"
+    "url": "https://github.com/litmus7/apip-ts-middleware"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "http://localhost:4873/"
   },
   "release": {
     "branches": [

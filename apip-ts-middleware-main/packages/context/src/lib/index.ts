@@ -1,7 +1,7 @@
 import {
   IContext,
   DefaultRequestContext,
-} from '@procter-gamble/apip-api-types';
+} from '@litmus7/apip-api-types';
 import {
   FastifyInstance,
   FastifyPluginCallback,

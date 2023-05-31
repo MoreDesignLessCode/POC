@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@procter-gamble/apip-context-middleware": [
+      "@litmus7/apip-context-middleware": [
         "packages/context/src/index.ts"
       ]
     }
