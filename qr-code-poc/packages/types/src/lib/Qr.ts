@@ -1,4 +1,4 @@
-import { Uuid, IResource } from '../../../../dist/packages/api';
+import { Uuid, IResource } from '@litmus7/apip-api-types';
 import { Nullable } from './Nullable';
 
 export interface IQr extends IResource {

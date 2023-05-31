@@ -4,10 +4,7 @@ import { formatString } from '../../utils';
 import * as Pg from 'pg';
 import { validate } from 'uuid';
 import * as QRCode from 'qrcode';
-import { Uuid } from '../../errors/id';
-import { IStorageProvider, IContext} from './storage.interface';
-import { Result } from './result';
-
+import { Uuid,IStorageProvider, IContext,Result } from '@litmus7/apip-api-types';
 
 export class QrPgStorageProvider implements IStorageProvider<Qr> {
     client: Pg.Client;

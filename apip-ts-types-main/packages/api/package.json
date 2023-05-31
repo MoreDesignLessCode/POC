@@ -1,13 +1,13 @@
 {
-  "name": "@procter-gamble/apip-api-types",
-  "version": "0.0.1-semantic-version",
+  "name": "@litmus7/apip-api-types",
+  "version": "0.0.1",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/procter-gamble/apip-ts-types"
+    "url": "https://github.com/litmus7/apip-ts-types"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "http://localhost:4873/"
   },
   "release": {
     "branches": [

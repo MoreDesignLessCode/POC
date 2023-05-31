@@ -7,7 +7,7 @@ import {
     PathParams,
     QueryParameters,
     ResponseBuilder
-} from '../../../../../dist/packages/api';
+} from '@litmus7/apip-api-types';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';

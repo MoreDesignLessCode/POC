@@ -7,8 +7,8 @@ import {
     IRequest,
     PathParams,
     QueryParameters,
-} from '../../../../../dist/packages/api';
-import { ResponseBuilder } from './response.builder';
+    ResponseBuilder
+} from '@litmus7/apip-api-types';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';

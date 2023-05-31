@@ -1,5 +1,5 @@
 // import { FastifyHttpProvider, IHandler } from '@procter-gamble/apip-api-types';
-import { FastifyHttpProvider, IHandler } from '../../../../../dist/packages/api';
+import { FastifyHttpProvider, IHandler } from '@litmus7/apip-api-types';
 
 
 

@@ -1,6 +1,4 @@
-// import { Uuid, APIError } from '@procter-gamble/apip-api-types';
-import { Uuid } from './id';
-import { APIError } from './api.error';
+import { Uuid, APIError } from '@litmus7/apip-api-types';
 import { Constants } from '../models/constants';
 
 export class UnauthorizedError extends APIError {

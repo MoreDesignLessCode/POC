@@ -4,7 +4,7 @@ import {
     IRepository,
     IStorageProvider,
     IContext
-} from '../../../../../dist/packages/api';
+} from '@litmus7/apip-api-types';
 import { StorageProviderUndefinedError } from '../errors';
 import { Constants } from '../models';
 import { Url } from '../models/url';

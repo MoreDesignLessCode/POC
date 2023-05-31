@@ -1,22 +1,21 @@
 {
-  "name": "@procter-gamble/apip-ts-types",
-  "version": "0.0.0",
+  "name": "@litmus7/apip-ts-types",
+  "version": "0.0.1",
   "license": "UNLICENSED",
   "scripts": {
     "build": "nx affected:build",
     "test": "nx affected:test",
-    "test:all": "nx affected:test --all --codeCoverage --skip-nx-cache",
-    "prepare": "husky install"
+    "test:all": "nx affected:test --all --codeCoverage --skip-nx-cache"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/procter-gamble/apip-ts-types"
+    "url": "https://github.com/litmus7/apip-ts-types"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "http://localhost:4873/"
   },
   "engines": {
-    "node": ">=19.0.0",
+    "node": ">=18.0.0",
     "npm": ">=8.11.0"
   },
   "release": {
@@ -49,7 +48,6 @@
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "fastify": "^4.12.0",
-    "husky": "^8.0.0",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
     "lint-staged": "^13.1.0",
