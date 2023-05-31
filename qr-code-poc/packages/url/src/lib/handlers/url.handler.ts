@@ -13,7 +13,7 @@ import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
 import { Url, UrlSchema } from '../models/url';
-import { fastifyRequestContextMiddleware } from '../../../../../dist/packages/context'
+import { fastifyRequestContextMiddleware } from '@litmus7/apip-context-middleware';
 //
 import {
     ValidationAPIError,

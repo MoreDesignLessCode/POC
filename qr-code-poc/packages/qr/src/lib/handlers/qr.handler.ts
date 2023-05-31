@@ -18,7 +18,7 @@ import {
     GeneralAPIError,
 } from '../errors';
 import { Constants } from '../models';
-import { fastifyRequestContextMiddleware } from '../../../../../dist/packages/context'
+import { fastifyRequestContextMiddleware } from '@litmus7/apip-context-middleware'
 
 export class QrHandler implements IHandler {
     qrService: IService<Qr>;

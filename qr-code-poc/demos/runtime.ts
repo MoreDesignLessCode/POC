@@ -15,8 +15,8 @@ import {
 import cors from '@fastify/cors'
 
 import { FastifyHttpProvider } from '@litmus7/apip-api-types';
-import { fastifyRequestContextMiddleware } from '../dist/packages/context';
-import { JwtMiddleware, JwtOptions } from '../dist/packages/jwt';
+import { fastifyRequestContextMiddleware } from '@litmus7/apip-context-middleware';
+import { JwtMiddleware, JwtOptions } from '@litmus7/apip-jwt-middleware';
 import * as dotenv from 'dotenv';
 
 
