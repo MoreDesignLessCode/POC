@@ -1,5 +1,5 @@
 import { IRating, Nullable } from '@procter-gamble/apip-mktpl-das-feedback-types';
-import { Uuid } from '../../../../../dist/packages/api';
+import { Uuid } from '@litmus7/apip-api-types';
 import * as Joi from 'joi';
 
 export const RatingSchema = Joi.object({   

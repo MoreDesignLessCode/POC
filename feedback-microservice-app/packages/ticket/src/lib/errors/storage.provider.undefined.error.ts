@@ -1,6 +1,4 @@
-//  import { APIError } from '@procter-gamble/apip-api-types';
-import { Uuid } from './id';
-import { APIError } from './api.error';
+import { APIError,Uuid } from '@litmus7/apip-api-types';
 import { Constants } from '../models/constants';
 
 export class StorageProviderUndefinedError extends APIError {

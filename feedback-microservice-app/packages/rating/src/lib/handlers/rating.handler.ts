@@ -7,10 +7,10 @@ import {
     Result,
     IRequest,
     PathParams,
-    QueryParameters
-} from '../../../../../dist/packages/api';
-import { ResponseBuilder } from './response.builder';
-import { parseUuid } from '../errors/id';
+    QueryParameters,
+    ResponseBuilder,
+    parseUuid
+} from '@litmus7/apip-api-types';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
@@ -23,7 +23,7 @@ import {
 import { Constants } from '../models';
 // needed to wire apip.ctx to req
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { fastifyRequestContextMiddleware } from'../../../../../dist/packages/context';
+import { fastifyRequestContextMiddleware } from'@litmus7/apip-context-middleware';
 
 
 

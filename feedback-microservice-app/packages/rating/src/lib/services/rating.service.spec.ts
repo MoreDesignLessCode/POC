@@ -4,7 +4,7 @@ import {
     DefaultRequestContext,
     Result,
     parseUuid
-} from '../../../../../dist/packages/api';
+} from '@litmus7/apip-api-types';
 import { match } from 'ts-pattern';
 import { GeneralAPIError } from '../errors/general.api.error';
 import { Constants } from '../models/constants';

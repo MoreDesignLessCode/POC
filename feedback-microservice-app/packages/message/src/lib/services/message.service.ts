@@ -4,7 +4,7 @@ import {
     Result,
     IService,
     IContext,
-} from '../../../../../dist/packages/api';
+} from '@litmus7/apip-api-types';
 import { Messages } from '../models/message';
 
 export class MessageService implements IService<Messages> {

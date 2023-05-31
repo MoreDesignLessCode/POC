@@ -28,10 +28,10 @@ import {
     AttachmentService
 } from '../dist/packages/attachment';
 
-import { FastifyHttpProvider } from '../dist/packages/api';
+import { FastifyHttpProvider } from '@litmus7/apip-api-types';
 import * as dotenv from 'dotenv';
-import { fastifyRequestContextMiddleware } from '../dist/packages/context';
-import { JwtMiddleware, JwtOptions } from '../dist/packages/jwt';
+import { fastifyRequestContextMiddleware } from '@litmus7/apip-context-middleware';
+import { JwtMiddleware, JwtOptions } from '@litmus7/apip-jwt-middleware';
 import cors from '@fastify/cors'
 
 

@@ -1798,6 +1798,21 @@
   resolved "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
+"@litmus7/apip-api-types@^0.0.1":
+  version "0.0.1"
+  resolved "http://localhost:4873/@litmus7/apip-api-types/-/apip-api-types-0.0.1.tgz#dad978120625efc31dca96a1f16e65937e706cd4"
+  integrity sha512-hLiZV5XiRdJ1urhVw7a4z9H0cTzQcYYongxYtOUt85UdlAOA0O4OJuhEpfVNQKgK8Q020NZfEtC0Vbm9fclnQA==
+
+"@litmus7/apip-context-middleware@^0.0.1":
+  version "0.0.1"
+  resolved "http://localhost:4873/@litmus7/apip-context-middleware/-/apip-context-middleware-0.0.1.tgz#9f07c18bc17c18c319f30a9470a0e54c598340a4"
+  integrity sha512-JRCbjUEnJgyptlKWf1nReu29uel/DKyVYuRHF3KHmFBnD3vEJ0V7WdjZ+CY7OQLUTzCNIVNUuhN9jrUY+IAFOA==
+
+"@litmus7/apip-jwt-middleware@^0.0.1":
+  version "0.0.1"
+  resolved "http://localhost:4873/@litmus7/apip-jwt-middleware/-/apip-jwt-middleware-0.0.1.tgz#b155de40ac8daec0573810f2aabba8e51f9656d9"
+  integrity sha512-o0SwvQ9e38m1A0p3yZ8FbEYDaG2jJvuNSzF/jUIbPJ9i56qNnh/YZ/7QtsFA40vPYHj6PXpKf0CCEzwJ9DC3Ig==
+
 "@lukeed/ms@^2.0.0":
   version "2.0.1"
   resolved "https://registry.npmjs.org/@lukeed/ms/-/ms-2.0.1.tgz"

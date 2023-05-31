@@ -2,7 +2,7 @@ import {
     parseUuid,
     DefaultRequestContext,
     IContext,
-} from '../../../../../dist/packages/api';
+} from '@litmus7/apip-api-types';
 import { GeneralAPIError } from '../errors';
 import { RatingRepository } from './rating.repo';
 import { match } from 'ts-pattern';

@@ -6,8 +6,8 @@ import {
     IRequest,
     PathParams,
     QueryParameters,
-} from '../../../../../dist/packages/api';
-import { ResponseBuilder } from './response.builder';
+    ResponseBuilder
+} from '@litmus7/apip-api-types';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
@@ -20,7 +20,7 @@ import {
 import { Constants } from '../models';
 // needed to wire apip.ctx to req
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { fastifyRequestContextMiddleware } from '../../../../../dist/packages/context';
+import { fastifyRequestContextMiddleware } from '@litmus7/apip-context-middleware'
 
 export class MessageHandler implements IHandler {
     messageService: IService<Messages>;
