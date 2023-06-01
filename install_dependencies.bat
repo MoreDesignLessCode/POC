@@ -1,5 +1,9 @@
 @echo off
 set root_directory="."
+set verdaccio_command=verdaccio
+
+echo Starting Verdaccio globally...
+start /B %verdaccio_command%
 
 for /F "tokens=1,2 delims=v" %%a in ('node -v') do set "node_major_version=%%b"
 
