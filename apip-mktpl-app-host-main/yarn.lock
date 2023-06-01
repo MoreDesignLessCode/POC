@@ -1085,9 +1085,9 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@procter-gamble/uxdl-react@0.3.0":
+"@coe/uxdl-react@0.3.0":
   version "0.3.0"
-  resolved "https://npm.pkg.github.com/download/@procter-gamble/uxdl-react/0.3.0/76db7a3567f5fb02cda93ef16e6fe6b86dea6bdb#76db7a3567f5fb02cda93ef16e6fe6b86dea6bdb"
+  resolved "https://npm.pkg.github.com/download/@coe/uxdl-react/0.3.0/76db7a3567f5fb02cda93ef16e6fe6b86dea6bdb#76db7a3567f5fb02cda93ef16e6fe6b86dea6bdb"
   integrity sha512-i6yJcM7BN9z8DcoeTZPmwy48C0ELE3FLMgeQEHy/QA6CEj/py6bVFG0g1X2Ly3ZBhFgU08joiqixykroXHwUkw==
   dependencies:
     babel-plugin-prismjs "^2.1.0"

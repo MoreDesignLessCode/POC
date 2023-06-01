@@ -1,4 +1,4 @@
-import { Uuid,Result, IContext,IStorageProvider} from '@litmus7/apip-api-types'
+import { Uuid,Result, IContext,IStorageProvider} from '@coe/apip-api-types'
 import { Attachments} from '../../models';
 import * as Pg from 'pg';
 import { connectToBlobService } from '../../utils/azure.blob.storage';

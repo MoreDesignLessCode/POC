@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prefer-const */
-import { Uuid ,IContext,IStorageProvider, Result } from '@litmus7/apip-api-types';
+import { Uuid ,IContext,IStorageProvider, Result } from '@coe/apip-api-types';
 import { GeneralAPIError, ResourceNotFoundError } from '../../errors';
 import { Ratings, Constants, Message } from '../../models';
 import { formatString } from '../../utils';
 import * as Pg from 'pg';
-import { IAttachment } from '@procter-gamble/apip-mktpl-das-feedback-types';
+import { IAttachment } from '@coe/apip-mktpl-das-feedback-types';
 
 
 export class RatingPgStorageProvider implements IStorageProvider<Ratings> {

@@ -3,7 +3,7 @@ import {
     IContext,
     DefaultRequestContext,
     Result,
-} from '@litmus7/apip-api-types';
+} from '@coe/apip-api-types';
 import { match } from 'ts-pattern';
 import { GeneralAPIError } from '../errors/general.api.error';
 import { Constants } from '../models/constants';

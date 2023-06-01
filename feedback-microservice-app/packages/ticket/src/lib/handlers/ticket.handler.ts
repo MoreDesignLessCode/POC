@@ -9,7 +9,7 @@ import {
     QueryParameters,
     ResponseBuilder,
     Uuid,APIError
-} from '@litmus7/apip-api-types';
+} from '@coe/apip-api-types';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
@@ -22,7 +22,7 @@ import {
 import { Constants } from '../models';
 // needed to wire apip.ctx to req
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { fastifyRequestContextMiddleware } from '@litmus7/apip-context-middleware';
+import { fastifyRequestContextMiddleware } from '@coe/apip-context-middleware';
 
 
 

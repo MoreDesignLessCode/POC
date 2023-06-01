@@ -1,5 +1,5 @@
 import React from "react";
-import { SecondaryFooter } from "@procter-gamble/uxdl-react";
+import { SecondaryFooter } from "@coe/uxdl-react";
 
 export default function secondaryFooter() {
   return (

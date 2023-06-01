@@ -1,10 +1,10 @@
 {
-  "name": "@litmus7/apip-api-types",
+  "name": "@coe/apip-api-types",
   "version": "0.0.1",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/litmus7/apip-ts-types"
+    "url": "https://github.com/coe/apip-ts-types"
   },
   "publishConfig": {
     "registry": "http://localhost:4873/"

@@ -1,4 +1,4 @@
-import { Uuid, IResource } from '@litmus7/apip-api-types';
+import { Uuid, IResource } from '@coe/apip-api-types';
 import { Nullable } from './Nullable';
 
 export interface IParticipant extends IResource {

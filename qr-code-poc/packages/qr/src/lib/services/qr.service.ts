@@ -4,7 +4,7 @@ import {
     Result,
     IService,
     IContext,
-} from '@litmus7/apip-api-types';
+} from '@coe/apip-api-types';
 import { Qr } from '../models/qr';
 
 export class QrService implements IService<Qr> {

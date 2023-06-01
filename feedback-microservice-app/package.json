@@ -15,10 +15,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/procter-gamble/apip-mktpl-runtime"
+        "url": "https://github.com/coe/apip-mktpl-runtime"
     },
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com"
+        "registry": "https://localhost:4873"
     },
     "engines": {
         "node": ">=18.0.0",
@@ -37,9 +37,9 @@
         "@fastify/formbody": "^7.4.0",
         "@fastify/jwt": "^6.5.0",
         "@fastify/multipart": "^7.5.0",
-        "@litmus7/apip-api-types": "^0.0.1",
-        "@litmus7/apip-context-middleware": "^0.0.1",
-        "@litmus7/apip-jwt-middleware": "^0.0.1",
+        "@coe/apip-api-types": "^0.0.1",
+        "@coe/apip-context-middleware": "^0.0.1",
+        "@coe/apip-jwt-middleware": "^0.0.1",
         "db-migrate": "^0.11.13",
         "db-migrate-pg": "^1.2.2",
         "dotenv": "^16.0.3",

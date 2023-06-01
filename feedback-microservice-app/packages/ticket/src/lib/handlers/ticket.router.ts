@@ -1,4 +1,4 @@
-import { FastifyHttpProvider, IHandler } from '@litmus7/apip-api-types';
+import { FastifyHttpProvider, IHandler } from '@coe/apip-api-types';
 
 export class TicketRouter {
     constructor(runtime: FastifyHttpProvider, tickethandler: IHandler) {

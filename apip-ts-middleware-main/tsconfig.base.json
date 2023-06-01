@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@litmus7/apip-context-middleware": [
+      "@coe/apip-context-middleware": [
         "packages/context/src/index.ts"
       ]
     }

@@ -1,7 +1,7 @@
 import {
   IContext,
   DefaultRequestContext,
-} from '@litmus7/apip-api-types';
+} from '@coe/apip-api-types';
 import {
   FastifyInstance,
   FastifyPluginCallback,

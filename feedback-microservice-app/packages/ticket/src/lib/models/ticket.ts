@@ -1,5 +1,5 @@
-import { ITicket, Nullable } from '@procter-gamble/apip-mktpl-das-feedback-types';
-import { Uuid } from '@litmus7/apip-api-types';
+import { ITicket, Nullable } from '@coe/apip-mktpl-das-feedback-types';
+import { Uuid } from '@coe/apip-api-types';
 import * as Joi from 'joi';
 
 const MessageValidationSchema = Joi.object({

@@ -4,7 +4,7 @@ import {
     Result,
     IService,
     IContext,
-} from '@litmus7/apip-api-types';
+} from '@coe/apip-api-types';
 import { Attachments } from '../models/attachment';
 
 export class AttachmentService implements IService<Attachments> {

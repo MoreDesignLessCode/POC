@@ -1,4 +1,4 @@
-import { Uuid, APIError } from '@litmus7/apip-api-types';
+import { Uuid, APIError } from '@coe/apip-api-types';
 import { Constants } from '../models/constants';
 
 export class UnauthorizedError extends APIError {

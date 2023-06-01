@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prefer-const */
-import { Uuid,Result,IContext,IStorageProvider} from '@litmus7/apip-api-types';
+import { Uuid,Result,IContext,IStorageProvider} from '@coe/apip-api-types';
 import { GeneralAPIError, ResourceNotFoundError } from '../../errors';
 import { Messages, Constants } from '../../models';
 import { formatString } from '../../utils';

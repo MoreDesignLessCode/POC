@@ -58,7 +58,7 @@ This layer facilitates the communication with the storage system. This allows fo
 
 # JWT Validation
 
-At this point we are just validating the JWT is a valid "shape". We will need to update the [registration](https://github.com/procter-gamble/apip-mktpl-das-qrcode/blob/main/src/providers/jwt/jwtProvider.ts#L9) of FastifyJwt to use jwks once that is in place, then we will need to pass additional options to the [verify](https://github.com/procter-gamble/apip-mktpl-das-qrcode/blob/main/src/providers/jwt/jwtProvider.ts#L15) code to validate items such as complete, allowedAud, allowedIss, maxAge
+At this point we are just validating the JWT is a valid "shape". We will need to update the [registration](jwtProvider.ts#L9) of FastifyJwt to use jwks once that is in place, then we will need to pass additional options to the [verify](jwtProvider.ts#L15) code to validate items such as complete, allowedAud, allowedIss, maxAge
 
 When we make these updates here is documentation that will assist:
 

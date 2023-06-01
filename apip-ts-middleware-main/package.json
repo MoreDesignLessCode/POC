@@ -1,15 +1,11 @@
 {
-  "name": "@litmus7/apip-ts-middleware",
+  "name": "@coe/apip-ts-middleware",
   "version": "0.0.0",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "build": "nx affected:build",
     "test": "nx affected:test",
     "test:all": "nx affected:test --all --codeCoverage --skip-nx-cache"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/litmus7/apip-ts-middleware"
   },
   "publishConfig": {
     "registry": "http://localhost:4873/"
@@ -25,7 +21,7 @@
     ]
   },
   "dependencies": {
-    "@litmus7/apip-api-types": "0.0.1",
+    "@coe/apip-api-types": "^0.0.1",
     "fast-jwt": "^2.2.0",
     "fastify-plugin": "^4.5.0"
   },

@@ -15,19 +15,19 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@procter-gamble/apip-mktpl-das-attachment": [
+            "@coe/apip-mktpl-das-attachment": [
                 "packages/attachment/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-das-message": [
+            "@coe/apip-mktpl-das-message": [
                 "packages/message/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-das-ticket": [
+            "@coe/apip-mktpl-das-ticket": [
                 "packages/ticket/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-das-feedback-sdk": [
+            "@coe/apip-mktpl-das-feedback-sdk": [
                 "packages/sdk/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-das-feedback-types": [
+            "@coe/apip-mktpl-das-feedback-types": [
                 "packages/types/src/index.ts"
             ]
         }

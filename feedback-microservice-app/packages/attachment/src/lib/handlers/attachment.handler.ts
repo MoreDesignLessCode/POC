@@ -7,7 +7,7 @@ import {
     Result,
     IRequest,
     PathParams,
-} from '@litmus7/apip-api-types';
+} from '@coe/apip-api-types';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
@@ -18,7 +18,7 @@ import {
     GeneralAPIError,
 } from '../errors';
 import { Constants } from '../models';
-import { fastifyRequestContextMiddleware } from '@litmus7/apip-context-middleware'
+import { fastifyRequestContextMiddleware } from '@coe/apip-context-middleware'
 import { connectToBlobService } from '../utils/azure.blob.storage';
 
 export class AttachmentHandler implements IHandler {

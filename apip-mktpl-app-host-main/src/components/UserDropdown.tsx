@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHostStore } from "host/store";
 import { Link } from "react-router-dom";
-import { Button } from "@procter-gamble/uxdl-react";
+import { Button } from "@coe/uxdl-react";
 import Spinner from "./Spinner";
 import BellIcon from "../../public/images/bell.svg";
 import HeartIcon from "../../public/images/heart.svg";

@@ -4,7 +4,7 @@ import {
     Result,
     IService,
     IContext,
-} from '@litmus7/apip-api-types';
+} from '@coe/apip-api-types';
 import { Ratings } from '../models/rating';
 
 export class RatingService implements IService<Ratings> {

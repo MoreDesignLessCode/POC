@@ -6,8 +6,8 @@
 //     Result,
 //     IStorageProvider,
 //     IContext,
-// } from '@procter-gamble/apip-api-types';
-import { IStorageProvider,IContext,Uuid ,Result } from '@litmus7/apip-api-types';
+// } from '@coe/apip-api-types';
+import { IStorageProvider,IContext,Uuid ,Result } from '@coe/apip-api-types';
 import { GeneralAPIError, ResourceNotFoundError } from '../../errors';
 import { Url, Constants } from '../../models';
 import { formatString } from '../../utils';

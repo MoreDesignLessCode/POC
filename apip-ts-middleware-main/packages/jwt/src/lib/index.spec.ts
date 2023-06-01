@@ -1,5 +1,5 @@
 import fastify, { FastifyRequest, FastifyReply } from 'fastify';
-import { fastifyRequestContextMiddleware } from '@litmus7/apip-context-middleware';
+import { fastifyRequestContextMiddleware } from '@coe/apip-context-middleware';
 import { JwtMiddleware, JwtOptions } from './index';
 import { createSigner } from 'fast-jwt';
 import { Buffer } from 'node:buffer';

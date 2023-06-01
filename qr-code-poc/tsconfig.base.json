@@ -15,19 +15,19 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@procter-gamble/apip-api-qr": [
+            "@coe/apip-api-qr": [
                 "packages/api/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-das-qr": [
+            "@coe/apip-mktpl-das-qr": [
                 "packages/qr/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-das-url": [
+            "@coe/apip-mktpl-das-url": [
                 "packages/url/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-das-qrcode-sdk": [
+            "@coe/apip-mktpl-das-qrcode-sdk": [
                 "packages/sdk/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-das-qrcode-types": [
+            "@coe/apip-mktpl-das-qrcode-types": [
                 "packages/types/src/index.ts"
             ]
         }

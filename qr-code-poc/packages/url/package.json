@@ -1,10 +1,10 @@
 {
-    "name": "@procter-gamble/apip-mktpl-das-url",
+    "name": "@coe/apip-mktpl-das-url",
     "version": "0.0.1-semantic-version",
     "license": "SEE LICENSE IN LICENSE",
     "repository": {
         "type": "git",
-        "url": "https://github.com/procter-gamble/apip-mktpl-das-qrcode-types"
+        "url": "https://github.com/coe/apip-mktpl-das-qrcode-types"
     },
     "publishConfig": {
         "registry": "https://npm.pkg.github.com"
