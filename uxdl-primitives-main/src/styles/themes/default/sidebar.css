@@ -1,0 +1,14 @@
+.uxdl-sidebar__root--primary {
+  background-color: var(--uxdl-color-primary-normal);
+  color: var(--uxdl-color-primary-brightest);
+}
+
+.uxdl-sidebar__root--secondary {
+  background-color: var(--uxdl-color-secondary-normal);
+  color: var(--uxdl-color-primary-darkest);
+}
+
+.uxdl-sidebar__root--tertiary {
+  background-color: var(--uxdl-color-tertiary-normal);
+  color: var(--uxdl-color-primary-darkest);
+}

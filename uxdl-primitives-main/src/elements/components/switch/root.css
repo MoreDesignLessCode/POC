@@ -1,0 +1,34 @@
+@import '~/styles/build.css';
+
+[role='switch'] {
+  margin: 2px;
+  padding: 4px 4px 8px 8px;
+  border: 0 solid #005a9c;
+  width: 15em;
+  user-select: none;
+}
+
+[role='switch'] .on {
+  display: none;
+}
+
+[role='switch'] .off {
+  display: inline;
+}
+
+[role='switch'][aria-checked='true'] .on {
+  display: inline;
+}
+
+[role='switch'][aria-checked='true'] .off {
+  display: none;
+}
+
+[role='switch']:focus,
+[role='switch']:hover {
+  padding: 2px 2px 6px 6px;
+  border-width: 2px;
+  outline: none;
+  background-color: #def;
+  cursor: pointer;
+}

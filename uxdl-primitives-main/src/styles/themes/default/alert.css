@@ -1,0 +1,12 @@
+/* Custom */
+.uxdl-alert__title--primary {
+  color: var(--uxdl-color-primary-normal);
+}
+
+.uxdl-alert__title--secondary {
+  color: var(--uxdl-color-secondary-normal);
+}
+
+.uxdl-alert__title--tertiary {
+  color: var(--uxdl-color-tertiary-normal);
+}

@@ -1,0 +1,139 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Alert, Button, Code } from '../../../../packages/react/src';
+import { variants, Intent, intents, rounded } from '../../../models';
+
+<Meta
+  title="🧩Elements/Components/Alert"
+  component={Alert}
+  subComponents={{
+    'Alert.Root': Alert.Root,
+    'Alert.Trigger': Alert.Trigger,
+    'Alert.Content': Alert.Content,
+    'Alert.Title': Alert.Title,
+    'Alert.Description': Alert.Description,
+    'Button' : Button,
+    
+  }}
+  argTypes={{
+    outline: {
+      name: 'outline',
+      description: 'Modif to be outlined',
+      table: {},
+      control: {
+        type: 'boolean'
+      }
+    },
+    rounded: {
+      name: 'rounded',
+      description: 'Rounded buttons to a small, medium, large amount',
+      table: {},
+      options: rounded.map((x) => x.value),
+      control: { type: 'select' }
+    },
+    overlay: {
+      name: 'With Overlay',
+      description: 'Add an overlay component to the alert?',
+      table: {},
+      control: {
+        type: 'boolean'
+      }
+    }
+  }}
+  parameters={{
+      docs: {
+          source: {
+              code: null
+          }
+      }
+  }}
+/>
+
+export const Template = (args) => (
+   <div style={{ 
+      display: "flex", 
+      justifyContent:"space-evenly", 
+      alignItems:"flex-end"}}
+    >{variants.map((variant, idx) => (
+    <Alert.Root key={variant.key}>
+      <Alert.Trigger>
+        <Button {...args} variant={variant.value}>Trigger {variant.value}</Button>
+      </Alert.Trigger>
+      <Alert.Content {...args}>
+        <Alert.Title>Message {variant.value}</Alert.Title>
+        <Alert.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit.
+        </Alert.Description>
+        <Alert.Action>
+          <Button variant="primary" {...args}>Action 1</Button>
+        </Alert.Action>
+        <Alert.Action>
+          <Button variant="secondary" {...args}>Action 2</Button>
+        </Alert.Action>
+        <Alert.Cancel>
+          <Button variant="tertiary" {...args}>Cancel</Button>
+        </Alert.Cancel>
+      </Alert.Content>
+      { args.overlay && <Alert.Overlay /> }
+    </Alert.Root>
+    ))}</div>
+);
+
+# Alert
+
+Alert allows you to display a notification or a prompt for the user to take
+action with an overlay. Each part of the alert is customizable and broken into
+semantic tags. The alert component works with or without these tags and you can
+make your own, but these are provided to make it easier to adopt out of the box.
+
+<!--You can customize variants changing the variables, more info in the [variables page](/docs/start--page)-->
+
+## Showcase
+<Canvas>
+  <Story
+    name="Alert"
+    args={{
+      outline: false,
+      disabled: false,
+      overlay: true
+    }}
+    height="375px">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Code Sample
+<Code.Root language="html" source={`    <Alert.Root>
+      <Alert.Trigger>
+        <Button>Trigger</Button>
+      </Alert.Trigger>
+      <Alert.Content rounded="large">
+        <Alert.Title>Message</Alert.Title>
+        <Alert.Description>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit.
+        </Alert.Description>
+        <Alert.Action>
+          <Button variant="primary">Action</Button>
+        </Alert.Action>
+        <Alert.Action>
+          <Button variant="secondary">Action</Button>
+        </Alert.Action>
+        <Alert.Cancel>
+          <Button variant="tertiary">Cancel</Button>
+        </Alert.Cancel>
+      </Alert.Content>
+      <Alert.Overlay />
+    </Alert.Root>`}>
+</Code.Root>
+
+### Properties
+
+<ArgsTable story="Alert" of={Alert} />
+

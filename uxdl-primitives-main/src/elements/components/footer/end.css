@@ -1,0 +1,24 @@
+.uxdl-footer__end--links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin: unset;
+  padding: unset;
+  gap: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+@media screen and (min-width: 1024px) {
+  .uxdl-footer__end--links {
+    flex-direction: row;
+  }
+}
+
+.uxdl-footer__end--links a {
+  color: inherit;
+  text-decoration: none;
+}
+.uxdl-footer__end--links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

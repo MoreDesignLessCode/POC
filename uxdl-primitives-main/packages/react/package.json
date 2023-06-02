@@ -1,0 +1,48 @@
+{
+  "name": "@coe/uxdl-react",
+  "version": "0.3.0",
+  "license": "SEE LICENSE IN LICENSE",
+  "description": "Procter & Gamble's UXDL React UI Library",
+  "main": "./dist/uxdl-react.umd.js",
+  "module": "./dist/uxdl-react.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/uxdl-react.es.js",
+      "require": "./dist/uxdl-react.umd.js"
+    },
+    "./default.css": {
+      "import": "./dist/default.css",
+      "require": "./dist/default.css"
+    }
+  },
+  "publishConfig": {
+     "registry": "http://localhost:4873/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/procter-gamble/uxdl-primitives"
+  },
+  "dependencies": {
+    "babel-plugin-prismjs": "^2.1.0",
+    "codejar": "^3.6.0",
+    "copy-to-clipboard": "^3.3.2",
+    "copyfiles": "^2.4.1",
+    "highlight.js": "^11.6.0",
+    "postcss": "8.4.19",
+    "prismjs": "^1.29.0",
+    "ssr-window": "^4.0.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || 17.x || 18.x",
+    "react-dom": "^16.8.0 || 17.x || 18.x"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "yarn install",
+    "build": "rollup -c",
+    "postbuild": "copyfiles ../../.themes/** ./dist/ --flat"
+  }
+}

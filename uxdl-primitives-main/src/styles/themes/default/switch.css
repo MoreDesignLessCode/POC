@@ -1,0 +1,22 @@
+[role='switch'][aria-checked='true'] .switch.uxdl-switch__trigger--primary,
+[role='switch'][aria-checked='true'] .uxdl-switch__trigger--primary.thumb {
+  border-color: var(--uxdl-color-primary-normal);
+}
+[role='switch'][aria-checked='true'] .switch.uxdl-switch__trigger--secondary,
+[role='switch'][aria-checked='true'] .uxdl-switch__trigger--secondary.thumb {
+  border-color: var(--uxdl-color-secondary-normal);
+}
+[role='switch'][aria-checked='true'] .switch.uxdl-switch__trigger--tertiary,
+[role='switch'][aria-checked='true'] .uxdl-switch__trigger--tertiary.thumb {
+  border-color: var(--uxdl-color-tertiary-normal);
+}
+
+[role='switch'][aria-checked='true'] .uxdl-switch__trigger--primary.thumb {
+  background-color: var(--uxdl-color-primary-normal);
+}
+[role='switch'][aria-checked='true'] .uxdl-switch__trigger--secondary.thumb {
+  background-color: var(--uxdl-color-secondary-normal);
+}
+[role='switch'][aria-checked='true'] .uxdl-switch__trigger--tertiary.thumb {
+  background-color: var(--uxdl-color-tertiary-normal);
+}

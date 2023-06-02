@@ -1,0 +1,89 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { DatePicker, Code } from '../../../../packages/react/src';
+import { variants, Intent, intents, rounded } from '../../../models';
+
+<Meta
+  title="🧩Elements/Components/DatePicker"
+  component={DatePicker}
+  subComponents={{
+    'DatePicker.Root': DatePicker.Root,
+  }}
+  parameters={{
+      docs: {
+          source: {
+            code: null
+          }
+      }
+  }}
+/>
+
+export const Template = (args) => (
+   <div style={{ 
+      display: "flex", 
+      justifyContent:"space-evenly", 
+      alignItems:"flex-end"}}
+    >
+      <div>
+        <label htmlFor="from">From:</label>
+        <DatePicker.Root
+          id="from"
+          name="from"
+          initialValue={new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString().slice(0,10)} // Same day/month one year ago
+          max={new Date().toISOString().slice(0, 10)}
+        ></DatePicker.Root>
+      </div>
+      <div>
+        <label htmlFor="to">To:</label>
+        <DatePicker.Root
+          id="to"
+          name="to"
+          initialValue={new Date().toISOString().slice(0, 10)} // Today
+          min={new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString().slice(0,10)} // initial value of From
+          max={new Date().toISOString().slice(0, 10)} // today
+        ></DatePicker.Root>
+      </div>
+    </div>
+);
+
+# DatePicker
+
+DatePicker allows you to create an input component with a calendar flyout for
+selecting dates. Most common usage will be a single field or a date range
+showing a To/From component.
+
+<!--You can customize variants changing the variables, more info in the [variables page](/docs/start--page)-->
+
+## Showcase
+<Canvas>
+  <Story
+    name="DatePicker"
+    height="375px">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Code Sample
+<Code.Root language="html" source={`
+      <label htmlFor="from">
+          From:
+      </label>
+      <DatePicker.Root
+          id="from"
+          name="from"
+          initialValue={
+            new Date(
+                new Date()
+                    .setFullYear(
+                        new Date().getFullYear() - 1)
+                    )
+                    .toISOString()
+                    .slice(0,10)
+          } // Same day/month one year ago
+          max={new Date().toISOString().slice(0, 10)}
+        ></DatePicker.Root>`}>
+</Code.Root>
+
+### Properties
+
+<ArgsTable story="DatePicker" of={DatePicker} />
+

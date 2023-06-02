@@ -1,0 +1,71 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Switch, Button } from '../../../../packages/react/src';
+import { variants, Intent, intents, rounded } from '../../../models';
+
+<Meta
+  title="🧩Elements/Components/Switch"
+  component={Switch}
+  argTypes={{
+    outline: {
+      name: 'outline',
+      description: 'Modif to be outlined',
+      table: {},
+      control: {
+        type: 'boolean'
+      }
+    },
+    rounded: {
+      name: 'rounded',
+      description: 'Rounded edges to a small, medium, large amount',
+      table: {},
+      options: rounded.map((x) => x.value),
+      control: { type: 'select' }
+    },
+  }}
+  parameters={{
+      docs: {
+          source: {
+              code: null
+          }
+      }
+  }}
+/>
+
+export const Template = (args) => (
+    <div style={{ 
+      display: "flex", 
+      justifyContent:"space-evenly", 
+      alignItems:"flex-end"}}
+    >
+    {variants.map((variant, idx) => (
+      <Switch.Root checked={true} key={variant.key} {...args}>
+        <Switch.Label>{variant.key}</Switch.Label>
+        <Switch.Trigger {...args} variant={variant.value} />
+      </Switch.Root>
+    ))}
+    </div>
+);
+
+# Switch
+
+Switch allows you to display a modern Switch to grab the users attention. Switchs are used to group digestible portions of information that call for an action (e.g. accessing more information, placing an order, adding to a basket). They are better suited for cases when users browser for information rather than when they search.
+
+<!--You can customize variants changing the variables, more info in the [variables page](/docs/start--page)-->
+
+## Showcase
+<Canvas>
+  <Story
+    name="Switch"
+    args={{
+      outline: false,
+      disabled: false
+    }}
+    height="375px">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Properties
+
+<ArgsTable story="Switch" of={Switch} />
+

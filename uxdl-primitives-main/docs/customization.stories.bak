@@ -1,0 +1,116 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="📗Documentation/Customization" 
+    parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+# Customization
+
+When you load a **UXDL** component and you've previously loaded the 
+corresponding `uxdl.css` file, a basic style library will be added to 
+the component.
+
+To easy customize the different components that this library brings, 
+we have provided two different methods, using **BEM Classes** 
+and **CSS Custom Properties**.
+
+## BEM Classes
+
+We are always exporting CSS classes in our components and we use 
+[BEM to decide the names](http://getbem.com) for each part of the component.
+
+Example of BEM classes:
+
+<!--<pre
+  language="xml">
+  <div className="uxdl-author uxdl-author--primary uxdl-author--rounded">
+    <span className="uxdl-author__name">Alicia</span>
+    <span className="uxdl-author__subtitle">Spain</span>
+  </div>
+</pre>-->
+
+We are also using other CSS conventions like 
+[States from SMACSS](http://smacss.com/book/type-state), 
+to make the component more readable.
+
+Example of SMACSS States:
+
+<!--<pre language="xml">
+  <div className="uxdl-author is-disabled">...</div>
+</pre>-->
+
+## CSS Custom Properties
+
+We have defined a list of custom properties that we use to customize the components. You can easily override them in your project.
+
+For example if we want to modify the **variants**, there are 3 different groups of properties and those are the ones from the basic theme called `uxdl.css`:
+
+<!--<Code
+  language="css"
+  code={`/* Color Primary */
+--uxdl-color-primary-brightest: #b9daff;
+--uxdl-color-primary-brighter: #a4cfff;
+--uxdl-color-primary-bright: #53a5ff;
+--uxdl-color-primary-normal: #017aff;
+--uxdl-color-primary-dark: #005fc8;
+--uxdl-color-primary-darker: #004590;
+--uxdl-color-primary-darkest: #002a58;
+/* Color Secondary */
+--uxdl-color-secondary-brightest: #eeeaff;
+--uxdl-color-secondary-brighter: #cec1ff;
+--uxdl-color-secondary-bright: #ad99ff;
+--uxdl-color-secondary-normal: #6c47ff;
+--uxdl-color-secondary-dark: #3f0fff;
+--uxdl-color-secondary-darker: #2b00d6;
+--uxdl-color-secondary-darkest: #20009e;
+/* Color Tertiary */
+--uxdl-color-tertiary-brightest: #fde2e8;
+--uxdl-color-tertiary-brighter: #fbbccb;
+--uxdl-color-tertiary-bright: #f896ad;
+--uxdl-color-tertiary-normal: #f34971;
+--uxdl-color-tertiary-dark: #f01448;
+--uxdl-color-tertiary-darker: #bf0d37;
+--uxdl-color-tertiary-darkest: #8b0928;`}
+></Code>
+
+We have also defined some **intents** to be used in some components:
+
+<Code
+  language="css"
+  code={`/* Color Info */
+--uxdl-color-info-brightest: #a3f5fe;
+--uxdl-color-info-brighter: #8ff2fe;
+--uxdl-color-info-bright: #67eefe;
+--uxdl-color-info-normal: #02d0e8;
+--uxdl-color-info-dark: #029eb0;
+--uxdl-color-info-darker: #016c79;
+--uxdl-color-info-darkest: #013a41;
+/* Color Success */
+--uxdl-color-success-brightest: #cbf4e6;
+--uxdl-color-success-brighter: #baf0de;
+--uxdl-color-success-bright: #99e9ce;
+--uxdl-color-success-normal: #34d39d;
+--uxdl-color-success-dark: #25aa7d;
+--uxdl-color-success-darker: #1b7c5b;
+--uxdl-color-success-darkest: #114e39;
+/* Color Warning */
+--uxdl-color-warning-brightest: #fff7e3;
+--uxdl-color-warning-brighter: #ffe5a5;
+--uxdl-color-warning-bright: #ffd97d;
+--uxdl-color-warning-normal: #ffc12b;
+--uxdl-color-warning-dark: #f2ab00;
+--uxdl-color-warning-darker: #ba8300;
+--uxdl-color-warning-darkest: #825c00;
+/* Color Error */
+--uxdl-color-error-brightest: #fcdada;
+--uxdl-color-error-brighter: #f9b5b5;
+--uxdl-color-error-bright: #f58f8f;
+--uxdl-color-error-normal: #f15050;
+--uxdl-color-error-dark: #e71414;
+--uxdl-color-error-darker: #b30f0f;
+--uxdl-color-error-darkest: #5c0404;`}
+></Code>
+-->
+There are some other custom properties that you can easily modify, 
+please check the [complete list in the repository](https://github.com/procter-gamble/uxdl-primitives/blob/main/styles/variables.css).
+
+<Customization hidden={true} />

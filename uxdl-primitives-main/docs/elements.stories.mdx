@@ -1,0 +1,60 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import { Card, Button } from '../packages/react/src';
+
+<Meta title="📗Documentation/Elements" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+# Typology of Elements
+
+**UXDL** offers unstyled primitives (some base styles needed for functional
+purposes). Any default styles applied to the primitives are
+basic structure or basic functionality controls to make the component useful
+out of the box without further styling. All base styles are easily overrideble
+and won't effect the functionality (but may affect accessibility).
+
+UXDL Primitives provides the themeing capability with the default theme being
+the P&G Coporate color scheme (via the property `variant="primary"`.
+
+UXDL Primitives are not meant to be a fully-styled system like Bootstrap but
+rather a set of building block components that can be used to achieve
+functionality and accessibility while giving the controls of the style to
+the developers.
+
+Inspirations
+
+- [Radix UI](https://radix-ui.com)
+- [Shoelace](https://shoelace.style)
+- [Headless UI](https://headlessui.com)
+- [Papanasi](https://papanasi.js.org)
+
+## Components
+
+At the core of **UXDL**, all the components should follow the
+[Principles of UXDL](https://github.com/procter-gamble/uxdl-primitives#principles-of-uxdl) and 
+should be also **customizable from global or scoped variables**.
+
+Most popular components are `Button` or `Card`:
+
+<Canvas>
+  <Card.Root variant="primary">
+    <Card.Media>
+      <img src="https://pgone.sharepoint.com/sites/Uxpg/Shared%20Documents/UXDL/static/ui-components/7.2.jpg" />
+    </Card.Media>
+    <Card.Title>A Sample Card</Card.Title>
+    <Card.Description>A sample card description that could attract a user to do something</Card.Description>
+    <Card.CTA><Button variant="primary">A Call to Action Button</Button></Card.CTA>
+  </Card.Root>
+</Canvas>
+
+<!--## External
+
+Those elements are the ones that are **specific for a company or library**, and they are not part of the core of **UXDL**. The main idea is to bring the opportunity to create components from **SDKs** or **APIs** writing the code just once.
+
+The first external component was `Mermaid`:
+
+<Canvas>
+  <Mermaid>
+    <span>Click me</span>
+  </Mermaid>
+</Canvas>
+-->
+

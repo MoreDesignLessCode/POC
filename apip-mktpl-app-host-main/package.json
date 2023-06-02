@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.6",
+    "@coe/uxdl-react": "^0.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.5",

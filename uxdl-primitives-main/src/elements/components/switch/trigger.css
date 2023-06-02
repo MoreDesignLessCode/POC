@@ -1,0 +1,33 @@
+[role='switch'] .switch {
+  position: relative;
+  display: inline-block;
+  top: 6px;
+  border: 0.125rem solid #949494;
+  height: 20px;
+  width: 40px;
+}
+
+[role='switch'][aria-checked='true'] .switch {
+  border-color: black;
+}
+
+[role='switch'] .switch span {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: inline-block;
+  border: 0.125rem solid #949494;
+  height: 12px;
+  width: 12px;
+  background: #949494;
+}
+
+[role='switch'][aria-checked='true'] .switch span {
+  left: 21px;
+  background: black;
+  border-color: black;
+}
+
+[role='switch']:focus span.switch {
+  background-color: white;
+}

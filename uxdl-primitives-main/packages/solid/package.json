@@ -1,0 +1,42 @@
+{
+  "name": "@coe/uxdl-solid",
+  "version": "0.2.0",
+  "license": "UNLICENSED",
+  "description": "Procter & Gamble's UXDL Solid JS UI Library",
+  "source": "./solid-index.tsx",
+  "main": "dist/cjs/uxdl-solid.js",
+  "module": "dist/esm/uxdl-solid.js",
+  "types": "dist/types/uxdl-solid.d.ts",
+  "exports": {
+    ".": {
+      "solid": "./dist/index/index.js",
+      "import": "./dist/esm/uxdl-solid.js",
+      "browser": "./dist/esm/uxdl-solid.js",
+      "require": "./dist/cjs/uxdl-solid.js",
+      "node": "./dist/cjs/uxdl-solid.js"
+    },
+    "./default.css": {
+      "import": "./dist/default.css",
+      "require": "./dist/default.css"
+    }
+  },
+  "publishConfig": {
+     "registry": "http://localhost:4873/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/procter-gamble/uxdl-primitives"
+  },
+  "dependencies": {
+    "codejar": "^3.6.0",
+    "copy-to-clipboard": "^3.3.2",
+    "ssr-window": "^4.0.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "postbuild": "node ./copy-css.js"
+  }
+}

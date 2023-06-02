@@ -1,0 +1,50 @@
+{
+  "name": "@coe/uxdl-svelte",
+  "version": "0.3.0",
+  "license": "SEE LICENSE IN LICENSE",
+  "description": "Proctor and Gamble's UXDL Svelte UI Library",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "type": "module",
+  "svelte": "../src/index.ts",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./default.css": {
+      "import": "./dist/default.css",
+      "require": "./dist/default.css"
+    }
+  },
+  "publishConfig": {
+     "registry": "http://localhost:4873/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/procter-gamble/uxdl-primitives"
+  },
+  "dependencies": {
+    "babel-plugin-prismjs": "^2.1.0",
+    "codejar": "^3.6.0",
+    "copy-to-clipboard": "^3.3.2",
+    "copyfiles": "^2.4.1",
+    "highlight.js": "^11.6.0",
+    "postcss": "8.4.19",
+    "prismjs": "^1.29.0",
+    "ssr-window": "^4.0.2"
+  },
+  "peerDependencies": {
+    "highlight.js": "^11.6.0",
+    "svelte": "^3.x"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "svelte-kit sync && svelte-package",
+    "postbuild": "copyfiles ../../.themes/** ./dist/ --flat"
+  }
+}

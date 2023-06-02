@@ -1,0 +1,7 @@
+.uxdl-alert__description {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-bottom: 0;
+  max-width: 75ch;
+  text-align: left;
+}

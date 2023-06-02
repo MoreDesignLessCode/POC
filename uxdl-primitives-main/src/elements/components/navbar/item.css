@@ -1,0 +1,17 @@
+.uxdl-navbar__item {
+  padding-inline-start: 1rem;
+  padding-inline-end: 2rem;
+  padding-block-start: 1rem;
+  padding-block-end: 1rem;
+}
+
+.uxdl-navbar__item a {
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+  text-underline-offset: 0.125rem;
+}
+
+.uxdl-navbar__item a:hover {
+  text-decoration: underline;
+}

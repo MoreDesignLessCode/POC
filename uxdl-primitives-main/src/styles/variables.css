@@ -1,0 +1,101 @@
+:root {
+  /* Border */
+  --uxdl-border-radius-small: 4px;
+  --uxdl-border-radius-normal: 40px;
+  --uxdl-border-width-small: 1px;
+  --uxdl-border-width-normal: 2px;
+
+  /* Breakpoints */
+  --uxdl-breakpoint-xxs: 360px;
+  --uxdl-breakpoint-xs: 480px;
+  --uxdl-breakpoint-s: 768px;
+  --uxdl-breakpoint-m: 992px;
+  --uxdl-breakpoint-l: 1120px;
+  --uxdl-breakpoint-xl: 1440px;
+  --uxdl-breakpoint-xxl: 1920px;
+
+  /* Color Basic */
+  --uxdl-color-basic-brightest: #ffffff;
+  --uxdl-color-basic-brighter: #f3f3f5;
+  --uxdl-color-basic-bright: #d8dadf;
+  --uxdl-color-basic-normal: #b3b5bb;
+  --uxdl-color-basic-dark: #686c7c;
+  --uxdl-color-basic-darker: #464b5f;
+  --uxdl-color-basic-darkest: #101116;
+
+  /* Color Primary, Secondary, Tertiary are in themes/<theme>/variables */
+
+  /* Color Info */
+  --uxdl-color-info-brightest: #a3f5fe;
+  --uxdl-color-info-brighter: #8ff2fe;
+  --uxdl-color-info-bright: #67eefe;
+  --uxdl-color-info-normal: #02d0e8;
+  --uxdl-color-info-dark: #029eb0;
+  --uxdl-color-info-darker: #016c79;
+  --uxdl-color-info-darkest: #013a41;
+
+  /* Color Success */
+  --uxdl-color-success-brightest: #cbf4e6;
+  --uxdl-color-success-brighter: #baf0de;
+  --uxdl-color-success-bright: #99e9ce;
+  --uxdl-color-success-normal: #34d39d;
+  --uxdl-color-success-dark: #25aa7d;
+  --uxdl-color-success-darker: #1b7c5b;
+  --uxdl-color-success-darkest: #114e39;
+
+  /* Color Warning */
+  --uxdl-color-warning-brightest: #fff7e3;
+  --uxdl-color-warning-brighter: #ffe5a5;
+  --uxdl-color-warning-bright: #ffd97d;
+  --uxdl-color-warning-normal: #ffc12b;
+  --uxdl-color-warning-dark: #f2ab00;
+  --uxdl-color-warning-darker: #ba8300;
+  --uxdl-color-warning-darkest: #825c00;
+
+  /* Color Error */
+  --uxdl-color-error-brightest: #fcdada;
+  --uxdl-color-error-brighter: #f9b5b5;
+  --uxdl-color-error-bright: #f58f8f;
+  --uxdl-color-error-normal: #f15050;
+  --uxdl-color-error-dark: #e71414;
+  --uxdl-color-error-darker: #b30f0f;
+  --uxdl-color-error-darkest: #5c0404;
+
+  /* Font */
+  --uxdl-font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --uxdl-font-size-small: 0.75rem;
+  --uxdl-font-size-normal: 1rem;
+  --uxdl-font-size-large: 1.25rem;
+  --uxdl-font-size: 1rem;
+  --uxdl-font-weight-normal: 400;
+  --uxdl-font-weight-medium: 500;
+  --uxdl-font-weight-semibold: 600;
+  --uxdl-font-weight-bold: 700;
+  --uxdl-font-weight-black: 900;
+
+  /* Grid */
+  --uxdl-grid-gutter: 0.15rem;
+  --uxdl-grid-gutter-horizontal: var(--uxdl-grid-gutter);
+  --uxdl-grid-gutter-vertical: var(--uxdl-grid-gutter);
+  --uxdl-grid-max-width: var(--uxdl-breakpoint-xl);
+
+  /* Outline */
+  --uxdl-outline-width: 4px;
+
+  /* Shadow */
+  --uxdl-shadow-normal: var(--uxdl-color-basic-bright) 0 1px 3px 0;
+
+  /* Transition */
+  --uxdl-transition-all: all;
+  --uxdl-transition-colors: background-color, border-color, color, fill, stroke, outline-color;
+  --uxdl-transition-opacity: opacity;
+  --uxdl-transition-shadow: box-shadow;
+  --uxdl-transition-transform: transform;
+
+  --uxdl-transition-duration-fast: 150ms;
+  --uxdl-transition-duration-normal: 300ms;
+  --uxdl-transition-duration-slow: 600s;
+
+  /* ZIndex */
+  --uxdl-zindex-max: 10000;
+}

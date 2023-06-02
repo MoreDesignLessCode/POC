@@ -1,0 +1,11 @@
+.uxdl-fab__root {
+  font-size: 2rem;
+  position: relative;
+  color: inherit;
+  width: 2.6rem;
+  border: 0.125rem solid #949494;
+  border-radius: 50%;
+  background: white;
+  text-align: center;
+  top: 0.625rem;
+}

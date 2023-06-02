@@ -1,0 +1,73 @@
+.uxdl-tooltip__content {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 110%;
+}
+
+.uxdl-tooltip__content--left {
+  left: unset;
+  right: 110%;
+}
+
+.uxdl-tooltip__content--top {
+  top: unset;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.uxdl-tooltip__content--bottom {
+  top: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+/* Tooltip on right / Arrow pointing left */
+.uxdl-tooltip__content::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  bottom: unset;
+  left: unset;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+
+/* Tooltip on Left / Arrow pointing right */
+.uxdl-tooltip__content--left::after {
+  top: 50%;
+  right: unset;
+  bottom: unset;
+  left: 100%;
+  border-color: transparent transparent transparent black;
+}
+
+/* Tooltip on top / Arrow pointing down */
+.uxdl-tooltip__content--top::after {
+  top: 100%;
+  right: unset;
+  bottom: unset;
+  left: 50%;
+  border-color: black transparent transparent transparent;
+  margin-top: 0;
+}
+
+/* Tooltip on bottom / Arrow pointing up */
+.uxdl-tooltip__content--bottom::after {
+  top: unset;
+  right: unset;
+  bottom: 100%; /* At the top of the tooltip */
+  left: 50%;
+  border-color: transparent transparent black transparent;
+}

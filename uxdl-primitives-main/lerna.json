@@ -1,0 +1,14 @@
+{
+  "npmClient": "yarn",
+  "command": {
+    "publish": {
+      "conventionalCommits": true,
+      "ignoreChanges": ["*.md", "stats.html", ".spec.ts", ".stories.ts"],
+      "message": "chore(release): publish",
+       "registry": "http://localhost:4873/",
+      "allowBranch": "main"
+    }
+  },
+  "packages": ["packages/react", "packages/vue", "packages/svelte"],
+  "version": "0.3.0"
+}

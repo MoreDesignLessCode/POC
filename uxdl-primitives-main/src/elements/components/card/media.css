@@ -1,0 +1,4 @@
+.uxdl-card__media--container img,
+.uxdl-card__media--container video {
+  width: 100%;
+}

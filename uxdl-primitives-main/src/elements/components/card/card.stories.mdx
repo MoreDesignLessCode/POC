@@ -1,0 +1,97 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Card, Button } from '../../../../packages/react/src';
+import { variants, Intent, intents, rounded } from '../../../models';
+
+<Meta
+  title="🧩Elements/Components/Card"
+  component={Card}
+  argTypes={{
+    outline: {
+      name: 'outline',
+      description: 'Modif to be outlined',
+      table: {},
+      control: {
+        type: 'boolean'
+      }
+    },
+    rounded: {
+      name: 'rounded',
+      description: 'Rounded edges to a small, medium, large amount',
+      table: {},
+      options: rounded.map((x) => x.value),
+      control: { type: 'select' }
+    },
+  }}
+  parameters={{
+      docs: {
+          source: {
+              code: null
+          }
+      }
+  }}
+/>
+
+export const Template = (args) => (
+    <div style={{ 
+      display: "flex", 
+      justifyContent:"space-evenly", 
+      alignItems:"flex-end"}}
+    >
+    {variants.map((variant, idx) => (
+      <Card.Root key={variant.key} {...args}>
+        <Card.Media>
+        { idx % 2 == 0 && 
+          <img
+            src="https://via.placeholder.com/256x170.webp" 
+            alt="placeholder" 
+          />
+        }
+        {idx % 2 == 1 &&
+          <video controls={true}>
+            <source src="" type="" />
+          </video>
+        }
+        </Card.Media>
+        <Card.Title {...args} variant={variant.value}>
+          A Card Title
+        </Card.Title>
+        <Card.Description>
+          This is placeholder text for the card
+          description just like the image above is a 
+          placeholder img for demonstration purposes only
+        </Card.Description>
+        { idx %2 == 0 && 
+          <Card.CTA>
+            <Button {...args} variant={variant.value}>
+              A Call to Action
+            </Button>
+          </Card.CTA>
+        }
+      </Card.Root>
+    ))}
+    </div>
+);
+
+# Card
+
+Card allows you to display a modern card to grab the users attention. Cards are used to group digestible portions of information that call for an action (e.g. accessing more information, placing an order, adding to a basket). They are better suited for cases when users browser for information rather than when they search.
+
+<!--You can customize variants changing the variables, more info in the [variables page](/docs/start--page)-->
+
+## Showcase
+<Canvas>
+  <Story
+    name="Card"
+    args={{
+      outline: false,
+      disabled: false
+    }}
+    height="375px">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Properties
+
+<ArgsTable story="Card" of={Card} />
+

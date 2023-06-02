@@ -1,0 +1,6 @@
+.uxdl-tree__heading {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  margin-top: 0.5rem;
+}

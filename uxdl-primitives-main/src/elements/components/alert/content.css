@@ -1,0 +1,32 @@
+.uxdl-alert__content {
+  border: none;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 0 0 1px #d8d8d8;
+  font-size: 1rem;
+  overflow-y: auto;
+  outline: none;
+  padding: 2rem 1rem;
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 600px;
+  max-height: calc(100% - 60px);
+  max-width: 1200px;
+  text-align: center;
+}
+
+.uxdl-alert__content--close {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  font-size: 2rem;
+  font-weight: 100;
+  line-height: 1;
+  cursor: pointer;
+  width: auto;
+  border: none;
+  background-color: transparent;
+}

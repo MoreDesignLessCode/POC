@@ -1,0 +1,48 @@
+{
+  "name": "@coe/uxdl-webcomponents",
+  "version": "0.2.0",
+  "license": "UNLICENSED",
+  "description": "Procter and Gamble's UXDL Web Components UI Library",
+  "main": "./dist/uxdl-webcomponents.umd.js",
+  "module": "./dist/uxdl-webcomponents.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/uxdl-webcomponents.es.js",
+      "require": "./dist/uxdl-webcomponents.umd.js"
+    },
+    "./default.css": {
+      "import": "./dist/default.css",
+      "require": "./dist/default.css"
+    },
+    "./custom-elements.json": {
+      "import": "./custom-elements.json",
+      "require": "./custom-elements.json"
+    }
+  },
+  "dependencies": {
+    "codejar": "^3.6.0",
+    "copy-to-clipboard": "^3.3.2",
+    "ssr-window": "^4.0.2"
+  },
+  "publishConfig": {
+     "registry": "http://localhost:4873/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/procter-gamble/uxdl-primitives"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "copyfiles ../../.themes/** ./dist/ --flat",
+    "build": "run-s build:**",
+    "build:code": "rollup -c",
+    "build:styles": "replace \"\\.pa-(.*?)((--|__).*?)?((\\.pa|\\.is|\\.has).*?)?(,|:|{)\" \"pa-$1::part(pa-$1$2 $4)$6\" ./dist -r --include=\"*.es.js,*.umd.js,*.css\"",
+    "build:styles-classes-css": "replace \" \\.(pa-|is-|has-)(.*?)(,|:|{)\" \" $1$2$3\" ./dist -r --include=\"*.css\"",
+    "build:styles-classes-states": "replace \"(::part\\(.*?)\\.(pa-|is-|has-)(.*?)(\\))\" \"$1 $2$3$4\" ./dist -r --include=\"*.css\"",
+    "build:styles-classes-js": "replace \" \\.(pa-|is-|has-)(.*?)(,|:|{)\" \" $1$2$3\" ./dist -r --include=\"*.es.js,*.umd.js\"",
+    "build:schema": "custom-elements-manifest analyze"
+  }
+}

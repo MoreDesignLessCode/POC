@@ -1,0 +1,65 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Code, Button } from '../../../../packages/react/src';
+
+<Meta
+  title="🧩Elements/Components/Code"
+  component={Code}
+  argTypes={{
+  }}
+  parameters={{
+      docs: {
+          source: {
+              code: null
+          }
+      }
+  }}
+/>
+
+export const Template = (args) => (
+    <div style={{
+      display: "flex",
+      justifyContent:"space-evenly",
+      alignItems:"flex-end"}}
+    >
+      <Code.Root {...args} language="javascript">
+      {`
+import { Code } from '@coe/uxdl-react';
+      `}
+
+      </Code.Root>
+    </div>
+);
+
+# Code
+
+A small component that supports syntax highlighting via PrismJS.
+> Currently this is a barebones wrapper, if more features are needed please
+> request them so we can make it more extensible.
+
+<!--You can customize variants changing the variables, more info in the [variables page](/docs/start--page)-->
+
+## Showcase
+<Canvas>
+  <Story
+    name="Code"
+    height="275px">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Code Sample
+
+<Code.Root language="jsx">
+{`
+<Code.Root language="js">
+  \{\`
+    import { Code } from '@coe/uxdl-react';
+  \`\}
+</Code.Root>
+`}
+</Code.Root>
+
+### Properties
+
+<ArgsTable story="Code" of={Code} />
+

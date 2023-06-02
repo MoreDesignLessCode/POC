@@ -1,0 +1,15 @@
+node_modules/
+packages/**/dist/
+packages/**/lib/
+packages/**/src/
+packages/**/types/
+packages/**/tsconfig.*
+*.log
+storybook-static/
+packages/webcomponents/custom-elements.json
+**/stats.html
+packages/svelte/.svelte-kit
+packages/qwik/tsconfig.tsbuildinfo
+.themes/
+.vscode
+dist

@@ -1,0 +1,82 @@
+@import '../../build.css';
+
+.uxdl-button {
+  @mixin global-styles;
+
+  --uxdl-button-border-width: var(--uxdl-border-width-normal);
+  --uxdl-button-font-weight: var(--uxdl-font-weight-semibold);
+  --uxdl-button-outline: var(--uxdl-outline-width);
+
+  background-color: var(--uxdl-color-basic-brightest);
+  border-color: var(--uxdl-color-basic-bright);
+  border-radius: none;
+  border-style: solid;
+  border-width: var(--uxdl-button-border-width);
+  color: var(--uxdl-color-basic-darker);
+  font-weight: var(--uxdl-button-font-weight);
+  outline: var(--uxdl-button-outline) solid transparent;
+  transition-duration: var(--uxdl-transition-duration-normal);
+  transition-property: var(--uxdl-transition-colors);
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:active {
+    outline-color: var(--uxdl-color-basic-brighter);
+  }
+
+  @each $variant in primary, secondary, tertiary {
+    &--$(variant) {
+      background-color: var(--uxdl-color-$(variant)-normal);
+      border-color: transparent;
+      color: var(--uxdl-color-basic-brightest);
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      &:active {
+        outline-color: var(--uxdl-color-$(variant)-brighter);
+      }
+    }
+
+    &--outline&--$(variant) {
+      border-color: var(--uxdl-color-$(variant)-normal);
+      color: var(--uxdl-color-$(variant)-normal);
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  @each $intent in info, success, warning, error {
+    &.is-$(intent) {
+      background-color: var(--uxdl-color-$(intent)-bright);
+      color: var(--uxdl-color-$(intent)-darkest);
+      border-color: transparent;
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      &:active {
+        outline-color: var(--uxdl-color-$(intent)-brighter);
+      }
+    }
+
+    &--outline&.is-$(intent) {
+      border-color: var(--uxdl-color-$(intent)-bright);
+      color: var(--uxdl-color-$(intent)-normal);
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &.is-disabled {
+    opacity: 0.75;
+  }
+}

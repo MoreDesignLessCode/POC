@@ -1,0 +1,63 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Tooltip, Button } from '../../../../packages/react/src';
+import { variants, Intent, intents, rounded, sides } from '../../../models';
+
+<Meta
+  title="🧩Elements/Components/Tooltip"
+  component={Tooltip}
+  argTypes={{
+    side: {
+      name: 'side',
+      description: 'What side do you want the tooltip to display on?',
+      options: sides.map((x) => x.value),
+      control: {type: 'select' }
+    }
+  }}
+  parameters={{
+      docs: {
+          source: {
+              code: null
+          }
+      }
+  }}
+/>
+
+export const Template = (args) => (
+    <div><br /><br /><br /><br />
+    <div style={{ 
+      display: "flex", 
+      justifyContent:"space-evenly", 
+      alignItems:"flex-end"}}
+    >
+    {sides.map((side, idx) => (
+      <Tooltip.Root {...args} key={side.key}>
+        <Tooltip.Trigger>{side.key} Tooltip</Tooltip.Trigger>
+        <Tooltip.Content side={side.value}>
+            Content on the {side.value} side of 
+            the trigger
+        </Tooltip.Content>
+      </Tooltip.Root>
+    ))}
+    </div></div>
+);
+
+# Tooltip
+
+A smaller box of information that appears or "pops up" if a user puts their mouse over a designated UI element (`Tooltip.Trigger`) 
+> There is an open ticket for tooltip alignment
+
+<!--You can customize variants changing the variables, more info in the [variables page](/docs/start--page)-->
+
+## Showcase
+<Canvas>
+  <Story
+    name="Tooltip"
+    height="275px">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Properties
+
+<ArgsTable story="Tooltip" of={Tooltip} />
+

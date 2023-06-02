@@ -1,0 +1,11 @@
+.uxdl__border-radius--small {
+  border-radius: 0.5rem;
+}
+
+.uxdl__border-radius--medium {
+  border-radius: 1rem;
+}
+
+.uxdl__border-radius--large {
+  border-radius: 2rem;
+}

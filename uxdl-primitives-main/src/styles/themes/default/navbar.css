@@ -1,0 +1,26 @@
+.uxdl-navbar__root--primary {
+  background-color: var(--uxdl-color-primary-normal);
+  color: var(--uxdl-color-primary-brightest);
+}
+
+.uxdl-navbar__root--secondary {
+  background-color: var(--uxdl-color-secondary-normal);
+  color: var(--uxdl-color-primary-darkest);
+}
+
+.uxdl-navbar__root--tertiary {
+  background-color: var(--uxdl-color-tertiary-normal);
+  color: var(--uxdl-color-primary-darkest);
+}
+
+.uxdl-navbar__root--primary .uxdl-navbar__item a {
+  color: var(--uxdl-color-primary-brightest);
+}
+
+.uxdl-navbar__root--secondary .uxdl-navbar__item a {
+  color: var(--uxdl-color-primary-darkest);
+}
+
+.uxdl-navbar__root--tertiary .uxdl-navbar__item a {
+  color: var(--uxdl-color-primary-darkest);
+}

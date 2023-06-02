@@ -1,0 +1,57 @@
+{
+  "name": "@coe/uxdl-qwik",
+  "version": "0.2.0",
+  "license": "UNLICENSED",
+  "description": "Procter & Gamble's UXDL Qwik UI Library",
+  "type": "module",
+  "main": "./lib/index.qwik.mjs",
+  "qwik": "./lib/index.qwik.mjs",
+  "module": "./lib/index.qwik.mjs",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.qwik.mjs",
+      "require": "./lib/index.qwik.cjs",
+      "types": "./types/index.d.ts"
+    },
+    "./style.css": {
+      "import": "./lib/style.css",
+      "require": "./lib/style.css"
+    },
+    "./default.css": {
+      "import": "./lib/default.css",
+      "require": "./lib/default.css"
+    }
+  },
+  "publishConfig": {
+     "registry": "http://localhost:4873/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/procter-gamble/uxdl-primitives"
+  },
+  "dependencies": {
+    "babel-plugin-prismjs": "^2.1.0",
+    "codejar": "^3.6.0",
+    "copy-to-clipboard": "^3.3.2",
+    "copyfiles": "^2.4.1",
+    "highlight.js": "^11.6.0",
+    "postcss": "8.4.19",
+    "prismjs": "^1.29.0",
+    "ssr-window": "^4.0.2"
+  },
+  "peerDependencies": {
+    "@builder.io/qwik": "^0.x"
+  },
+  "files": [
+    "lib",
+    "types"
+  ],
+  "scripts": {
+    "prebuild": "yarn install",
+    "build": "qwik build",
+    "build.lib": "vite build --mode lib",
+    "build.types": "tsc --emitDeclarationOnly",
+    "postbuild": "copyfiles ../../.themes/** ./lib/ --flat"
+  }
+}

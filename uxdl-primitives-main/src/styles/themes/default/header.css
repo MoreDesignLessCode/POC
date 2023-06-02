@@ -1,0 +1,32 @@
+.uxdl-header__root--primary {
+  background-color: var(--uxdl-color-primary-normal);
+  color: var(--uxdl-color-primary-brightest);
+}
+
+.uxdl-header__root--secondary {
+  background-color: var(--uxdl-color-secondary-normal);
+  color: var(--uxdl-color-primary-darkest);
+}
+
+.uxdl-header__root--tertiary {
+  background-color: var(--uxdl-color-tertiary-normal);
+  color: var(--uxdl-color-primary-darkest);
+}
+
+.uxdl-header__root--primary .uxdl-header__burger--icon,
+.uxdl-header__root--primary .uxdl-header__burger--icon:before,
+.uxdl-header__root--primary .uxdl-header__burger--icon:after {
+  background-color: var(--uxdl-color-primary-brightest);
+}
+
+.uxdl-header__root--secondary .uxdl-header__burger--icon,
+.uxdl-header__root--secondary .uxdl-header__burger--icon:before,
+.uxdl-header__root--secondary .uxdl-header__burger--icon:after {
+  background-color: var(--uxdl-color-primary-darkest);
+}
+
+.uxdl-header__root--tertiary .uxdl-header__burger--icon,
+.uxdl-header__root--tertiary .uxdl-header__burger--icon:before,
+.uxdl-header__root--tertiary .uxdl-header__burger--icon:after {
+  background-color: var(--uxdl-color-primary-darkest);
+}

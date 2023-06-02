@@ -1,0 +1,7 @@
+@import '~/styles/build.css';
+
+.uxdl-card__root {
+  border: 0.125rem solid #949494;
+  max-width: 290px;
+  padding: 1rem;
+}

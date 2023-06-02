@@ -1,0 +1,34 @@
+:root {
+  /* Color Primary */
+  --uxdl-color-primary-brightest: #ffffff;
+  --uxdl-color-primary-brighter: #a4cfff;
+  --uxdl-color-primary-bright: #00a3e0;
+  --uxdl-color-primary-normal: #003da5;
+  --uxdl-color-primary-dark: #005fc8;
+  --uxdl-color-primary-darker: #004590;
+  --uxdl-color-primary-darkest: #000000;
+
+  /* Color Secondary */
+  --uxdl-color-secondary-brightest: #ffffff;
+  --uxdl-color-secondary-brighter: #cec1ff;
+  --uxdl-color-secondary-bright: #a4cfff;
+  --uxdl-color-secondary-normal: #00a3e0;
+  --uxdl-color-secondary-dark: #003da5;
+  --uxdl-color-secondary-darker: #2b00d6;
+  --uxdl-color-secondary-darkest: #000000;
+
+  /* Color Tertiary */
+  --uxdl-color-tertiary-brightest: #ffffff;
+  --uxdl-color-tertiary-brighter: #fbbccb;
+  --uxdl-color-tertiary-bright: #f896ad;
+  --uxdl-color-tertiary-normal: #fedb00;
+  --uxdl-color-tertiary-dark: #f01448;
+  --uxdl-color-tertiary-darker: #bf0d37;
+  --uxdl-color-tertiary-darkest: #000000;
+
+  /* Font */
+  --uxdl-font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+  /* Shadow */
+  --uxdl-shadow-normal: var(--uxdl-color-basic-bright) 0 1px 3px 0;
+}

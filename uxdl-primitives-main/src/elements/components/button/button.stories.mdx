@@ -1,0 +1,80 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { Button } from '../../../../packages/react/src';
+import { variants, Intent, intents, rounded } from '../../../models';
+
+<Meta
+  title="🧩Elements/Components/Button"
+  component={Button}
+  argTypes={{
+    outline: {
+      name: 'outline',
+      description: 'Modify button to be outlined',
+      table: {},
+      control: {
+        type: 'boolean'
+      }
+    },
+    rounded: {
+      name: 'rounded',
+      description: 'Rounded buttons to a small, medium, large amount',
+      table: {},
+      options: rounded.map((x) => x.value),
+      control: { type: 'select' }
+      },
+    disabled: {
+      name: 'disabled',
+      description: 'Disable actions in the button',
+      table: {},
+      control: {
+        type: 'boolean'
+      }
+    },
+    intent: {
+      name: 'intent',
+      description: 'Specify a temporary intent for the button',
+      table: {},
+      options: intents.map((x) => x.value),
+      control: { type: 'select' }
+    }
+  }}
+/>
+
+export const Template = (args) => (
+    <div style={{ 
+      display: "flex", 
+      justifyContent:"space-evenly", 
+      alignItems:"flex-end"}}
+    >
+    {variants.map((variant) => (
+      <Button key={variant.key} {...args} variant={variant.value}>
+        {variant.key}
+      </Button>
+    ))}
+    </div>
+);
+
+# Button
+
+Buttons allow to take actions in the app, and are used for navigation, forms, or any other task.
+There are 3 different variants `primary`, `secondary` and `tertiary` or the one you decide to create, but also other 4 intents `info`, `success`, `warning` and `error`.
+
+<!--You can customize variants changing the variables, more info in the [variables page](/docs/start--page)-->
+
+## Showcase
+
+<Canvas>
+  <Story
+    name="Button"
+    args={{
+      outline: false,
+      disabled: false
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Properties
+
+<ArgsTable story="Button" of={Button} />
+

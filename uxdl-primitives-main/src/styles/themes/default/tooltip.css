@@ -1,0 +1,27 @@
+@import '../../build.css';
+
+.uxdl-tooltip {
+  --uxdl-tooltip-background: var(--uxdl-color-basic-darkest);
+  --uxdl-tooltip-color: var(--uxdl-color-basic-brightest);
+  --uxdl-tooltip-distance: 0.5rem;
+  --uxdl-tooltip-font-size: var(--uxdl-font-size-small);
+  --uxdl-tooltip-padding: 0.25rem;
+  --uxdl-tooltip-radius: 0.25rem;
+  --uxdl-tooltip-transition-time: var(--uxdl-transition-duration-fast);
+
+  @mixin global-styles;
+
+  background-color: var(--uxdl-tooltip-background);
+  border-radius: var(--uxdl-tooltip-radius);
+  color: var(--uxdl-tooltip-color);
+  font-size: var(--uxdl-tooltip-font-size);
+  padding: var(--uxdl-tooltip-padding);
+  transition: var(--uxdl-transition-opacity) var(--uxdl-tooltip-transition-time);
+  transform: translateY(var(--uxdl-tooltip-distance));
+
+  &.is-hidden {
+    opacity: 0;
+  }
+
+  font-size: 2rem;
+}

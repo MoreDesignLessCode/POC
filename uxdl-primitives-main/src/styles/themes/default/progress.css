@@ -1,0 +1,12 @@
+/* Custom */
+.uxdl-progress__indicator--primary {
+  background-color: var(--uxdl-color-primary-normal);
+}
+
+.uxdl-progress__indicator--secondary {
+  background-color: var(--uxdl-color-secondary-normal);
+}
+
+.uxdl-progress__indicator--tertiary {
+  background-color: var(--uxdl-color-tertiary-normal);
+}

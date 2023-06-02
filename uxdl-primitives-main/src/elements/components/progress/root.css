@@ -1,0 +1,8 @@
+.uxdl-progress__root--bar {
+  display: block;
+  height: 1rem;
+  background-color: #949494;
+  margin-bottom: 1.563rem;
+  position: relative;
+  font-size: 6px;
+}

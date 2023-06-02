@@ -1,0 +1,9 @@
+.uxdl-tooltip__root {
+  position: relative;
+  display: inline-block;
+}
+
+.uxdl-tooltip__root:hover .uxdl-tooltip__content,
+.uxdl-tooltip__root:focus .uxdl-tooltip__content {
+  visibility: visible;
+}
