@@ -20,6 +20,7 @@ const UrlDetails: React.FC = () => {
         event.preventDefault();
         const form = formRef.current;
         if (form.checkValidity() && urlRef.current.value != '') {
+            try{
             const createRating = await axios.post('http://localhost:5000/urls/compress',
                 {
                     name: urlRef ?.current ?.value
@@ -27,6 +28,10 @@ const UrlDetails: React.FC = () => {
             )
             result = createRating ?.data.data[0].compressedUrl
     setState(`Compressed Url: ${result}`)
+            }
+            catch (error) {
+                console.log('Error-POST Url', error.message);
+                }
         }
         else {
             // Form is invalid, handle the validation error
@@ -40,13 +45,17 @@ const UrlDetails: React.FC = () => {
         const form = formRef.current;
         console.log(urlRef.current.value)
         if (form.checkValidity() && urlRef.current.value != '') {
+            try{
             const createRating = await axios.post('http://localhost:5000/urls/compact',
                 {
                     name: urlRef ?.current ?.value
       }
             )
             result = createRating ?.data.data[0].compactUrl
-            setState(`Compact Url: ${result}`)
+            setState(`Compact Url: ${result}`)}
+            catch (error) {
+                console.log('Error-POST URL', error.message);
+                }
         } else {
             // Form is invalid, handle the validation error
             console.log('Form is invalid');
@@ -84,9 +93,14 @@ const UrlDetails: React.FC = () => {
             "filter.dateRange": dateRangeVal,
 
         }
+        try{
         const res = await axios.get(`http://localhost:5000/urls`, { params })
         console.log(res.data.data)
         setUrlData(res.data.data)
+        }
+        catch (error) {
+            console.log('Error-GET URL', error.message);
+            }
     }
 
     const handleFilterChange = () => {

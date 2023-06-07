@@ -17,7 +17,7 @@ const FeedbackLeaveReview: React.FC<Props> = ({ id }) => {
   const handleSubmit=async(event:any)=>{
 
     event.preventDefault();
-
+    try{
     const createRating= await axios.post('http://localhost:4000/ratings',
     {
       rating:ratingRef.current.value,
@@ -40,6 +40,10 @@ const FeedbackLeaveReview: React.FC<Props> = ({ id }) => {
   })
   window.location.reload()
     // navigate(0)
+}
+catch (error) {
+  console.log('Error-Ratings', error.message);
+  }
 
   }
 const [modal,setModal] =useState(false)

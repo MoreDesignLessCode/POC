@@ -19,9 +19,13 @@ const Feedback: React.FC<Props> = ({ productId }) => {
   }, []);
 
   const fetchData=async()=>{
+    try{
    const res=await  axios.get(' http://localhost:4000/ratings?includes=messages')
    console.log(res.data.data)
-   setReviews(res.data.data)
+   setReviews(res.data.data)}
+   catch (error) {
+    console.log('Error-Ratings', error.message);
+    }
   }
   return (
     <>

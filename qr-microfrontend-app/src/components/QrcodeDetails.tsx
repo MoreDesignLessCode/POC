@@ -42,6 +42,7 @@ const QrcodeDetails: React.FC = () => {
             quiteZone:quiteZone
         }
         if(urlRef.current.value!=''&&errorCorrectionTest.checkValidity()){
+            try{
         const createRating = await axios.post('http://localhost:5000/qr',
             {
                 location: urlRef ?.current ?.value
@@ -50,6 +51,10 @@ const QrcodeDetails: React.FC = () => {
         )
         setState(createRating ?.data ?.location)
         setShowModal(false)
+        }
+        catch (error) {
+            console.log('Error-POST QRCODE', error.message);
+            }
         }
         else{
             errorCorrectionTest.reportValidity()
@@ -64,8 +69,12 @@ const QrcodeDetails: React.FC = () => {
     const fetchData = async (pageNumber: number) => {
         let limit = 10;
         let offset = pageNumber * limit
+        try{
         const res = await axios.get(`http://localhost:5000/qr?limit=${limit}&offset=${offset}`)
-        setUrlData(res.data)
+        setUrlData(res.data)}
+        catch (error) {
+            console.log('Error-POST QRCODE', error.message);
+            }
     }
 
     const pagenationHandler = (type: string) => {
