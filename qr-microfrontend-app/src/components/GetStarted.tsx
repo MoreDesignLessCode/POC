@@ -5,11 +5,12 @@ declare global {
   interface Window {
       AdButler: any;
       abkw: string;
-      plc609742:number;
-      plc609744:number
-      plc609761:number
-      plc609777:number
-      plc609782:number
+      plc610167:number
+      plc610168:number
+      plc610169:number
+      plc610172: number
+      plc610173: number
+      plc610177:number
   }
 }
 
@@ -19,42 +20,42 @@ export default function GetStarted() {
         var AdButler: any = window.AdButler || {};
         AdButler.ads = AdButler.ads || [];
         var abkw = window.abkw || '';
-        var plc609742 = window.plc609742 || 0;
-        var plc609744 = window. plc609744 || 0
-        var plc609761 = window.plc609761 || 0
-        var plc609777 = window.plc609777 || 0
-        var plc609782 = window.plc609782 || 0
+        var plc610167= window.plc610167 || 0;
+        var plc610168 = window.plc610168 || 0;
+        var plc610169 = window.plc610169 || 0;
+        var plc610172 = window.plc610172 || 0;
+        var plc610177 =window.plc610177 || 0
+
+        AdButler.ads.push({
+          handler: function(opt:any){
+           AdButler.register(185706, 610167, [300,250], 'customAd2', opt); }, 
+           opt: { place: plc610167++, keywords: abkw, domain: 'servedbyadbutler.com',  click:'CLICK_MACRO_PLACEHOLDER' }});
       
         AdButler.ads.push({
         handler: function(opt:any){ 
-        AdButler.register(185622, 609742, [728,90], 'customAd1', opt); }, 
-        opt: { place: plc609742++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
-
-        AdButler.ads.push({
-        handler: function(opt:any){ 
-        AdButler.register(185622, 609744, [300,250], 'customAd2', opt); },
-        opt: { place: plc609744++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
+        AdButler.register(185706, 610169, [728,90], 'customAd1', opt); }, 
+        opt: { place: plc610169++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
 
         AdButler.ads.push({
         handler: function(opt:any){
-        AdButler.register(185622, 609761, [300,250], 'nativeAd', opt); }, 
-        opt: { place: plc609761++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
-
+        AdButler.register(185706, 610168, [300,250], 'nativeAd', opt); }, 
+        opt: { place: plc610168++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
+        
         AdButler.ads.push({
         handler: function(opt:any){ 
-        AdButler.register(185622, 609777, [300,250], 'slideAd', opt); }, 
-        opt: { place: plc609777++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
-    
+        AdButler.register(185706,610172 , [300,250], 'banderole-ad', opt); },
+        opt: { place: plc610172++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
+        
         AdButler.ads.push({
         handler: function(opt:any){ 
-        AdButler.register(185622, 609782, [300,250], 'banderole-ad', opt); },
-        opt: { place: plc609782++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
-
+        AdButler.register(185706, 610177, [300,250], 'filmstripad',opt); }, 
+        opt: { place: plc610177++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
     }, [])
     
  
   return (
     <>
+    
       <center>
         <h1>Leaderboard-Image banner</h1>
         <div id="customAd1"></div>
@@ -66,8 +67,8 @@ export default function GetStarted() {
           <div id="customAd2"></div>
         </div>
         <div>
-          <h3>sliding ad</h3>
-          <div id="slideAd">
+          <h3>filimstrip ad</h3>
+          <div id="filmstripad">
           </div>
         </div>
         <div style={{marginLeft:'auto'}}>
