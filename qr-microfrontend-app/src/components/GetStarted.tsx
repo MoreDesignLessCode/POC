@@ -61,7 +61,7 @@ export default function GetStarted() {
         <div id="customAd1"></div>
       </center>
       
-      <div style={{ display: 'flex', gap: '20px', marginTop: '30px' }}>
+      <div style={{ display: 'flex', gap: '10px', marginTop: '30px' }}>
         <div>
           <h3>medium image banner</h3>
           <div id="customAd2"></div>
@@ -70,7 +70,16 @@ export default function GetStarted() {
           <h3>filimstrip ad</h3>
           <div id="filmstripad">
           </div>
+      </div>
+      <div >
+        <h2>Custom Native Ad</h2>
+        <div id="nativeAd"></div>
         </div>
+        <style>{`
+      #nativeAd iframe {
+       height:324px
+      }
+    `}</style>
         <div style={{marginLeft:'auto'}}>
           <h3>banderole ad</h3>
         <div id="banderole-ad" ></div>
@@ -82,10 +91,7 @@ export default function GetStarted() {
     `}</style>
       </div>
 
-      <div style={{ marginTop: '20px' }}>
-        <h2>Custom Native Ad</h2>
-        <div id="nativeAd"></div>
-      </div>
+    
     
     </>
   );

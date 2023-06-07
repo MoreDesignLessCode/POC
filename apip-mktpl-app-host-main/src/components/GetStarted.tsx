@@ -5,8 +5,8 @@ declare global {
   interface Window {
       AdButler: any;
       abkw: string;
-      plc609180: number;
-      plc609016: number
+      plc610168:number
+      plc610177:number
   }
 }
 
@@ -16,18 +16,18 @@ export default function GetStarted() {
     var AdButler: any = window.AdButler || {};
     AdButler.ads = AdButler.ads || [];
     var abkw = window.abkw || '';
-    var plc609016 = window.plc609016 || 0;
-    var plc609342 = window.plc609016 || 0;
+    var plc610168 = window.plc610168 || 0;
+    var plc610177 = window.plc610177 || 0
   
-AdButler.ads.push({ 
-  handler: function(opt: any) {
-     AdButler.register(185622, 609342, [728, 500], 'customAd2', opt); },
- opt: { place:plc609342++ , keywords: abkw, domain: 'servedbyadbutler.com', click: 'CLICK_MACRO_PLACEHOLDER' , height: 300  } });
-
- AdButler.ads.push({ 
-  handler: function(opt: any) {
-     AdButler.register(185622, 609342, [728, 500], 'customAd1', opt); },
- opt: { place:plc609342++ , keywords: abkw, domain: 'servedbyadbutler.com', click: 'CLICK_MACRO_PLACEHOLDER' , height: 300  } });
+AdButler.ads.push({
+  handler: function(opt:any){
+  AdButler.register(185706, 610168, [300,250], 'customAd1', opt); }, 
+  opt: { place: plc610168++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
+  
+  AdButler.ads.push({
+    handler: function(opt:any){ 
+    AdButler.register(185706, 610177, [300,250], 'filmstripad',opt); }, 
+    opt: { place: plc610177++, keywords: abkw, domain: 'servedbyadbutler.com', click:'CLICK_MACRO_PLACEHOLDER' }});
 
 }, [])
 
@@ -40,18 +40,18 @@ AdButler.ads.push({
          Resources and guides to help you through every step of the development
          journey.
        </p>
-      <div className="flex justify-center">
-      <div id="customAd1" style={{width:'200px'}}></div>
-      <div id="customAd2" className="customAd2" ></div>
+      <div className="flex justify-center" style={{gap:'30px'}}>
+      <div id="customAd1" style={{marginTop:'20px',width:'200px'}}></div>
+      <div id="filmstripad" style={{marginTop:'20px'}} className="customAd2" ></div>
       </div>
       <style>{`
       #customAd2 iframe {
-        height: 300px; /* Adjust the height here (e.g., 300 for 300 pixels) */
+        height: 400px; /* Adjust the height here (e.g., 300 for 300 pixels) */
       }
     `}</style>
     <style>{`
       #customAd1 iframe {
-        height: 300px; /* Adjust the height here (e.g., 300 for 300 pixels) */
+        height: 324px; /* Adjust the height here (e.g., 300 for 300 pixels) */
       }
     `}</style>
       
