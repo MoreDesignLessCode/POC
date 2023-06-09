@@ -23,6 +23,18 @@ if "%node_major_version%" LSS "19" (
         echo Cleaning up %%i
         cd "%%i"
         
+        REM Delete yarn.lock file if it exists
+        if exist yarn.lock (
+          echo Deleting yarn.lock
+          del yarn.lock
+        )
+        
+        REM Delete package-lock.json file if it exists
+        if exist package-lock.json (
+          echo Deleting package-lock.json
+          del package-lock.json
+        )
+        
         echo Installing dependencies for %%i
         yarn install
         if errorlevel 1 (
