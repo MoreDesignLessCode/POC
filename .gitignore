@@ -2,3 +2,4 @@
 feedback-microservice-app/package-lock.json
 feedback-microservice-app/yarn.lock
 *.lock
+*.lock
