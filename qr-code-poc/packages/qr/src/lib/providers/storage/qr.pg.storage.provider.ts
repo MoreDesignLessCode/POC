@@ -255,18 +255,51 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
         }
     };
 
+    convertDate = (date: any) => {
+        const [year, month, day] = date.split('-');
+        const formattedDate = new Date(`${month}-${day}-${year}`);
+        formattedDate.setDate(formattedDate.getDate() + 1)
+        return formattedDate.toISOString()
+    }
+
     all = async (_context: IContext): Promise<Result<Qr>> => {
+        const id: [unknown] = _context.get('ids')
+        //const urls: [unknown] = _context.get('urls')
+        const createdBy: [unknown] = _context.get('createdBy')
         const limit = _context.get('limit');
         const offset = _context.get('offset');
-        try {
-            const res = await this.client.query(
-                //`SELECT ${this.columns} FROM qrmktpl.qrcodes WHERE deleted_at IS NULL;`
-                `SELECT q.id , q.location,q.created_by , u.urlName as Url
+        const startDate = _context.get('startDate') ? this.convertDate(_context.get('startDate')) : null;
+        const endDate = _context.get('endDate') ? this.convertDate(_context.get('endDate')) : null;
+        let tempIndex = 1;
+        let temp = [];
+        let query=  `SELECT q.id , q.location,q.created_by , u.urlName as Url
                 FROM qrmktpl.qrcodes q
-                JOIN qrmktpl.url u ON q.id = u.qrcodeId WHERE q.deleted_at IS NULL
-                ORDER BY q.created_at LIMIT $1 OFFSET $2;`, [limit, offset]
-            );
-
+                JOIN qrmktpl.url u ON q.id = u.qrcodeId WHERE q.deleted_at IS NULL`
+                
+       
+                if (id?.length > 0) {
+                    temp.push(id)
+                    query += ` and q.id::uuid = ANY($${tempIndex}::uuid[])`
+                    tempIndex++
+                }
+                if (createdBy?.length > 0) {
+                    temp.push(createdBy)
+                    query += ` and q.created_by::uuid = ANY($${tempIndex}::uuid[]) `
+                    tempIndex++
+                }
+                if (startDate != null && endDate != null) {
+                    temp.push(startDate)
+                    temp.push(endDate)
+                    tempIndex = tempIndex + 1
+                    query += ` and q.created_at BETWEEN to_timestamp($${tempIndex-1}, 'YYYY-MM-DD') 
+                          AND to_timestamp($${tempIndex}, 'YYYY-MM-DD')`
+                    tempIndex++      
+                }
+                temp.push(limit)
+                temp.push(offset)
+                query+=` ORDER BY q.created_at DESC LIMIT $${tempIndex} OFFSET $${tempIndex+1}`
+                try {    
+            const res = await this.client.query(query,temp)
             if (res.rowCount >= 1) {
                 return this.handleResult(res, 'collection');
             } else {
@@ -337,7 +370,7 @@ export class QrPgStorageProvider implements IStorageProvider<Qr> {
 
     // // eslint-disable-next-line @typescript-eslint/no-explicit-any
     buildQr = (element: any): Qr => {
-        console.log(element);
+        
         const qr: Qr = new Qr(
             element.id,
             element.location,

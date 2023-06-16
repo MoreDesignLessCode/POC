@@ -1,9 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useUrlStore } from "../store";
+import FilterIcon from "../../public/images/filter.svg";
 
 import axios from "axios";
 
 const QrcodeDetails: React.FC = () => {
+    //const filterRef = useRef(null);
+    const qrIdRef = useRef(null);
+    const createdByRef = useRef(null);
+    const startDateRef = useRef(null);
+    const endDateRef = useRef(null)
     const [submit,setSubmit] =useState(false)
     const errorRef: any = useRef(null);
     const maskRef :any = useRef(null);
@@ -13,6 +19,8 @@ const QrcodeDetails: React.FC = () => {
     const [state, setState] = useState('')
     const urlRef = useRef(null);
     const [pageNumber, setPageNumber] = useState<number>(0)
+    const [showModal, setShowModal] = useState(false)
+    const [showFilterModal, setShowFilterModal] = useState(false)
 
     const modalHandler =(event:any)=>{
         event.preventDefault();
@@ -26,6 +34,12 @@ const QrcodeDetails: React.FC = () => {
             
             form.reportValidity();
         }
+    }
+    
+    const handleFilterChange = () => {
+        fetchData(0)
+        setShowFilterModal(false)
+
     }
 
     const handleSubmit = async (event: any) => {
@@ -69,8 +83,23 @@ const QrcodeDetails: React.FC = () => {
     const fetchData = async (pageNumber: number) => {
         let limit = 10;
         let offset = pageNumber * limit
+        let qrIds = qrIdRef ?.current ?.value == "" ? null : qrIdRef ?.current ?.value
+        let createdByIds = createdByRef ?.current ?.value == "" ? null : createdByRef ?.current ?.value
+        let startDate = startDateRef ?.current ?.value == "" ? null : startDateRef ?.current ?.value
+        let endDate = endDateRef ?.current?.value == "" ? null : endDateRef ?.current ?.value
+        let dateRangeVal = startDate == null || endDate == null ? null : `${startDate}~${endDate}`
+        console.log(dateRangeVal)
+        const params: any = {
+            limit: limit,
+            offset: offset,
+            "filter.id": qrIds,
+            "filter.createdBy": createdByIds,
+            "filter.dateRange": dateRangeVal,
+
+        }
         try{
-        const res = await axios.get(`http://localhost:5000/qr?limit=${limit}&offset=${offset}`)
+        // const res = await axios.get(`http://localhost:5000/qr?limit=${limit}&offset=${offset}`)
+        const res = await axios.get(`http://localhost:5000/qr`,{ params })
         setUrlData(res.data)}
         catch (error) {
             console.log('Error-POST QRCODE', error.message);
@@ -85,7 +114,7 @@ const QrcodeDetails: React.FC = () => {
             setPageNumber(pageNumber => pageNumber - 1)
         }
     }
-    const [showModal, setShowModal] = useState(false)
+   
     return (
         <div>
             <form className={'ml-56 mt-4 mb-4'} ref={formRef}>
@@ -119,6 +148,96 @@ const QrcodeDetails: React.FC = () => {
                 </>
                 }
             </div>
+            <>
+                {showFilterModal ? (
+                    <>
+                        <div
+                            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                        >
+                            <div className="relative w-[900px] my-6 mx-auto ">
+                                {/*content*/}
+                                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                    {/*header*/}
+                                    <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                                        <h6 className="text-1xl font-semibold">
+                                            Table Filters
+                  </h6>
+                                    </div>
+                                    {/*body*/}
+                                    <div>
+                                        <div className="relative p-6 flex-auto">
+                                            <label>QRcode Ids:</label>
+                                            <input
+                                                type="text"
+                                                name="QrIds"
+                                                placeholder="Enter the url Uuids (',' separated)"
+                                                className={
+                                                    "rounded-lg h-[2.25rem] w-3/6  py-2.5 px-4 bg-gray-200  text-xs text-black font-semibold focus:bg-white border border-gray-200 mt-[.4375rem]"
+                                                }
+                                                ref={qrIdRef}
+
+                                            />
+                                        </div>
+                                        <div className="relative p-6 flex-auto">
+                                            <label>Created By Ids:</label>
+                                            <input
+                                                ref={createdByRef}
+                                                type="text"
+                                                name="Createdby"
+                                                placeholder="Enter the Created by Uuids (',' separated)"
+                                                className={
+                                                    "rounded-lg h-[2.25rem] w-3/6  py-2.5 px-4 bg-gray-200  text-xs text-black font-semibold focus:bg-white border border-gray-200 mt-[.4375rem]"
+                                                }
+                                            />
+                                        </div>
+                                        <div className="relative p-6 flex-auto">
+                                            <label>Date Range:</label>
+
+                                            <input
+                                                ref={startDateRef}
+                                                type="date"
+                                                name="date"
+                                                placeholder="DD-MM-YY"
+                                                className={
+                                                    "rounded-lg h-[2.25rem] w-1/3  py-2.5 px-4 bg-gray-200  text-xs text-black font-semibold focus:bg-white border border-gray-200 mt-[.4375rem]"
+                                                }
+                                            />
+                                            <span>{` ~ `}</span>
+                                            <input
+                                                ref={endDateRef}
+                                                type="date"
+                                                name="date"
+                                                placeholder="DD-MM-YY"
+                                                className={
+                                                    "rounded-lg h-[2.25rem] w-1/3  py-2.5 px-4 bg-gray-200  text-xs text-black font-semibold focus:bg-white border border-gray-200 mt-[.4375rem]"
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                    {/*footer*/}
+                                    <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                                        <button
+                                            className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            type="button"
+                                            onClick={() => setShowFilterModal(false)}
+                                        >
+                                            Close
+                  </button>
+                                        <button
+                                            className="bg-emerald-500 text-blue active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            type="button"
+                                            onClick={() => handleFilterChange()}
+                                        >
+                                            filter
+                  </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    </>
+                ) : null}
+            </>
             <>
                 {showModal ? (
                     <>
@@ -219,7 +338,13 @@ const QrcodeDetails: React.FC = () => {
                             <th scope="col" className="px-6 py-3">
                                 QRcode
                             </th>
-
+                            <th><button className="w-16" onClick={() => { setShowFilterModal(true) }}><img
+                                src={FilterIcon}
+                                alt="filter"
+                                // height={100}
+                                // width={100}
+                                className="h-[40px] w-[80px]"
+                            ></img></button> </th>
                         </tr>
                     </thead>
                     <tbody>
