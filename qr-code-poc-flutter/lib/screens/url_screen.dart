@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pg_poc/styles.dart';
+import 'package:pg_poc/widgets/custom_floating_btn.dart';
+import 'package:pg_poc/widgets/dialogs/common_generate_dialog.dart';
 import 'package:pg_poc/widgets/dialogs/url_detail_dialog.dart';
 import 'package:pg_poc/widgets/title_appbar.dart';
 
@@ -82,9 +84,29 @@ class URLScreen extends StatelessWidget {
       ),
       floatingActionButton:
           Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-        FloatingActionButton(onPressed: () {}),
+        CustomFloatingActionButton(
+            title: 'Compact',
+            icon: Icons.view_compact_alt,
+            onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => CommonGenerateDialog(
+                    dialogTitle: 'Compact',
+                    screenSize: screenSize,
+                    buttonTitle: 'Generate',
+                  ),
+                )),
         const SizedBox(height: 12.0),
-        FloatingActionButton(onPressed: () {}),
+        CustomFloatingActionButton(
+            title: 'Compress',
+            icon: Icons.compress,
+            onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => CommonGenerateDialog(
+                    dialogTitle: 'Compress',
+                    screenSize: screenSize,
+                    buttonTitle: 'Compress',
+                  ),
+                ))
       ]),
     );
   }

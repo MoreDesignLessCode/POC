@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pg_poc/styles.dart';
 import 'package:pg_poc/widgets/custom_floating_btn.dart';
+import 'package:pg_poc/widgets/dialogs/common_generate_dialog.dart';
 import 'package:pg_poc/widgets/title_appbar.dart';
 
 class QRcodeScreen extends StatelessWidget {
@@ -49,9 +50,15 @@ class QRcodeScreen extends StatelessWidget {
       floatingActionButton: CustomFloatingActionButton(
         icon: Icons.qr_code,
         title: 'Generate',
-        onPressed: () {
-          //TODO
-        },
+        onPressed: () => showDialog(
+          context: context,
+
+          //TODO change commongeneratedlog to qr code generator dialog
+          builder: (context) => CommonGenerateDialog(
+              screenSize: screenSize,
+              buttonTitle: 'Generate',
+              dialogTitle: 'QR-code generator'),
+        ),
       ),
     );
   }
