@@ -33,7 +33,8 @@ class QRcodeScreen extends StatelessWidget {
                       QRcodeCardContent(
                           id: '203423j4l2k3jl2jl3kj4',
                           createdBy: 'michael scott',
-                          url: 'https://alksdlakd.com'),
+                          url: 'https://alksdlakd.com',
+                          screenSize: screenSize),
                       //FIXME add qr
                       Container(
                           color: Colors.amber,
@@ -70,14 +71,17 @@ class QRcodeCardContent extends StatelessWidget {
     required this.createdBy,
     required this.url,
     super.key,
+    required this.screenSize,
   });
 
   final String id, createdBy, url;
+  final Size screenSize;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 5.0),
-      width: 240,
+      width: screenSize.width * 0.46,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
