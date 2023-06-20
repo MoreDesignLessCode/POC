@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pg_poc/provider/screen_provider.dart';
-import 'package:pg_poc/screens/home_screen.dart';
-import 'package:pg_poc/screens/intro_screen.dart';
-import 'package:pg_poc/screens/qrcode_screen.dart';
-import 'package:pg_poc/screens/rating_screen.dart';
-import 'package:pg_poc/screens/url_screen.dart';
+import 'package:pg_poc/data/provider/ratings_provider.dart';
+import 'package:pg_poc/data/provider/screen_provider.dart';
+import 'package:pg_poc/presentation/screens/home_screen.dart';
+import 'package:pg_poc/presentation/screens/intro_screen.dart';
+import 'package:pg_poc/presentation/screens/qrcode_screen.dart';
+import 'package:pg_poc/presentation/screens/rating_screen.dart';
+import 'package:pg_poc/presentation/screens/url_screen.dart';
 import 'package:provider/provider.dart';
-import 'color_schemes.dart';
+import 'presentation/color_schemes.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ScreenProvider(),
-      child: const MyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ScreenProvider()),
+        ChangeNotifierProvider(create: (_) => RatingsProvider()),
+      ],
+      child: MyApp(),
     ),
   );
 }

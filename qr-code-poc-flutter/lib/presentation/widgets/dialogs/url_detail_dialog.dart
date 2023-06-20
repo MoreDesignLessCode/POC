@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pg_poc/styles.dart';
+import 'package:pg_poc/presentation/styles.dart';
 
 class URLdetailDialog extends StatelessWidget {
   URLdetailDialog({

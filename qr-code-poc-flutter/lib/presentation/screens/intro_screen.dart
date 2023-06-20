@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pg_poc/colors.dart';
+import 'package:pg_poc/data/provider/ratings_provider.dart';
+import 'package:pg_poc/presentation/colors.dart';
+import 'package:provider/provider.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});
@@ -62,8 +64,10 @@ class IntroScreen extends StatelessWidget {
                   shape: const CircleBorder(),
                   fixedSize: const Size(80, 80)),
               child: const Icon(Icons.keyboard_arrow_right),
-              onPressed: () {
+              onPressed: () async {
                 Navigator.pushNamed(context, 'home_screen');
+                await Provider.of<RatingsProvider>(context, listen: false)
+                    .getAllRatings();
               },
             ),
           ],
