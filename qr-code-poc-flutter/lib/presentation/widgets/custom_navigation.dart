@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pg_poc/provider/screen_provider.dart';
+import 'package:pg_poc/data/provider/screen_provider.dart';
 import 'package:provider/provider.dart';
 
-class CustomNavigatonBar extends StatelessWidget {
-  const CustomNavigatonBar({
+class CustomNavigationBar extends StatelessWidget {
+  const CustomNavigationBar({
     super.key,
   });
 

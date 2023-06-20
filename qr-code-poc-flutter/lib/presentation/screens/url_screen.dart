@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pg_poc/styles.dart';
-import 'package:pg_poc/widgets/custom_floating_btn.dart';
-import 'package:pg_poc/widgets/dialogs/common_generate_dialog.dart';
-import 'package:pg_poc/widgets/dialogs/url_detail_dialog.dart';
-import 'package:pg_poc/widgets/title_appbar.dart';
+import 'package:pg_poc/presentation/widgets/custom_floating_btn.dart';
+import 'package:pg_poc/presentation/widgets/dialogs/common_generate_dialog.dart';
+import 'package:pg_poc/presentation/widgets/dialogs/url_detail_dialog.dart';
+import 'package:pg_poc/presentation/widgets/title_appbar.dart';
 
 class URLScreen extends StatelessWidget {
   const URLScreen({super.key});

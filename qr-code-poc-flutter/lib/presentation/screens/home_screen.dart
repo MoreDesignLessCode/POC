@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pg_poc/provider/screen_provider.dart';
-import 'package:pg_poc/widgets/custom_navigation.dart';
+import 'package:pg_poc/data/provider/screen_provider.dart';
+import 'package:pg_poc/presentation/widgets/custom_navigation.dart';
 import 'package:provider/provider.dart';
 
 import 'qrcode_screen.dart';
@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const CustomNavigatonBar(),
+      bottomNavigationBar: const CustomNavigationBar(),
       body: screens[Provider.of<ScreenProvider>(context).getScreenIndex],
     );
   }
