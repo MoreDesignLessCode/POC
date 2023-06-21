@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pg_poc/data/provider/qrcode_provider.dart';
 import 'package:pg_poc/data/provider/ratings_provider.dart';
 import 'package:pg_poc/presentation/colors.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,6 @@ import 'package:provider/provider.dart';
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});
 
-//TODO change Screen size with mediaquery
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
@@ -66,8 +66,12 @@ class IntroScreen extends StatelessWidget {
               child: const Icon(Icons.keyboard_arrow_right),
               onPressed: () async {
                 Navigator.pushNamed(context, 'home_screen');
+                // To avoid async gaps, qrProvider is defined before a async op, (await)
+                final qrProvider =
+                    Provider.of<QRcodeProvider>(context, listen: false);
                 await Provider.of<RatingsProvider>(context, listen: false)
                     .getAllRatings();
+                await qrProvider.getAllQRCodes();
               },
             ),
           ],

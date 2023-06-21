@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
-import 'package:pg_poc/data/models/ratings_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:pg_poc/utils/apis.dart';
 
@@ -11,9 +10,7 @@ class RatingsProvider extends ChangeNotifier {
   // RatingsModel? get ratings => _ratings;
 
   bool isLoading = false;
-  String _errorMessage = '';
-
-  String get errorMessage => _errorMessage;
+  String errorMessage = '';
 
   //Data for UI
   int? ratingsCount = 0;
@@ -24,25 +21,24 @@ class RatingsProvider extends ChangeNotifier {
 
   Future<void> getAllRatings() async {
     isLoading = true;
-    _errorMessage = '';
+    errorMessage = '';
     notifyListeners();
 
     try {
       final response = await http.get(Uri.parse(ApiURL.getAllRatingsURL));
       if (response.statusCode == 200) {
-        final jsonData = jsonDecode(response.body);
+        final jsonData = await jsonDecode(response.body);
         ratingResponseList = jsonData["data"];
-        print(ratingResponseList);
         overallRating = calculateOverallRating(ratingResponseList);
         createDateList(ratingResponseList);
 
         // _ratings = RatingsModel.fromJson(jsonData);
         // ratingsCount = _ratings?.data?.length;
       } else {
-        _errorMessage = 'Something went wrong, try again later';
+        errorMessage = 'Something went wrong, try again later';
       }
     } catch (e) {
-      _errorMessage = e.toString();
+      errorMessage = e.toString();
       print(e);
     }
     isLoading = false;
