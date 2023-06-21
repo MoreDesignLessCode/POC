@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pg_poc/data/provider/url_provider.dart';
 import 'package:pg_poc/presentation/widgets/custom_floating_btn.dart';
-import 'package:pg_poc/presentation/widgets/dialogs/common_generate_dialog.dart';
+import 'package:pg_poc/presentation/widgets/dialogs/qr_generator_dialog.dart';
 import 'package:pg_poc/presentation/widgets/dialogs/url_detail_dialog.dart';
 import 'package:pg_poc/presentation/widgets/title_appbar.dart';
 import 'package:provider/provider.dart';
@@ -115,27 +115,16 @@ class URLScreen extends StatelessWidget {
             title: 'Compact',
             icon: Icons.view_compact_alt,
             onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) => CommonGenerateDialog(
-                  dialogTitle: 'Compact',
-                  screenSize: screenSize,
-                  buttonTitle: 'Generate',
-                ),
-              );
+              //TODO add dialog
             }),
         const SizedBox(height: 12.0),
         CustomFloatingActionButton(
-            title: 'Compress',
-            icon: Icons.compress,
-            onPressed: () => showDialog(
-                  context: context,
-                  builder: (context) => CommonGenerateDialog(
-                    dialogTitle: 'Compress',
-                    screenSize: screenSize,
-                    buttonTitle: 'Compress',
-                  ),
-                ))
+          title: 'Compress',
+          icon: Icons.compress,
+          onPressed: () {
+            //TODO add dialog
+          },
+        )
       ]),
     );
   }

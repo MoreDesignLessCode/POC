@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pg_poc/data/provider/qrcode_provider.dart';
 import 'package:pg_poc/presentation/styles.dart';
 import 'package:pg_poc/presentation/widgets/custom_floating_btn.dart';
-import 'package:pg_poc/presentation/widgets/dialogs/common_generate_dialog.dart';
+import 'package:pg_poc/presentation/widgets/dialogs/qr_generator_dialog.dart';
 import 'package:pg_poc/presentation/widgets/title_appbar.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +53,7 @@ class QRcodeScreen extends StatelessWidget {
                                         .qrCodeResponseList[index]['url'],
                                     screenSize: screenSize),
                                 Container(
-                                    color: Colors.amber,
+                                    color: Colors.white,
                                     width: 120,
                                     child: Image.memory(qrCodeProvider
                                         .generateImageData(index: index)))
@@ -75,12 +75,9 @@ class QRcodeScreen extends StatelessWidget {
           onPressed: () {
             showDialog(
               context: context,
-
-              //TODO change commongeneratedlog to qr code generator dialog
-              builder: (context) => CommonGenerateDialog(
-                  screenSize: screenSize,
-                  buttonTitle: 'Generate',
-                  dialogTitle: 'QR-code generator'),
+              builder: (context) => QRcodeGeneratorDialog(
+                screenSize: screenSize,
+              ),
             );
           }),
     );
