@@ -52,7 +52,6 @@ class QRcodeScreen extends StatelessWidget {
                                     url: qrCodeProvider
                                         .qrCodeResponseList[index]['url'],
                                     screenSize: screenSize),
-                                //FIXME add qr
                                 Container(
                                     color: Colors.amber,
                                     width: 120,
