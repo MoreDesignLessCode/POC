@@ -22,10 +22,10 @@ class QRcodeScreen extends StatelessWidget {
             top: screenSize.height * 0.02),
         child: Column(
           children: [
-            if (qrCodeProvider.isLoading)
+            if (qrCodeProvider.getIsLoading)
               const Center(child: CircularProgressIndicator())
-            else if (qrCodeProvider.errorMessage.isNotEmpty)
-              Center(child: Text(qrCodeProvider.errorMessage))
+            else if (qrCodeProvider.getErrorMessage.isNotEmpty)
+              Center(child: Text(qrCodeProvider.getErrorMessage))
             else
               Flexible(
                 child: RefreshIndicator(

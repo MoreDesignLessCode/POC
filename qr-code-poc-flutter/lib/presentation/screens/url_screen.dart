@@ -22,10 +22,10 @@ class URLScreen extends StatelessWidget {
             top: screenSize.height * 0.02),
         child: Column(
           children: [
-            if (urlsProvider.isLoading)
+            if (urlsProvider.getIsLoading)
               const Center(child: CircularProgressIndicator())
-            else if (urlsProvider.errorMessage.isNotEmpty)
-              Center(child: Text(urlsProvider.errorMessage))
+            else if (urlsProvider.getErrorMessage.isNotEmpty)
+              Center(child: Text(urlsProvider.getErrorMessage))
             else
               Flexible(
                 child: RefreshIndicator(

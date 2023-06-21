@@ -23,8 +23,7 @@ class URLdetailDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0)), //this right here
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: SizedBox(
         height: screenSize.height * 0.75,
         width: screenSize.width * 0.8,
