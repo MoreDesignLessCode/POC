@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pg_poc/data/provider/qrcode_provider.dart';
 import 'package:pg_poc/presentation/styles.dart';
 import 'package:pg_poc/presentation/widgets/custom_floating_btn.dart';
 import 'package:pg_poc/presentation/widgets/dialogs/common_generate_dialog.dart';
 import 'package:pg_poc/presentation/widgets/title_appbar.dart';
+import 'package:provider/provider.dart';
 
 class QRcodeScreen extends StatelessWidget {
   const QRcodeScreen({super.key});
@@ -10,6 +12,7 @@ class QRcodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    final qrCodeProvider = Provider.of<QRcodeProvider>(context);
     return Scaffold(
       appBar: const CustomTitleAppBar(title: 'QRcode'),
       body: Padding(
@@ -17,50 +20,70 @@ class QRcodeScreen extends StatelessWidget {
             right: screenSize.width * 0.05,
             left: screenSize.width * 0.05,
             top: screenSize.height * 0.02),
-        child: ListView.separated(
-          separatorBuilder: (context, index) => const SizedBox(height: 8.0),
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return Card(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: SizedBox(
-                  height: 200,
-                  width: screenSize.width * 0.9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      QRcodeCardContent(
-                          id: '203423j4l2k3jl2jl3kj4',
-                          createdBy: 'michael scott',
-                          url: 'https://alksdlakd.com',
-                          screenSize: screenSize),
-                      //FIXME add qr
-                      Container(
-                          color: Colors.amber,
-                          width: 120,
-                          child: Image.asset('assets/blue_abstract.jpg'))
-                    ],
+        child: Column(
+          children: [
+            if (qrCodeProvider.isLoading)
+              const Center(child: CircularProgressIndicator())
+            else if (qrCodeProvider.errorMessage.isNotEmpty)
+              Center(child: Text(qrCodeProvider.errorMessage))
+            else
+              Flexible(
+                child: RefreshIndicator(
+                  onRefresh: () => qrCodeProvider.getAllQRCodes(),
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 8.0),
+                    itemCount: qrCodeProvider.qrCodeResponseList.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: SizedBox(
+                            // height: 200,
+                            width: screenSize.width * 0.9,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                QRcodeCardContent(
+                                    id: qrCodeProvider.qrCodeResponseList[index]
+                                        ["id"],
+                                    createdBy: qrCodeProvider
+                                        .qrCodeResponseList[index]["createdBy"],
+                                    url: qrCodeProvider
+                                        .qrCodeResponseList[index]['url'],
+                                    screenSize: screenSize),
+                                //FIXME add qr
+                                Container(
+                                    color: Colors.amber,
+                                    width: 120,
+                                    child: Image.memory(qrCodeProvider
+                                        .generateImageData(index: index)))
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
-            );
-          },
+          ],
         ),
       ),
       floatingActionButton: CustomFloatingActionButton(
-        icon: Icons.qr_code,
-        title: 'Generate',
-        onPressed: () => showDialog(
-          context: context,
+          icon: Icons.qr_code,
+          title: 'Generate',
+          onPressed: () {
+            showDialog(
+              context: context,
 
-          //TODO change commongeneratedlog to qr code generator dialog
-          builder: (context) => CommonGenerateDialog(
-              screenSize: screenSize,
-              buttonTitle: 'Generate',
-              dialogTitle: 'QR-code generator'),
-        ),
-      ),
+              //TODO change commongeneratedlog to qr code generator dialog
+              builder: (context) => CommonGenerateDialog(
+                  screenSize: screenSize,
+                  buttonTitle: 'Generate',
+                  dialogTitle: 'QR-code generator'),
+            );
+          }),
     );
   }
 }
@@ -95,8 +118,12 @@ class QRcodeCardContent extends StatelessWidget {
               style: kQRcodeCardBodyTextStyle, overflow: TextOverflow.ellipsis),
           Divider(color: Theme.of(context).dividerColor),
           const Text('URL :', style: kQRcodeCardTitleStyle),
-          Text(url,
-              style: kQRcodeCardBodyTextStyle, overflow: TextOverflow.ellipsis),
+          Text(
+            url,
+            style: kQRcodeCardBodyTextStyle,
+            maxLines: 14,
+            overflow: TextOverflow.ellipsis,
+          ),
         ],
       ),
     );

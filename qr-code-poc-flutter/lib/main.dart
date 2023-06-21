@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pg_poc/data/provider/qrcode_provider.dart';
 import 'package:pg_poc/data/provider/ratings_provider.dart';
 import 'package:pg_poc/data/provider/screen_provider.dart';
 import 'package:pg_poc/presentation/screens/home_screen.dart';
@@ -17,6 +18,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => ScreenProvider()),
         ChangeNotifierProvider(create: (_) => RatingsProvider()),
+        ChangeNotifierProvider(create: (_) => QRcodeProvider()),
       ],
       child: MyApp(),
     ),
