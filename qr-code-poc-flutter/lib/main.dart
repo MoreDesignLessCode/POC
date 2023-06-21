@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pg_poc/data/provider/qrcode_provider.dart';
 import 'package:pg_poc/data/provider/ratings_provider.dart';
 import 'package:pg_poc/data/provider/screen_provider.dart';
+import 'package:pg_poc/data/provider/url_provider.dart';
 import 'package:pg_poc/presentation/screens/home_screen.dart';
 import 'package:pg_poc/presentation/screens/intro_screen.dart';
 import 'package:pg_poc/presentation/screens/qrcode_screen.dart';
@@ -19,6 +20,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ScreenProvider()),
         ChangeNotifierProvider(create: (_) => RatingsProvider()),
         ChangeNotifierProvider(create: (_) => QRcodeProvider()),
+        ChangeNotifierProvider(create: (_) => UrlProvider()),
       ],
       child: MyApp(),
     ),

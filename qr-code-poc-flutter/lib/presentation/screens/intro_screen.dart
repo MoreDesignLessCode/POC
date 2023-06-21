@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pg_poc/data/provider/qrcode_provider.dart';
 import 'package:pg_poc/data/provider/ratings_provider.dart';
+import 'package:pg_poc/data/provider/url_provider.dart';
 import 'package:pg_poc/presentation/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -69,9 +70,12 @@ class IntroScreen extends StatelessWidget {
                 // To avoid async gaps, qrProvider is defined before a async op, (await)
                 final qrProvider =
                     Provider.of<QRcodeProvider>(context, listen: false);
+                final urlsProvider =
+                    Provider.of<UrlProvider>(context, listen: false);
                 await Provider.of<RatingsProvider>(context, listen: false)
                     .getAllRatings();
                 await qrProvider.getAllQRCodes();
+                await urlsProvider.getAllUrls();
               },
             ),
           ],

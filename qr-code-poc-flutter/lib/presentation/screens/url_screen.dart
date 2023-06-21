@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pg_poc/data/provider/url_provider.dart';
 import 'package:pg_poc/presentation/widgets/custom_floating_btn.dart';
 import 'package:pg_poc/presentation/widgets/dialogs/common_generate_dialog.dart';
 import 'package:pg_poc/presentation/widgets/dialogs/url_detail_dialog.dart';
 import 'package:pg_poc/presentation/widgets/title_appbar.dart';
+import 'package:provider/provider.dart';
 
 class URLScreen extends StatelessWidget {
   const URLScreen({super.key});
@@ -10,6 +12,7 @@ class URLScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    final urlsProvider = Provider.of<UrlProvider>(context);
     return Scaffold(
       appBar: const CustomTitleAppBar(title: 'URL'),
       body: Padding(
@@ -17,68 +20,93 @@ class URLScreen extends StatelessWidget {
             right: screenSize.width * 0.05,
             left: screenSize.width * 0.05,
             top: screenSize.height * 0.02),
-        child: ListView.separated(
-          itemCount: 10,
-          separatorBuilder: (context, index) => const SizedBox(height: 8.0),
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return URLdetailDialog(
-                        screenSize: screenSize,
-                        compactURL: 'asd',
-                        compressedURL:
-                            'aalskdjlaksd lask djla ks jldkajsld alsk dlajskd lak jsldjalskd lask dlkaslkd jalksjdlaksj ldkajsl dka jlsjdasda sdasd asd asdasd asd asd asd as dasd asd adsa da dsdaaqaqaqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqddddddddddddddddddddddddddddddddddddddd',
-                        createdBy: 'asda',
-                        id: 'adasd',
-                        originalURL: 'asd',
+        child: Column(
+          children: [
+            if (urlsProvider.isLoading)
+              const Center(child: CircularProgressIndicator())
+            else if (urlsProvider.errorMessage.isNotEmpty)
+              Center(child: Text(urlsProvider.errorMessage))
+            else
+              Flexible(
+                child: RefreshIndicator(
+                  onRefresh: () => urlsProvider.getAllUrls(),
+                  child: ListView.separated(
+                    itemCount: urlsProvider.urlsResponseList.length,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 8.0),
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return URLdetailDialog(
+                                  screenSize: screenSize,
+                                  compactURL: urlsProvider
+                                      .urlsResponseList[index]["compactUrl"]
+                                      .toString(),
+                                  compressedURL: urlsProvider
+                                      .urlsResponseList[index]["compressedUrl"]
+                                      .toString(),
+                                  createdBy: urlsProvider
+                                      .urlsResponseList[index]["createdBy"]
+                                      .toString(),
+                                  id: urlsProvider.urlsResponseList[index]["id"]
+                                      .toString(),
+                                  originalURL: urlsProvider
+                                      .urlsResponseList[index]["originalUrl"]
+                                      .toString(),
+                                );
+                              });
+                        },
+                        child: Card(
+                          child: Container(
+                            width: 300,
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'ID: ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  urlsProvider.urlsResponseList[index]["id"],
+                                  style: const TextStyle(fontSize: 14),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(height: 20),
+                                const Text(
+                                  'URL: ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  urlsProvider.urlsResponseList[index]
+                                          ["originalUrl"]
+                                      .toString(),
+                                  style: const TextStyle(fontSize: 14),
+                                  maxLines: 10,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       );
-                    });
-              },
-              child: Card(
-                child: Container(
-                  width: 300,
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'ID: ',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                      SizedBox(height: 5),
-                      Text(
-                        'kiy87kjhuhjhiuhuhu99y',
-                        style: TextStyle(fontSize: 14),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      SizedBox(height: 20),
-                      Text(
-                        'URL: ',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                      SizedBox(height: 5),
-                      Text(
-                        'https://alskdjisdjqkw0qwujdqjd0qw/e2/3.r.comjhljhljhohouhy9otuahdkfjalsjfhahflasflak;als;dasjd;ajsd;asdj;asdjj',
-                        style: TextStyle(fontSize: 14),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+                    },
                   ),
                 ),
               ),
-            );
-          },
+          ],
         ),
       ),
       floatingActionButton:
@@ -86,14 +114,16 @@ class URLScreen extends StatelessWidget {
         CustomFloatingActionButton(
             title: 'Compact',
             icon: Icons.view_compact_alt,
-            onPressed: () => showDialog(
-                  context: context,
-                  builder: (context) => CommonGenerateDialog(
-                    dialogTitle: 'Compact',
-                    screenSize: screenSize,
-                    buttonTitle: 'Generate',
-                  ),
-                )),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => CommonGenerateDialog(
+                  dialogTitle: 'Compact',
+                  screenSize: screenSize,
+                  buttonTitle: 'Generate',
+                ),
+              );
+            }),
         const SizedBox(height: 12.0),
         CustomFloatingActionButton(
             title: 'Compress',

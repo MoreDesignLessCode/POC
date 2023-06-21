@@ -38,8 +38,8 @@ class CommonGenerateDialog extends StatelessWidget {
                         icon: const Icon(Icons.close))
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: TextField(
                     decoration:
                         InputDecoration(hintText: 'https://example.com'),
