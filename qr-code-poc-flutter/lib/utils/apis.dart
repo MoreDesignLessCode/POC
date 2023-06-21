@@ -8,4 +8,5 @@ class ApiURL {
 
   //POST API
   static const String PostRatingURL = 'http://10.0.2.2:4000/ratings';
+  static const String postQRcodeURL = 'http://10.0.2.2:5000/qr';
 }

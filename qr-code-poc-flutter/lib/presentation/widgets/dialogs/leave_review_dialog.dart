@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:pg_poc/data/provider/ratings_provider.dart';
 import 'package:pg_poc/presentation/styles.dart';
+import 'package:pg_poc/presentation/widgets/custom_textfield.dart';
 import 'package:provider/provider.dart';
 
 class LeaveReviewDialog extends StatelessWidget {
@@ -24,6 +25,7 @@ class LeaveReviewDialog extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: SingleChildScrollView(
+            reverse: true,
             child: Column(
               children: [
                 Row(
@@ -66,8 +68,9 @@ class LeaveReviewDialog extends StatelessWidget {
                           onRatingUpdate: (v) => rating = v),
                       SizedBox(height: screenSize.height * 0.025),
                       ElevatedButton(
-                          onPressed: () {
-                            Provider.of<RatingsProvider>(context, listen: false)
+                          onPressed: () async {
+                            await Provider.of<RatingsProvider>(context,
+                                    listen: false)
                                 .postRatings(
                               summary: summaryController.text,
                               description: descriptionController.text,
@@ -107,62 +110,6 @@ class LeaveReviewDialog extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  final String labelText;
-  final IconData prefixIcon;
-  final IconData suffixIcon;
-  final bool obscureText;
-  final TextEditingController controller;
-  final TextInputType keyboardType;
-  final TextInputAction textInputAction;
-  final void Function(String)? onChanged;
-  final int? maxLines;
-
-  const CustomTextField({
-    Key? key,
-    required this.labelText,
-    required this.prefixIcon,
-    this.suffixIcon = Icons.abc,
-    this.obscureText = false,
-    required this.controller,
-    this.keyboardType = TextInputType.text,
-    this.textInputAction = TextInputAction.done,
-    this.onChanged,
-    this.maxLines,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      maxLines: maxLines,
-      controller: controller,
-      keyboardType: keyboardType,
-      textInputAction: textInputAction,
-      onChanged: onChanged,
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        labelText: labelText,
-        prefixIcon: Icon(prefixIcon),
-        suffixIcon: suffixIcon != Icons.abc ? Icon(suffixIcon) : null,
-        border: const OutlineInputBorder(),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.primary,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-          ),
-        ),
-        labelStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
         ),
       ),
     );
