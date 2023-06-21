@@ -7,15 +7,15 @@ import 'package:http/http.dart' as http;
 import 'package:pg_poc/utils/apis.dart';
 
 class QRcodeProvider extends ChangeNotifier {
-  bool isLoading = false;
-  String errorMessage = '';
+  bool getIsLoading = false;
+  String getErrorMessage = '';
   // QRCodeModel? qrcodeDetails;
 
   List<dynamic> qrCodeResponseList = [];
 
   Future<void> getAllQRCodes() async {
-    isLoading = true;
-    errorMessage = '';
+    getIsLoading = true;
+    getErrorMessage = '';
 
     try {
       final response = await http.get(Uri.parse(ApiURL.getAllQrURL));
@@ -25,13 +25,13 @@ class QRcodeProvider extends ChangeNotifier {
         // qrcodeDetails = QRCodeModel.fromJson(jsonData);
         // print(qrCodeResponseList);
       } else {
-        errorMessage = 'something went wrong, try again later';
+        getErrorMessage = 'something went wrong, try again later';
       }
     } catch (e) {
-      errorMessage = e.toString();
+      getErrorMessage = e.toString();
       print(e);
     }
-    isLoading = false;
+    getIsLoading = false;
     notifyListeners();
   }
 

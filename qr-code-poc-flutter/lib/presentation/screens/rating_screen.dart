@@ -4,6 +4,7 @@ import 'package:pg_poc/data/provider/ratings_provider.dart';
 import 'package:pg_poc/presentation/colors.dart';
 import 'package:pg_poc/presentation/extensions.dart';
 import 'package:pg_poc/presentation/widgets/custom_floating_btn.dart';
+import 'package:pg_poc/presentation/widgets/dialogs/leave_review_dialog.dart';
 import 'package:pg_poc/presentation/widgets/title_appbar.dart';
 import 'package:provider/provider.dart';
 
@@ -25,10 +26,10 @@ class RatingScreen extends StatelessWidget {
             top: screenSize.height * 0.02),
         child: Column(
           children: [
-            if (ratingsProvider.isLoading)
+            if (ratingsProvider.getIsLoading)
               const Center(child: CircularProgressIndicator())
-            else if (ratingsProvider.errorMessage.isNotEmpty)
-              Center(child: Text(ratingsProvider.errorMessage))
+            else if (ratingsProvider.getErrorMessage.isNotEmpty)
+              Center(child: Text(ratingsProvider.getErrorMessage))
             else
               NeomorphicRatingCard(
                 screenSize: screenSize,
@@ -142,7 +143,13 @@ class RatingScreen extends StatelessWidget {
       floatingActionButton: CustomFloatingActionButton(
         icon: Icons.edit,
         title: 'Leave Review',
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (context) => LeaveReviewDialog(
+                    screenSize: screenSize,
+                  ));
+        },
       ),
     );
   }
