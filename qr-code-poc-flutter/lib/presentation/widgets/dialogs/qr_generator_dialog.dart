@@ -129,6 +129,12 @@ class _QRcodeGeneratorDialogState extends State<QRcodeGeneratorDialog> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
+                    final qrCodeProvider =
+                        Provider.of<QRcodeProvider>(context, listen: false);
+                    final scaffoldMessenger = ScaffoldMessenger.of(context);
+
+                    final navigatorPop = Navigator.pop(context);
+
                     await Provider.of<QRcodeProvider>(context, listen: false)
                         .postQrCode(
                       link: linkController.text,
@@ -137,26 +143,22 @@ class _QRcodeGeneratorDialogState extends State<QRcodeGeneratorDialog> {
                       quiteZoneValue: quiteZoneController.text,
                     );
 
-                    if (Provider.of<QRcodeProvider>(context, listen: false)
-                        .postIsLoading) {
+                    if (qrCodeProvider.postIsLoading) {
                       const SnackBar snackBar =
                           SnackBar(content: Text('posting'));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      scaffoldMessenger.showSnackBar(snackBar);
                     }
-                    if (Provider.of<QRcodeProvider>(context, listen: false)
-                        .postErrorMessage
-                        .isEmpty) {
+                    if (qrCodeProvider.postErrorMessage.isEmpty) {
                       const SnackBar snackBar =
                           SnackBar(content: Text('posted successfully'));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      Provider.of<QRcodeProvider>(context, listen: false)
-                          .getAllQRCodes();
+                      scaffoldMessenger.showSnackBar(snackBar);
+                      qrCodeProvider.getAllQRCodes();
                     } else {
                       const SnackBar snackBar =
                           SnackBar(content: Text('failed to post'));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      scaffoldMessenger.showSnackBar(snackBar);
                     }
-                    Navigator.pop(context);
+                    navigatorPop;
                   },
                   child: const Text('Generate'),
                 ),

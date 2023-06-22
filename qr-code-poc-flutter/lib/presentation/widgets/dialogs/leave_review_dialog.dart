@@ -69,41 +69,37 @@ class LeaveReviewDialog extends StatelessWidget {
                       SizedBox(height: screenSize.height * 0.025),
                       ElevatedButton(
                           onPressed: () async {
-                            await Provider.of<RatingsProvider>(context,
-                                    listen: false)
-                                .postRatings(
+                            // to avoid the async gaps
+                            final ratingsProvider =
+                                Provider.of<RatingsProvider>(context,
+                                    listen: false);
+                            final scaffoldMessenger =
+                                ScaffoldMessenger.of(context);
+                            final navigatorPop = Navigator.pop(context);
+
+                            await ratingsProvider.postRatings(
                               summary: summaryController.text,
                               description: descriptionController.text,
                               rating: rating,
                             );
-                            if (Provider.of<RatingsProvider>(context,
-                                    listen: false)
-                                .postIsLoading) {
+                            if (ratingsProvider.postIsLoading) {
                               const SnackBar snackBar =
                                   SnackBar(content: Text('posting'));
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
+                              scaffoldMessenger.showSnackBar(snackBar);
                             }
-                            if (Provider.of<RatingsProvider>(context,
-                                    listen: false)
-                                .postErrorMessage
-                                .isEmpty) {
+                            if (ratingsProvider.postErrorMessage.isEmpty) {
                               const SnackBar snackBar = SnackBar(
                                   content: Text('posted successfully'));
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
-                              Provider.of<RatingsProvider>(context,
-                                      listen: false)
-                                  .getAllRatings();
+                              scaffoldMessenger.showSnackBar(snackBar);
+                              ratingsProvider.getAllRatings();
                             } else {
                               const SnackBar snackBar =
                                   SnackBar(content: Text('failed to post'));
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
+                              scaffoldMessenger.showSnackBar(snackBar);
                             }
-                            Navigator.pop(context);
+                            navigatorPop;
                           },
-                          child: const Text('Submit'))
+                          child: const Text('Submit')),
                     ],
                   ),
                 ),

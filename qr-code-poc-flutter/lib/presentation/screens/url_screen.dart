@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pg_poc/data/provider/url_provider.dart';
 import 'package:pg_poc/presentation/widgets/custom_floating_btn.dart';
+import 'package:pg_poc/presentation/widgets/dialogs/compact_compress_dialog.dart';
 import 'package:pg_poc/presentation/widgets/dialogs/qr_generator_dialog.dart';
 import 'package:pg_poc/presentation/widgets/dialogs/url_detail_dialog.dart';
 import 'package:pg_poc/presentation/widgets/title_appbar.dart';
@@ -115,14 +116,26 @@ class URLScreen extends StatelessWidget {
             title: 'Compact',
             icon: Icons.view_compact_alt,
             onPressed: () {
-              //TODO add dialog
+              showDialog(
+                  context: context,
+                  builder: (context) => CompactCompressDialog(
+                        screenSize: screenSize,
+                        title: 'Compact URL',
+                        dialogType: 'compact',
+                      ));
             }),
         const SizedBox(height: 12.0),
         CustomFloatingActionButton(
           title: 'Compress',
           icon: Icons.compress,
           onPressed: () {
-            //TODO add dialog
+            showDialog(
+              context: context,
+              builder: (context) => CompactCompressDialog(
+                  title: 'Compress URL',
+                  screenSize: screenSize,
+                  dialogType: 'compress'),
+            );
           },
         )
       ]),
