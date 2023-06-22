@@ -8,8 +8,14 @@ class UrlProvider extends ChangeNotifier {
   bool getIsLoading = false;
   String getErrorMessage = '';
 
+  bool postCompactIsLoading = false;
+  String postCompactErrorMessage = '';
+  bool postCompressIsLoading = false;
+  String postCompressErrorMessage = '';
+
   List<dynamic> urlsResponseList = [];
 
+  //GET
   Future<void> getAllUrls() async {
     getIsLoading = true;
     getErrorMessage = '';
@@ -25,6 +31,61 @@ class UrlProvider extends ChangeNotifier {
       getErrorMessage = e.toString();
     }
     getIsLoading = false;
+    notifyListeners();
+  }
+
+  //POST
+  Future<void> postCompactURL({
+    required String link,
+  }) async {
+    postCompactIsLoading = true;
+    postCompactErrorMessage = '';
+
+    try {
+      var headers = {
+        'Content-Type': 'application/json',
+      };
+      var body = jsonEncode({"name": link});
+      Uri url = Uri.parse(ApiURL.postCompactURL);
+
+      final response = await http.post(url, headers: headers, body: body);
+      if (response.statusCode == 201) {
+        print('POST request sent successfully');
+      } else {
+        postCompactErrorMessage = response.statusCode.toString();
+      }
+    } catch (e) {
+      postCompactErrorMessage = e.toString();
+      print(e);
+    }
+    postCompactIsLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> postCompressURL({
+    required String link,
+  }) async {
+    postCompressIsLoading = true;
+    postCompressErrorMessage = '';
+
+    try {
+      var headers = {
+        'Content-Type': 'application/json',
+      };
+      var body = jsonEncode({"name": link});
+      Uri url = Uri.parse(ApiURL.postCompressURL);
+
+      final response = await http.post(url, headers: headers, body: body);
+      if (response.statusCode == 201) {
+        print('POST request sent successfully');
+      } else {
+        postCompressErrorMessage = response.statusCode.toString();
+      }
+    } catch (e) {
+      postCompressErrorMessage = e.toString();
+      print(e);
+    }
+    postCompressIsLoading = false;
     notifyListeners();
   }
 }
