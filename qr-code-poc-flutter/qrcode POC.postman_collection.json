@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "7228835f-9b4e-4907-be37-d6dd336d22ec",
+		"name": "qrcode POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25939009"
+	},
+	"item": [
+		{
+			"name": "url",
+			"item": [
+				{
+					"name": "get url from id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlNGJiODk1Ni1hM2M4LTQ2NzUtYjk5OS0yNDZlZjM0ZWM4MmEiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjc4ODc3Njg0LCJleHAiOjE2Nzg4ODEyODR9.mHwHzQ868q15t1Bb9YByU-J3PusPX8M2uIBIl8B4ThI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/urls/cc2536b0-e215-4518-808b-649e61814e76",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"urls",
+								"cc2536b0-e215-4518-808b-649e61814e76"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Orginal url by name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlNGJiODk1Ni1hM2M4LTQ2NzUtYjk5OS0yNDZlZjM0ZWM4MmEiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjc4ODc3Njg0LCJleHAiOjE2Nzg4ODEyODR9.mHwHzQ868q15t1Bb9YByU-J3PusPX8M2uIBIl8B4ThI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/urls/getOrginal?urls=kupZEK1lga",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"urls",
+								"getOrginal"
+							],
+							"query": [
+								{
+									"key": "urls",
+									"value": "kupZEK1lga"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete url",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/urls/cc2536b0-e215-4518-808b-649e61814e76",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"urls",
+								"cc2536b0-e215-4518-808b-649e61814e76"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "shorten a url",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n \"name\":\"https://www.google10.com\"\r\n},\r\n{\r\n \"name\":\"https://www.google12.com/newSearch\"\r\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/urls/compress",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"urls",
+								"compress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "compress a url",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n \"name\":\"https://music.gsyoutube.com/helloworldssjhkjhkjs\"\r\n},\r\n{\r\n \"name\":\"http://yahoo.com/hellossss\"\r\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/urls/compress",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"urls",
+								"compress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all urls",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5Nzg4YWRjZi1iYTBlLTQ2ZjYtYTEyZS0wOTQxNjEwMzdhZjAiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjc4ODgyODg1LCJleHAiOjE2Nzg4ODY0ODV9.3XYtFZugTBkhkwQ_YnZwoEYbClnBZjSi7CY5_oRiJZ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/urls",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"urls"
+							],
+							"query": [
+								{
+									"key": "filter.createdBy",
+									"value": "a4371fe3-a19f-45e5-a20c-60e6076e558f",
+									"disabled": true
+								},
+								{
+									"key": "includes",
+									"value": "attachments,participants,messages",
+									"disabled": true
+								},
+								{
+									"key": "filter.id",
+									"value": "4d449cc7-f665-4cdf-96e5-b0f33c99ca05,6bd4e891-8743-4979-bdbf-4cc027e23835",
+									"disabled": true
+								},
+								{
+									"key": "filter.dateRange",
+									"value": "15-05-2023 ~ 02-09-2023",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "qrcode",
+			"item": [
+				{
+					"name": "get qr from id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlNGJiODk1Ni1hM2M4LTQ2NzUtYjk5OS0yNDZlZjM0ZWM4MmEiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjc4ODc3Njg0LCJleHAiOjE2Nzg4ODEyODR9.mHwHzQ868q15t1Bb9YByU-J3PusPX8M2uIBIl8B4ThI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/qr/fd62d601-b78c-4896-9272-8d162c7bf733",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"qr",
+								"fd62d601-b78c-4896-9272-8d162c7bf733"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete qrcode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/qr/276a6214-3b6e-4658-8360-e1ee89302885",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"qr",
+								"276a6214-3b6e-4658-8360-e1ee89302885"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a qrcode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.zbgd5BNF1cqQ_prCEqIvBTjSxMS8bDLnJAE_wE-0Cxg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n \"location\":\"https://tailwindcss.com/werferdocs/width\"\r\n},\r\n{\r\n \"location\":\"https://tailwindcss.com/google\"\r\n}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/qr",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"qr"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all qrcodes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5Nzg4YWRjZi1iYTBlLTQ2ZjYtYTEyZS0wOTQxNjEwMzdhZjAiLCJuYW1lIjoiSm9obiBEb2UiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjc4ODgyODg1LCJleHAiOjE2Nzg4ODY0ODV9.3XYtFZugTBkhkwQ_YnZwoEYbClnBZjSi7CY5_oRiJZ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/qr",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"qr"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "\"NEW\"",
+									"disabled": true
+								},
+								{
+									"key": "createdBy",
+									"value": "uuid",
+									"disabled": true
+								},
+								{
+									"key": "urn",
+									"value": "urn",
+									"disabled": true
+								},
+								{
+									"key": "raci",
+									"value": "raci",
+									"disabled": true
+								},
+								{
+									"key": "includes",
+									"value": "attachments,participants,messages",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
