@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prefer-template */
 /* eslint-disable @typescript-eslint/no-var-requires */
-// import {
-//     Uuid,
-//     Result,
-//     IStorageProvider,
-//     IContext,
-// } from '@coe/apip-api-types';
 import { IStorageProvider,IContext,Uuid ,Result } from '@coe/apip-api-types';
 import { GeneralAPIError, ResourceNotFoundError } from '../../errors';
 import { Url, Constants } from '../../models';
@@ -130,7 +124,6 @@ WHERE  u1.type = 'FULL'and u2.urlname =$1  or u3.urlname=$1 and u1.deleted_at is
         const result = await this.client.query(`SELECT * from qrmktpl.url u where  u.urlname=$1`, [entity.name]);
         if (!(result.rows.length > 0)) {
             urlId = Uuid();
-            console.log(urlId)
             try {
 
                 await this.client.query(

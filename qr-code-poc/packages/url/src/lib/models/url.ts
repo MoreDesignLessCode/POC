@@ -2,13 +2,25 @@ import { IUrl, Nullable } from '@coe/apip-mktpl-das-qrcode-types';
 import { IResource, Uuid } from '@coe/apip-api-types';
 import * as Joi from 'joi';
 
-export const UrlSchema = Joi.object({
+export const  UrlSchema = Joi.object({
     id: Joi.string().allow('').allow(null).uuid(),
     name:Joi.string().required(),
     type:Joi.string(),
     qrcodeId:Joi.string().allow('').allow(null).uuid(),
     refId:Joi.string().allow('').allow(null).uuid(),
 }).meta({ className: 'Url' });
+
+
+export const schema = Joi.alternatives().try(
+    Joi.object({
+      name: Joi.string().uri().required()
+    }),
+    Joi.array().items(
+      Joi.object({
+        name: Joi.string().uri().required()
+      })
+    )
+  );
 
 export class Url implements IUrl {
     id?: Nullable<Uuid>;

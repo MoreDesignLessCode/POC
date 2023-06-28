@@ -7,6 +7,17 @@ export const QrSchema = Joi.object({
     loacation:Joi.string(),
 }).meta({ className: 'QrSchema' });
 
+export const schema = Joi.alternatives().try(
+    Joi.object({
+        location: Joi.string().uri().required()
+    }),
+    Joi.array().items(
+      Joi.object({
+        location: Joi.string().uri().required()
+      })
+    )
+  );
+
 export class Qr implements IQr {
     id?: Nullable<Uuid>;
     location!: string;

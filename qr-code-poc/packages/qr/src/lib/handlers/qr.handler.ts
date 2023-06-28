@@ -11,7 +11,7 @@ import {
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
-import { Qr, QrSchema } from '../models/qr';
+import { Qr, QrSchema, schema } from '../models/qr';
 import {
     ValidationAPIError,
     ResourceNotFoundError,
@@ -38,7 +38,7 @@ export class QrHandler implements IHandler {
             const offset = queryParams['offset'] || 0;
             req.apip.ctx.set<QueryParameters>('limit', limit)
             req.apip.ctx.set<QueryParameters>('offset', offset)
-            
+
             if (dateRange.length > 0) {
                 const startDate = dateRange[0];
                 const endDate = dateRange[1];
@@ -130,7 +130,7 @@ export class QrHandler implements IHandler {
         req.apip.ctx.set<QueryParameters>('quiteZone', quiteZone)
         req.apip.ctx.set<QueryParameters>('size', size)
         req.apip.ctx.set<QueryParameters>('encodingMode', encodingMode)
-         let error=false
+        const { value: validQr, error } = schema.validate(qr)
         if (error) {
             this.handleValidationError(
                 error,
@@ -140,11 +140,30 @@ export class QrHandler implements IHandler {
                 Constants.errors.validation.qr.update.TITLE
             );
         } else {
-            const result = await this.qrService.create(
-                qr,
-                req.apip.ctx
-            );
-            this.matchOkOrError(201, result, reply);
+            if (Array.isArray(validQr)) {
+                let resp = await Promise.all(validQr.map(async (qrUrl) => await this.qrService.create(
+                    qrUrl,
+                    req.apip.ctx
+                )))
+
+                const consolidatedResponse = resp.reduce((result, response: any) => {
+                    result.data.push(response.data.value);
+                    return result;
+                }, { type: 'ok', data: [] });
+
+                console.log(consolidatedResponse);
+                reply
+                    .type('application/json')
+                    .code(200)
+                    .send(consolidatedResponse);
+            }
+            else {
+                const result = await this.qrService.create(
+                    validQr,
+                    req.apip.ctx
+                );
+                this.matchOkOrError(201, result, reply);
+            }
         }
     };
 
@@ -153,16 +172,16 @@ export class QrHandler implements IHandler {
             const { body: qr } = req;
             const params = req.apip.ctx.get<PathParams>('request:pathparams');
             const queryParams: any = req.query
-        const errorCorrectionLevel = queryParams?.errorCorrectionLevel
-        const mask = queryParams?.mask
-        const quiteZone = queryParams?.quiteZone
-        const size = queryParams?.sizeconst 
-        const encodingMode = queryParams?.encodingMode
-        req.apip.ctx.set<QueryParameters>('errorCorrectionLevel', errorCorrectionLevel)
-        req.apip.ctx.set<QueryParameters>('mask', mask)
-        req.apip.ctx.set<QueryParameters>('quiteZone', quiteZone)
-        req.apip.ctx.set<QueryParameters>('size', size)
-        req.apip.ctx.set<QueryParameters>('encodingMode', encodingMode)
+            const errorCorrectionLevel = queryParams?.errorCorrectionLevel
+            const mask = queryParams?.mask
+            const quiteZone = queryParams?.quiteZone
+            const size = queryParams?.sizeconst
+            const encodingMode = queryParams?.encodingMode
+            req.apip.ctx.set<QueryParameters>('errorCorrectionLevel', errorCorrectionLevel)
+            req.apip.ctx.set<QueryParameters>('mask', mask)
+            req.apip.ctx.set<QueryParameters>('quiteZone', quiteZone)
+            req.apip.ctx.set<QueryParameters>('size', size)
+            req.apip.ctx.set<QueryParameters>('encodingMode', encodingMode)
             if (!uuidValidate(params.id)) {
                 throw new ValidationAPIError(
                     Constants.errors.handler.qr.get.CODE
@@ -170,7 +189,7 @@ export class QrHandler implements IHandler {
             }
 
             //const { value: validQr, error } = QrSchema.validate(qr);
-            let error=false
+            let error = false
             if (error) {
                 this.handleValidationError(
                     error,

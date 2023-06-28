@@ -12,7 +12,7 @@ import {
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
-import { Url, UrlSchema } from '../models/url';
+import { Url, UrlSchema, schema } from '../models/url';
 import { fastifyRequestContextMiddleware } from '@coe/apip-context-middleware';
 //
 import {
@@ -105,6 +105,7 @@ export class UrlHandler implements IHandler {
     getCollection = async (req: IRequest<Url>, reply: FastifyReply) => {
         const responseBuilder = new ResponseBuilder();
         const result = await this.urlService.getCollection(req.apip.ctx);
+        console.log(result)
         match(result)
             .with({ type: 'ok' }, (res) => {
                 let result: any = [];
@@ -135,9 +136,9 @@ export class UrlHandler implements IHandler {
         req.apip.ctx.set<QueryParameters>('compressDomain', compressDomain)
         const responseBuilder = new ResponseBuilder();
         const { body: url } = req;
+        console.log(url)
 
-        const { value: validUrl, error } = UrlSchema.validate(url);
-
+        const { value, error } = schema.validate(url)
         if (error) {
             const validationError = new ValidationAPIError(
                 Constants.errors.validation.url.create.CODE,
@@ -151,11 +152,32 @@ export class UrlHandler implements IHandler {
                 .code(400)
                 .send(validationError);
         } else {
-            const result = await this.urlService.create(
-                validUrl,
-                req.apip.ctx
-            );
-            this.matchOkOrError(201, result, reply);
+            if (Array.isArray(value)) {
+                let resp = await Promise.all(value.map(async (urlValue) => await this.urlService.create(
+                    urlValue,
+                    req.apip.ctx
+                )))
+
+                const consolidatedResponse = resp.reduce((result, response:any) => {
+                    result.data.push(response.data.value);
+                    return result;
+                }, { type: 'ok', data: [] });
+
+                console.log(consolidatedResponse);
+                reply
+                    .type('application/json')
+                    .code(200)
+                    .send(consolidatedResponse);
+            }
+            else {
+                const result = await this.urlService.create(
+                    url,
+                    req.apip.ctx
+                );
+                console.log(result)
+                this.matchOkOrError(201, result, reply);
+            }
+
         }
     };
 
