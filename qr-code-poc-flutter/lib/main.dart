@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:pg_poc/data/provider/qrcode_provider.dart';
 import 'package:pg_poc/data/provider/ratings_provider.dart';
 import 'package:pg_poc/data/provider/screen_provider.dart';
 import 'package:pg_poc/data/provider/url_provider.dart';
+import 'package:pg_poc/presentation/screens/ad_butlar.dart';
+import 'package:pg_poc/presentation/screens/ad_screen.dart';
 import 'package:pg_poc/presentation/screens/home_screen.dart';
 import 'package:pg_poc/presentation/screens/intro_screen.dart';
 import 'package:pg_poc/presentation/screens/qrcode_screen.dart';
@@ -14,6 +17,8 @@ import 'package:provider/provider.dart';
 import 'presentation/color_schemes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   runApp(
     MultiProvider(
       providers: [
@@ -50,6 +55,8 @@ class MyApp extends StatelessWidget {
         'url_screen': (BuildContext context) => URLScreen(),
         'rating_screen': (BuildContext context) => RatingScreen(),
         'intro_screen': (BuildContext context) => IntroScreen(),
+        'ad_screen': (BuildContext context) => AdScreen(),
+        'ad_butlar': (BuildContext context) => AdButlar()
       },
     );
   }
