@@ -35,7 +35,6 @@ A new Flutter project.
 2. Inside Vscode Go to extensions`Ctrl+Shift+X`and install Flutter and Dart extensions which will help in syntax highlighting.
 
 #### Application Startup
-
 1. Open the Project in Vs code.
 
 2. On the bottm right of VS code you can  see Windows(windows -x64 ) or no Device. Please click on this to select the console on which the flutter app needs to run. If the android emulator is installed with the SDK we can  see that emulator from the list of devices.

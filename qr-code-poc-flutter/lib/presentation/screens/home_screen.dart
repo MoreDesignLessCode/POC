@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pg_poc/data/provider/screen_provider.dart';
-import 'package:pg_poc/presentation/screens/ad_butlar.dart';
-import 'package:pg_poc/presentation/screens/ad_screen.dart';
-import 'package:pg_poc/presentation/screens/intro_screen.dart';
 import 'package:pg_poc/presentation/widgets/custom_navigation.dart';
 import 'package:provider/provider.dart';
 
@@ -17,8 +14,6 @@ class HomeScreen extends StatelessWidget {
     RatingScreen(),
     QRcodeScreen(),
     URLScreen(),
-    AdScreen(),
-    AdButlar(),
   ];
 
   // This widget is the root of your application.

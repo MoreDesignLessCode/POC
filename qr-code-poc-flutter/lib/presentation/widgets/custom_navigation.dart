@@ -32,16 +32,6 @@ class CustomNavigationBar extends StatelessWidget {
           label: 'Url',
           tooltip: 'Url',
         ),
-        NavigationDestination(
-          icon: Icon(Icons.ads_click),
-          label: 'Ads',
-          tooltip: 'Ads',
-        ),
-        NavigationDestination(
-          icon: Icon(Icons.ads_click),
-          label: 'Ad_butlar',
-          tooltip: 'Ad_butlar',
-        ),
       ],
     );
   }
